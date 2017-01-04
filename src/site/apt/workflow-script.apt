@@ -1,0 +1,151 @@
+
+Workflow Script
+
+ There is plenty of useful cases where scripts can be of great value. It serves as hook to
+ tap into the lifecycle of an issue.
+
+ It can be an isolated routine which just returns a value to be written back to the issue field,
+ it can interact with the itracker service layer or call any external API such as a webservice.
+
+ When running on a public site, keep in mind that such scripts are very powerful and you
+ should protect your system and database from being abused by any script injection. To
+ disable scripts for the system configure <<<allow_workflowscripts=false>>> see
+ {{{./configuration.html}Configuration}}.
+ Consider setting up a proper security policy that suits your needs, in case activating the feature.
+
+* How Workflow Scripts Work
+
+ * Workflow scripts are created in the Admin section by clicking the 'Add' Button in the Workflow Admin page.
+
+ * To save a script, a unique name must be chosen, along with the desired script language.
+
+ * Syntax of the script must validate before it will be saved to the database.
+
+ * When a script has been created, it can be added to a project in th Project Admin page by clicking the Add
+ Project Script button.
+
+ * Checked scripts will be added to the project, associated with the selected Field Id.
+
+ * Priority defines the order of execution of scripts within the same event.
+
+ * After execution of the script, the returned value will be set on the associated field.
+
+* Events
+
+ The events currently supported are:
+
+ * Populate (1): initialization of the issue-form before display
+
+ * Set Default (3): Called after Populate on creating an issue
+
+ * Validate (4): invoked on issue validation when creating or modifying
+
+ * Pre Submit (5): fires after validation, but before the data is committed to the database
+
+ * Post Submit (6): called after all data is submitted to the database for all fields
+
+* Scope
+
+ Running the script, some variables are available:
+ 
+ * event: event type-id
+
+ * fieldId: is a field id associated with event
+
+ * currentValue: is the value currently set (String, can be updated)
+
+ * currentErrors: is a container for occurred errors
+
+ * currentForm: is a form instance, holding values
+
+ * optionValues: list of key-value of value/label which are assignable
+
+ * return: if the script returns a String, it will be assigned to the field, otherwise currentValue.
+
+* Fields
+
+ * Status (built-in) fieldId: -3
+
+ * Resolution (built-in) fieldId: -4
+
+ * Severity (built-in) fieldId: -5
+
+ * Any custom-field of a project can be used
+
+* Examples:
+
+ * Logging values (BeanShell):
+
+-----
+    log = org.slf4j.LoggerFactory.getLogger("com.mycompany.ScriptExample");
+    log.info("Workflow called with event: {} , \n fieldId: {} , "
+      + "\n currentValue: {} , \n optionValues: {} , \n currentErrors: {} , \n currentForm: {}",
+      new Object[]{event , fieldId , currentValue, optionValues , currentErrors , currentForm});
+-----
+
+ * Logging values (Groovy):
+
+-----
+    def log = org.slf4j.LoggerFactory.getLogger("com.mycompany.ScriptExample");
+    log.info("\"Invoked\" called with event: {} , \n fieldId: {} , \n " 
+      + "currentValue: {} , \n optionValues: {} , \n currentErrors: {} , \n currentForm: {}",
+      (Object[])[event , fieldId , currentValue, optionValues , currentErrors , currentForm]);
+-----
+
+ * Calling a service:
+
+-----
+    def log = org.slf4j.LoggerFactory.getLogger("com.mycompany.ScriptExample")
+    log.info("running with event: $event , \n "
+     + "fieldId: $fieldId , \n "
+     + "currentForm: $currentForm");
+    com.mycompany.FooServiceLocator.fooService.bar(currentForm.id, currentForm.ownerId)
+-----
+
+ * Notify creator (by role, Post Submit)
+
+-----
+    import org.itracker.model.*
+    import org.itracker.web.util.*
+    def log = org.slf4j.LoggerFactory.getLogger("com.mycompany.PostSubmitTestMail");
+    def hello(def x) {
+        def issue = ServletContextUtils.itrackerServices.issueService.getIssue(currentForm.id)
+        ServletContextUtils.itrackerServices.notificationService.getIssueNotifications(issue)
+         .findAll {it.role == Notification.Role.CREATOR}
+         .each {
+           ServletContextUtils.itrackerServices.emailService.sendEmail(it.user.email, 
+            "script was called for issue " + issue.id, 
+            "Greetings $it.user.firstName, creator of the issue #$issue.id. \n\n You've got this test message: \n"
+            + "hello: " + x
+            + "\n from the mycompany.com itracker\n "
+            + IssueUtilities.getIssueURL(issue, ServletContextUtils.configurationService.systemBaseURL))
+        }
+    }
+    try {
+        hello("world")
+        log.info("this would have been successful")
+    } catch (RuntimeException e) {
+        log.error("failed with problems", e)
+    } catch (Exception e) {
+        log.error("failed badly", e)
+    }
+-----
+        
+ * Conditionally change status of the issue (event: PreSubmit, field: Status)
+
+-----
+    import org.itracker.model.util.*
+    if (currentValue < IssueUtilities.STATUS_RESOLVED && !currentForm.getOwnerId()==-1) {
+        IssueUtilities.STATUS_ASSIGNED.toString() // status 'assigned'
+    }
+-----
+
+ * Conditionally change assignment of the issue (Validate)
+
+-----
+    if (!currentErrors.isEmpty()) {
+        currentErrors.clear()
+        currentForm.ownerId = 1 // assign to admin
+        IssueUtilities.STATUS_ASSIGNED.toString()
+    }
+-----

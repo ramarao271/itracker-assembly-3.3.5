@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    ITracker services layer context. 
+    
+    Declarative transaction management using Hibernate local transactions. 
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd">
+
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <!-- Registry of all ITracker services -->
+    <bean id="itrackerServices" class="org.itracker.services.implementations.ITrackerServicesImpl">
+        <constructor-arg ref="issueService"/>
+        <constructor-arg ref="userService"/>
+        <constructor-arg ref="projectService"/>
+        <constructor-arg ref="configurationService"/>
+        <constructor-arg ref="reportService"/>
+
+        <constructor-arg ref="notificationService"/>
+        <constructor-arg ref="emailService"/>
+    </bean>
+
+    <!-- Hibernate local transaction manager -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- Issue search service -->
+    <!-- bean id="issueSearchService" 
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager" />
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED,-DataAccessException</prop>
+            </props>
+        </property>
+        <property name="target" ref="issueSearchServiceTarget" />
+        <property name="proxyInterfaces">
+            <value>org.itracker.services.IssueSearchService</value>
+        </property>
+    </bean -->
+
+    <!-- bean id="issueSearchServiceTarget" 
+       class="org.itracker.services.implementations.IssueSearchServiceImpl"
+       autowire="byName">
+       <constructor-arg ref="configurationService" />
+   </bean -->
+
+    <!-- Configuration service -->
+    <bean id="configurationService"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED,-DataAccessException</prop>
+            </props>
+        </property>
+        <property name="target" ref="configurationServiceTarget"/>
+        <property name="proxyInterfaces" value="org.itracker.services.ConfigurationService"/>
+    </bean>
+
+    <bean id="configurationProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:configuration.properties"/>
+    </bean>
+
+    <bean id="configurationServiceTarget"
+          class="org.itracker.services.implementations.ConfigurationServiceImpl">
+        <constructor-arg ref="configurationProperties"/>
+        <constructor-arg ref="configurationDAO"/>
+        <constructor-arg ref="customFieldDAO"/>
+        <constructor-arg ref="customFieldValueDAO"/>
+        <constructor-arg ref="languageDAO"/>
+        <constructor-arg ref="projectScriptDAO"/>
+        <constructor-arg ref="workflowScriptDAO"/>
+    </bean>
+
+    <!-- Issue Service -->
+    <bean id="issueService"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED,-DataAccessException</prop>
+            </props>
+        </property>
+        <property name="target" ref="issueServiceTarget"/>
+        <property name="proxyInterfaces" value="org.itracker.services.IssueService"/>
+    </bean>
+
+    <bean id="issueServiceTarget" class="org.itracker.services.implementations.IssueServiceImpl"
+            lazy-init="true">
+        <property name="userDAO" ref="userDAO"/>
+        <property name="projectDAO" ref="projectDAO"/>
+        <property name="issueDAO" ref="issueDAO"/>
+        <property name="issueHistoryDAO" ref="issueHistoryDAO"/>
+        <property name="issueRelationDAO" ref="issueRelationDAO"/>
+        <property name="issueAttachmentDAO" ref="issueAttachmentDAO"/>
+        <property name="componentDAO" ref="componentDAO"/>
+        <property name="issueActivityDAO" ref="issueActivityDAO"/>
+        <property name="versionDAO" ref="versionDAO"/>
+        <property name="notificationService" ref="notificationService"/>
+        <property name="customFieldDAO" ref="customFieldDAO"/>
+        <property name="configurationService" ref="configurationService" />
+    </bean>
+
+    <!--  Notification service -->
+    <bean id="notificationServiceTarget"
+          class="org.itracker.services.implementations.NotificationServiceImpl">
+        <property name="emailService" ref="emailService"/>
+        <property name="issueServiceName" value="issueService"/>
+        <property name="notificationDao" ref="notificationDAO"/>
+        <property name="projectService" ref="projectService"/>
+        <property name="issueActivityDao" ref="issueActivityDAO"/>
+        <property name="issueDao" ref="issueDAO"/>
+    </bean>
+
+    <bean id="notificationService"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED,-DataAccessException</prop>
+            </props>
+        </property>
+        <property name="target" ref="notificationServiceTarget"/>
+        <property name="proxyInterfaces" value="org.itracker.services.NotificationService"/>
+    </bean>
+    <!-- Project service -->
+    <bean id="projectService"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED,-DataAccessException</prop>
+            </props>
+        </property>
+        <property name="target" ref="projectServiceTarget"/>
+        <property name="proxyInterfaces" value="org.itracker.services.ProjectService"/>
+    </bean>
+
+    <bean id="projectServiceTarget" class="org.itracker.services.implementations.ProjectServiceImpl">
+        <constructor-arg ref="componentDAO"/>
+        <constructor-arg ref="customFieldDAO"/>
+        <constructor-arg ref="projectDAO"/>
+        <constructor-arg ref="projectScriptDAO"/>
+        <constructor-arg ref="userDAO"/>
+        <constructor-arg ref="versionDAO"/>
+        <constructor-arg ref="issueDAO"/>
+    </bean>
+
+    <!-- User service -->
+    <bean id="userService"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED,-DataAccessException</prop>
+            </props>
+        </property>
+        <property name="target" ref="userServiceTarget"/>
+        <property name="proxyInterfaces" value="org.itracker.services.UserService"/>
+    </bean>
+
+    <bean id="userServiceTarget"
+          class="org.itracker.services.implementations.UserServiceImpl"
+            >
+        <constructor-arg ref="configurationService"/>
+        <constructor-arg ref="projectService"/>
+        <constructor-arg ref="userDAO"/>
+        <constructor-arg ref="projectDAO"/>
+        <constructor-arg ref="reportDAO"/>
+        <constructor-arg ref="permissionDAO"/>
+        <constructor-arg ref="userPreferencesDAO"/>
+    </bean>
+
+    <!-- Reporting service -->
+    <bean id="reportService"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED,-DataAccessException</prop>
+            </props>
+        </property>
+        <property name="target" ref="reportServiceTarget"/>
+        <property name="proxyInterfaces" value="org.itracker.services.ReportService"/>
+    </bean>
+
+    <bean id="reportServiceTarget"
+          class="org.itracker.services.implementations.ReportServiceImpl">
+        <constructor-arg ref="reportDAO"/>
+    </bean>
+
+    <jee:jndi-lookup id="reminder_cron" jndi-name="java:comp/env/itracker/reminder_cron"
+        resource-ref="true" default-value="0 0 0 * * *" />
+
+    <task:scheduled-tasks >
+        <task:scheduled ref="reminderNotificationTask" method="run" cron="#{reminder_cron}"/>
+    </task:scheduled-tasks>
+
+
+    <bean id="reminderNotificationTask" class="org.itracker.web.scheduler.tasks.ReminderNotification">
+    </bean>
+
+    <bean id="emailServiceTarget" init-method="init"
+          class="org.itracker.services.implementations.DefaultEmailService">
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
+    <bean id="emailService" 
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager" />
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED,-DataAccessException</prop>
+            </props>
+        </property>
+        <property name="target" ref="emailServiceTarget" />
+        <property name="proxyInterfaces" value="org.itracker.services.EmailService"/>
+    </bean>
+</beans>

@@ -1,0 +1,26 @@
+ ------
+ Coding Guidelines
+ ------
+ Marco Glur, ranks@rosa.com
+ ------
+ 7 October 2008
+ ------
+
+Coding Guidelines
+
+*Java
+
+  This guidelines describe major Java code requirements.
+ 
+  Basic Java Styleguide applies to this projects: {{http://geosoft.no/development/javastyle.html}}
+
+  Java source-files are encoded in Unicode (UTF-8).
+
+*Site
+  
+  Introduction on {{{./site.html}how-to create new apt}} (almost plain text) document and integrate it.
+
+*Patches HOW-TO
+  
+  When submitting a patch-file (diff), using eclipse and Subclipse-plugin, please always check, that the paths are relative to project-dir.
+  A guide is available {{{http://stackoverflow.com/questions/257739/subclipse-is-there-a-way-to-make-teamcreate-patch-use-relative-paths}here}}.

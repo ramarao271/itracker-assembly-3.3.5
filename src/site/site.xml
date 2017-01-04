@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="itracker" xmlns="http://maven.apache.org/DECORATION/1.6.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.6.0 http://maven.apache.org/xsd/decoration-1.6.0.xsd">
+
+    <bannerLeft>
+        <name>itracker</name>
+        <src>
+            http://itracker.sourceforge.net/images/itrackerlogo.gif
+        </src>
+        <href>http://itracker.sourceforge.org/</href>
+    </bannerLeft>
+
+    <bannerRight>
+        <name>itracker</name>
+        <src>
+            http://sourceforge.net/sflogo.php?group_id=188184&amp;type=5
+        </src>
+    </bannerRight>
+
+    <publishDate format="dd MMM yyyy" position="right"/>
+
+    <version position="right"/>
+
+    <skin>
+        <groupId>org.itracker.site</groupId>
+        <artifactId>skin-itracker</artifactId>
+        <version>0.0.2</version>
+    </skin>
+
+    <poweredBy>
+        <logo img="images/maven-feather.png" href="http://maven.apache.org/"
+               name="Built by Maven"
+               alt="Built by Maven"
+               title="Built by Maven"
+               width="90"
+               height="30"
+               border="1"/>
+
+        <logo img="http://sflogo.sourceforge.net/sflogo.php?group_id=54141&amp;amp;type=2" href="http://sourceforge.net/"
+               name="SourceForge.net"
+               alt="SourceForge.net"
+               title="SourceForge.net"
+               width="125"
+               height="37"
+               border="0"/>
+    </poweredBy>
+    <body>
+        <breadcrumbs>
+            <item name="Sourceforge" href="https://sourceforge.net/projects/itracker/"/>
+            <item name="itracker"
+                  href="http://itracker.sourceforge.net/"/>
+            <item name="staging"
+                  href="http://itracker.sourceforge.net/staging/"/>
+        </breadcrumbs>
+
+        <menu name="itracker" inherit="top">
+            <item name="Home" href="/index.html"/>
+            <item name="License" href="/license.html"/>
+        </menu>
+
+        <menu name="Download" inherit="top">
+            <item name="Binaries" href="http://sourceforge.net/projects/itracker/files/"/>
+
+        </menu>
+
+        <menu name="Documentation" inherit="top">
+
+            <item name="Release Notes" href="/release-notes/index.html" collapse="true">
+                <item name="3.3.5 Release Notes" href="/release-notes/itracker-3.3.5.html"/>
+                <item name="3.3.4 Release Notes" href="/release-notes/itracker-3.3.4.html"/>
+                <item name="3.3.3 Release Notes" href="/release-notes/itracker-3.3.3.html"/>
+                <item name="3.3.2 Release Notes" href="/release-notes/itracker-3.3.2.html"/>
+                <item name="3.3.1 Release Notes" href="/release-notes/itracker-3.3.1.html"/>
+                <item name="3.3.0 Release Notes" href="/release-notes/itracker-3.3.0.html"/>
+                <item name="3.2.2 Release Notes" href="/release-notes/itracker-3.2.2.html"/>
+                <item name="3.2.1 Release Notes" href="/release-notes/itracker-3.2.1.html"/>
+                <item name="3.2.0 Release Notes" href="/release-notes/itracker-3.2.0.html"/>
+                <item name="3.1.5 Release Notes" href="/release-notes/itracker-3.1.5.html"/>
+                <item name="3.1.4 Release Notes" href="/release-notes/itracker-3.1.4.html"/>
+                <item name="3.1.3 Release Notes" href="/release-notes/itracker-3.1.3.html"/>
+                <item name="3.1.2 Release Notes" href="/release-notes/itracker-3.1.2.html"/>
+                <item name="3.1.1 Release Notes" href="/release-notes/itracker-3.1.1.html"/>
+                <item name="3.1.0 Release Notes" href="/release-notes/itracker-3.1.0.html"/>
+                <item name="3.0.2 Release Notes" href="/release-notes/itracker-3.0.2.html"/>
+                <item name="3.0.1 Release Notes" href="/release-notes/itracker-3.0.1.html"/>
+                <item name="3.0 (stable) Release Notes" href="/release-notes/itracker-3.0-stable.html"/>
+            </item>
+
+
+            <item name="Install" href="/install.html"/>
+            <item name="Configuration" href="/configuration.html" collapse="true">
+                <item name="Workflow Scripts" href="/workflow-script.html" />
+            </item>
+            <item name="Build Instructions" href="/build-instructions.html"/>
+
+            <item name="Data Migration from 2.4" href="/migration/migrate2.4-3.0.html"/>
+
+            <item name="Screenshots" href="/screenshots/screenshots.html"/>
+
+        </menu>
+
+        <menu name="Getting Involved" inherit="top">
+
+            <item name="Getting Started" href="/getting-started.html"/>
+            <item name="Development Environment Setup"
+                  href="/development_environment_setup.html"/>
+            <item name="Coding guidelines" href="/coding-guidelines.html"/>
+            <item name="FAQ" href="/FAQ.html"/>
+            <item name="Wiki" href="http://sourceforge.net/p/itracker/wiki/"/>
+
+        </menu>
+
+        <!--
+	TODO 
+		<menu name="Support" inherit="bottom">
+			<item name="Free Support" />
+			<item name="Commercial Support" />
+		</menu>
+        <menu ref="reports" />
+        <menu ref="parent" inherit="bottom"/>
+ -->
+
+        <menu name="itracker Reports" inherit="top" >
+            <item ref="parent" />
+            <item name="Project Information" href="/project-info.html" collapse="true">
+                <item name="About" href="/index.html"/>
+                <item name="Project Modules" href="/modules.html"/>
+                <item name="Dependency Information" href="/dependency-info.html"/>
+                <item name="Dependency Convergence" href="/dependency-convergence.html"/>
+                <item name="Dependency Management" href="/dependency-management.html"/>
+                <item name="Project Plugins" href="/plugins.html"/>
+                <item name="Plugin Management" href="/plugin-management.html"/>
+                <item name="Project Team" href="/team-list.html"/>
+                <item name="Mailing Lists" href="/mail-lists.html"/>
+                <item name="Issue Tracking" href="/issue-tracking.html"/>
+                <item name="Project License" href="/license.html"/>
+                <item name="Source Repository" href="/source-repository.html"/>
+                <item name="Project Summary" href="/project-summary.html"/>
+            </item>
+            <item name="Project Reports" href="/project-reports.html" collapse="true">
+                <item name="Surefire Report" href="/surefire-report.html"/>
+                <item name="Checkstyle" href="/checkstyle-aggregate.html"/>
+                <item name="Changelog" href="/changelog.html"/>
+                <item name="Source Xref" href="/xref/index.html"/>
+                <item name="JavaDocs" href="/apidocs/index.html"/>
+                <item name="Test JavaDocs" href="/testapidocs/index.html"/>
+                <item name="Tag List" href="/taglist.html"/>
+            </item>
+        </menu>
+        <menu name="itracker Modules" inherit="top">
+            <item name="itracker Core" href="/itracker-core/index.html"/>
+            <item name="itracker Persistence" href="/itracker-persistence/index.html"/>
+            <item name="itracker Services" href="/itracker-services/index.html"/>
+            <item name="itracker Web" href="/itracker-web/index.html"/>
+            <item name="itracker Assembly" href="/itracker-assembly/index.html"/>
+        </menu>
+
+
+    </body>
+
+</project>

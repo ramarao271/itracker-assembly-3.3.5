@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+    <form-beans>
+        <form-bean name="preferencesForm" type="org.itracker.web.forms.UserForm"/>
+        <form-bean name="assignIssueForm" type="org.itracker.web.forms.AssignIssueForm"/>
+        <form-bean name="loginForm" type="org.itracker.web.forms.LoginForm"/>
+        <form-bean name="issueForm" type="org.itracker.web.forms.IssueForm"/>
+        <form-bean name="selfRegistrationForm" type="org.itracker.web.forms.UserForm"/>
+        <form-bean name="forgotPasswordForm" type="org.itracker.web.forms.ForgotPasswordForm"/>
+        <form-bean name="watchIssueForm" type="org.itracker.web.forms.WatchIssueForm"/>
+        <form-bean name="removeRelationForm" type="org.itracker.web.forms.RemoveRelationForm"/>
+        <form-bean name="userForm" type="org.itracker.web.forms.UserForm"/>
+    </form-beans>
+
+    <global-forwards>
+        <forward name="autologin" path="/autologin.do"/>
+        <forward name="arrivalforward" path="/portalhome.do" redirect="true"/>
+        <forward name="adminindex" module="/module-admin" path="/adminhome.do"/>
+
+        <forward name="downloadattachment" module="/module-projects" path="/downloadAttachment.do"/>
+        <!--
+           <forward name="editissue" module="/module-projects" path="/editissue.do" />
+        -->
+        <forward name="error" module="/" path="/error.do"/>
+
+        <!--forward name="error" module="/" path="/error.do"/-->
+        <forward name="editcomponent" module="/module-admin" path="/editcomponentform.do"/>
+        <forward name="editcustomfield" module="/module-admin" path="/editcustomfieldform.do"/>
+
+        <forward name="editreport" module="/module-admin" path="/editreportform.do"/>
+        <forward name="editversion" module="/module-admin" path="/editversionform.do"/>
+        <forward name="forgotpassword" module="/" path="/forgotpasswordform.do"/>
+        <forward name="index" module="/" path="/portalhome.do"/>
+        <forward name="logoff" module="/" path="/logoff.do"/>
+        <forward name="login" module="/" path="/login.do"/>
+        <forward name="listconfiguration" module="/module-admin" path="/listconfiguration.do"/>
+
+        <forward name="listprojectsadmin" module="/module-admin" path="/listprojectsadmin.do"/>
+
+        <forward name="listprojects" module="/module-projects" path="/list_projects.do"/>
+        <forward name="listissues" module="/module-projects" path="/list_issues.do"/>
+        <!--
+        <forward name="moveissue" module="/module-projects" path="/moveissue.do" />
+        -->
+        <forward name="relateissue" module="/module-projects" path="/addissuerelation.do"/>
+        <forward name="searchissues" module="/module-searchissues" path="/searchissuesform.do"/>
+        <forward name="selfregistration" path="/selfregisterform.do"/>
+        <forward name="unauthorized" module="/" path="/unauthorized.do"/>
+        <forward name="viewactivity" module="/module-projects" path="/view_issue_activity.do"/>
+        <forward name="viewissue" module="/module-projects" path="/view_issue.do"/>
+        <forward name="editissue" module="/module-projects" path="/editissueform.do"/>
+        <forward name="watchissue" module="/module-projects" path="/watchissue.do"/>
+
+    </global-forwards>
+
+    <action-mappings>
+        <action path="/watchissue" type="org.itracker.web.actions.project.WatchIssueAction"
+                name="watchIssueForm" scope="request" input="/index.jsp" validate="false"/>
+        <action path="/assignissue" type="org.itracker.web.actions.project.AssignIssueAction"
+                name="assignIssueForm" scope="request" input="/index.jsp"/>
+        <action path="/portalhome" type="org.itracker.web.actions.PortalHomeAction">
+            <forward name="portalhome" path="t.portalhome"/>
+        </action>
+
+        <action path="/selfregister" type="org.itracker.web.actions.user.SelfRegisterAction"
+                name="selfRegistrationForm" scope="request"
+                input="t.selfregisterform"
+                validate="true">
+        </action>
+        <action path="/selfregisterform" type="org.itracker.web.actions.user.SelfRegisterFormAction"
+                name="preferencesForm" scope="request"
+                input="t.selfregisterform"
+                validate="false">
+        </action>
+        <action path="/unauthorized" type="org.itracker.web.actions.UnauthorizedAction">
+            <forward name="unauthorized" path="t.unauthorized" module="/"/>
+        </action>
+
+        <action path="/security_check" type="org.itracker.web.actions.UnauthorizedAction"
+                name="loginForm">
+            <forward name="unauthorized" path="t.error" module="/"/>
+        </action>
+
+        <action path="/login" type="org.itracker.web.actions.user.LoginAction"
+                name="loginForm" scope="request" input="t.login">
+            <forward name="login" path="t.login"/>
+            <forward name="index" module="/" path="/portalhome.do" redirect="true"/>
+        </action>
+
+        <action path="/forgotpasswordform" type="org.itracker.web.actions.user.ForgotPasswordFormAction"
+                name="forgotPasswordForm" scope="request" input="t.forgotpassword" validate="false"/>
+
+        <action path="/forgotpassword" type="org.itracker.web.actions.user.ForgotPasswordAction"
+                name="forgotPasswordForm" scope="request" input="t.forgotpassword" validate="true">
+            <forward name="forgotpassword" module="/" path="/forgotpasswordform.do"/>
+            <forward name="success" module="/" path="/portalhome.do" redirect="true"/>
+        </action>
+
+        <action path="/logoff" type="org.itracker.web.actions.user.LogoffAction">
+            <forward name="login" path="t.login"/>
+        </action>
+
+        <action path="/listprojects" type="org.itracker.web.actions.ListProjectsAction">
+            <forward name="listprojects" path="/module-projects/list_projects.jsp"/>
+        </action>
+
+        <action path="/error" type="org.itracker.web.actions.ErrorAction">
+            <forward name="error_page" module="/" path="t.error"/>
+        </action>
+
+        <action path="/autologin"
+                attribute="loginForm"
+                input="t.login"
+                name="loginForm"
+                scope="request"
+                type="org.itracker.web.actions.user.LoginAction"
+                validate="false"/>
+    </action-mappings>
+
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor">
+        <set-property property="inputForward" value="false"/>
+    </controller>
+
+    <message-resources factory="org.itracker.web.resources.ITrackerMessageResourcesFactory"
+                       parameter="org.itracker.core.resources.ITracker" null="false"/>
+
+    <plug-in className="org.apache.struts.plugins.ModuleConfigVerifier"/>
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames"
+                      value="/WEB-INF/config/validator-rules.xml, /WEB-INF/config/validation.xml"/>
+    </plug-in>
+    <plug-in className="org.apache.struts.tiles.TilesPlugin">
+        <set-property
+                property="definitions-config"
+                value="/WEB-INF/config/tiles-defs.xml"/>
+        <set-property property="moduleAware" value="true"/>
+    </plug-in>
+
+</struts-config>

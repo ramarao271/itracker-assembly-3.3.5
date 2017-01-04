@@ -1,0 +1,25 @@
+<dataset>
+
+    <table name="reportbean">
+
+        <column>id</column>
+        <column>name</column>
+        <column>name_key</column>
+        <column>description</column>
+        <column>create_date</column>
+        <column>last_modified</column>
+        <column>file_data</column>
+
+        <row>
+            <value>1000</value>
+            <value>DailyReport Report</value>
+            <value>0001</value>
+            <value>This is a daily report</value>
+            <value>2004-01-01 13:00:00</value>
+            <value>2005-01-01 15:00:00</value>
+            <value>src/main/reports/itracker_issue_list_jasper.xml</value>
+        </row>
+
+    </table>
+
+</dataset>

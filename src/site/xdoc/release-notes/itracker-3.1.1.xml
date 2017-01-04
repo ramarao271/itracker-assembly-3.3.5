@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+    <properties>
+        <title>itracker 3.1.1 release-notes</title>
+    </properties>
+
+    <body>
+        <section name="Environmental changes since 3.1.0">
+            <ul>
+                <li>
+                    Configuration properties moved to classpath (WEB-INF/classes/configuration.properties).
+                </li>
+                <li>
+                    Separated application properties from configuration properties.
+                </li>
+            </ul>
+        </section>
+
+        <section name="itracker 3.1.1 release-notes - Changes from 3.1.0">
+            <p>
+                Header and Footer fixes.
+            </p>
+            <p>
+                Improved usability for Admin to manage configuration entries.
+            </p>
+            <p>
+                Fixed Struts incompatibility bug in configuration administration by reverting bean-utils version to 1.7.0.
+            </p>
+            <p>
+                Confirmation added to delete action buttons.
+            </p>
+            <p>
+                Edit issue validation fixed (Bug#285)
+            </p>
+            <p>
+                Added 'staging' for site <a href="../staging">here</a>.
+            </p>
+            <p>Struts upgraded to 1.3.10</p>
+            <p>More tiles-templating configuration for the help module added.</p>
+            <p>Improved Selenium testing.</p>
+            <p>Fixed new Sourceforge settings from migration.</p>
+            <p>Support for running with maven jenkins.</p>
+        </section>
+
+
+        <section name="Migration from 2.4">
+            <p>see
+                <a href="itracker-3.0-stable.html">itracker-3.0 release notes</a>
+            </p>
+        </section>
+    </body>
+</document>

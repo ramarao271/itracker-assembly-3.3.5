@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+
+<struts-config>
+
+    <!-- ==================================== Data Sources      -->
+    <data-sources>
+    </data-sources>
+
+    <!-- ==================================== Form Beans        -->
+    <form-beans>
+        <form-bean name="displayReportForm" type="org.itracker.web.forms.DisplayReportForm">
+
+        </form-bean>
+        <form-bean name="searchForm" type="org.itracker.web.forms.SearchForm"/>
+    </form-beans>
+
+    <!-- ==================================== Global Exceptions -->
+    <global-exceptions>
+    </global-exceptions>
+
+    <!-- ==================================== Global Forwards    -->
+    <global-forwards>
+
+        <forward name="searchissues" module="/module-searchissues" path="/searchissuesform.do"/>
+        <forward name="error" module="/" path="/error.do"/>
+        <forward name="help" module="/module-help" path="/show_help.do"/>
+        <forward name="unauthorized" module="/" path="/unauthorized.do" redirect="true"/>
+
+        <forward name="logoff" path="/logoff.do" module="/"/>
+        <forward name="index" path="/portalhome.do" module="/"/>
+        <forward name="editissueform" module="/module-projects" path="/editissueform.do"/>
+        <forward name="watchissue" module="/module-projects" path="/watchissue.do"/>
+    </global-forwards>
+
+    <!-- ==================================== Action Mappings    -->
+    <action-mappings>
+        <action path="/searchissuesform"
+                type="org.itracker.web.actions.issuesearch.SearchIssuesFormAction"
+                name="searchForm" scope="request"
+                input="t.search_issues_form"
+                validate="false"></action>
+        <action path="/searchissues" type="org.itracker.web.actions.issuesearch.SearchIssuesAction"
+                name="searchForm" scope="request"
+                input="t.search_issues_form"
+                validate="true"/>
+        <action path="/displayreport" type="org.itracker.web.actions.report.DisplayReportAction"
+                name="displayReportForm" scope="request"
+                input="t.search_issues_form"
+                validate="true">
+            <forward name="imagesurl" path="/servlets/ReportChartController"></forward>
+        </action>
+    </action-mappings>
+
+    <!-- ==================================== Controller    -->
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor">
+        <set-property property="inputForward" value="false"/>
+    </controller>
+
+    <!-- ==================================== Message-resources    -->
+    <message-resources factory="org.itracker.web.resources.ITrackerMessageResourcesFactory"
+                       parameter="org.itracker.core.resources.ITracker" null="false"/>
+
+    <!-- ==================================== Plug-ins    -->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames"
+                      value="/WEB-INF/config/validator-rules.xml,
+                             /WEB-INF/config/validation-module-searchissues.xml"/>
+    </plug-in>
+
+    <plug-in className="org.apache.struts.tiles.TilesPlugin">
+        <set-property
+                property="definitions-config"
+                value="/WEB-INF/config/tiles-defs.xml, /WEB-INF/config/tiles-defs-search-issues.xml"/>
+        <set-property property="moduleAware" value="true"/>
+    </plug-in>
+</struts-config>
+

@@ -1,0 +1,29 @@
+<dataset>
+
+    <table name="versionbean">
+
+        <column>id</column>
+        <column>project_id</column>
+        <column>version_number</column>
+        <column>major</column>
+        <column>minor</column>
+        <column>description</column>
+        <column>status</column>
+        <column>create_date</column>
+        <column>last_modified</column>
+
+        <row>
+            <value>1</value>
+            <value>2</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>Test Description</value>
+            <value>1</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+    </table>
+
+</dataset>

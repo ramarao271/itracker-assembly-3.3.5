@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+    <properties>
+        <title>itracker 3.1.0 release-notes</title>
+    </properties>
+
+    <body>
+        <section name="Environmental changes since 3.0">
+            <ul>
+                <li>
+                    Built using Maven 3
+                </li>
+                <li>
+                    Configuration changed to JNDI, check
+                    <a href="../examples/context.xml">example context.xml</a>
+                    to see how to fix the context configuration for Tomcat.
+                    Alternatively change the
+                    <code>WEB-INF/classes/datasource.xml</code>
+                    according to the applications needs.
+                </li>
+            </ul>
+        </section>
+
+        <section name="itracker 3.1 release-notes - Changes from 3.0">
+            <p>Initial tiles-templating configuration added.</p>
+            <p>New libraries used for Spring-framework and testing.</p>
+            <p>Separated tests for unit- and integration-testing.</p>
+        </section>
+
+
+        <section name="Migration from 2.4">
+            <p>see
+                <a href="itracker-3.0-stable.html">itracker-3.0 release notes</a>
+            </p>
+        </section>
+    </body>
+</document>

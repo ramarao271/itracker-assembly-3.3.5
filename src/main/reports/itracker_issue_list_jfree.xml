@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE report PUBLIC "-//JFreeReport//DTD report definition//EN//simple"
+        "http://jfreereport.sourceforge.net/report.dtd">
+
+<report name="ITracker Issue Report" orientation="portrait" pageformat="LETTER" topmargin="10" leftmargin="10"
+        bottommargin="10" rightmargin="10">
+
+    <pageheader height="18" fontname="Serif" fontstyle="plain" fontsize="10" onfirstpage="true">
+        <label name="PH1" x="0" y="0" width="50%" height="12" alignment="left">ITracker Issue List</label>
+        <date-field name="PH2" x="50%" y="0" width="50%" height="12" alignment="right" format="MMM-dd-yyyy"
+                    fieldname="report.date"/>
+        <line name="PH3" x1="0" y1="12" x2="0" y2="12" color="#000000" weight="1.0"/>
+    </pageheader>
+
+    <groups>
+        <group name="Issues">
+            <groupheader height="12" fontname="Serif" fontstyle="plain" fontsize="10" pagebreak="true">
+                <rectangle name="background" x="0" y="0" width="100%" height="10" color="#C0C0C0" weight="0"/>
+                <label name="GH-1" x="0" y="0" width="40" height="10" alignment="left">Issue Id</label>
+                <label name="GH-2" x="45" y="0" width="200" height="10" alignment="left">Description</label>
+                <label name="GH-3" x="250" y="0" width="80" height="10" alignment="right">Status</label>
+                <label name="GH-4" x="335" y="0" width="80" height="10" alignment="right">Severity</label>
+            </groupheader>
+
+            <fields></fields>
+        </group>
+    </groups>
+    <items height="10" fontname="Serif" fontstyle="plain" fontsize="8" vertical-alignment="middle">
+        <rectangle name="background" x="0" y="0" width="100%" height="100%" color="#FFFFFF" weight="0"/>
+        <string-field name="IB-1" x="0" y="0" width="40" height="10" alignment="left" fieldname="issueid"/>
+        <string-field name="IB-2" x="45" y="0" width="200" height="10" alignment="left" fieldname="description"/>
+        <string-field name="IB-3" x="250" y="0" width="80" height="10" alignment="right" fieldname="status"/>
+        <string-field name="IB-4" x="335" y="0" width="80" height="10" alignment="right" fieldname="severity"/>
+    </items>
+
+    <functions>
+        <property-ref name="report.date"/>
+    </functions>
+</report>

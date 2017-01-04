@@ -1,0 +1,59 @@
+ ------
+ itracker FAQ
+ ------
+ Marco Glur, ranks@rosa.com
+ ------
+ 28 October 2008
+ ------
+ 
+Developers Questions:
+
+%{toc}
+
+*How do I join the development team?
+
+  [[A]] join the developers mailing list
+  
+  [[B]] ask the project admins for access to the Subversion, on the mailing list (you need to send your SourceForge Username to the mailinglist).
+   
+  [[C]] read the development procedure, get your development environment ready and get going
+  
+  [[D]] grab some tasks and bugs from SourceForge
+  
+  [[E]] ask your questions on the developers mailing list
+
+  []
+
+  Please help us close the open tasks before we start new ones. 
+
+  Please try to finish what you start.
+
+*I am trying to figure out how to create my development environment... what's the easiest start?
+
+  *Try with Eclipse and MySQL, or with Netbeans and MySQL. Other combinations are possible, but those are the best tested and best supported. If you use Eclipse, then better get a Web enabled edition such as MyEclipseIDE or BEA Workshop JSP (free edition) or use the WTP plugins.
+
+*Who will assign me the bugs to be fixed or features to be developed?
+
+  *You can open tasks, feature requests, bugs, etc. in the Sourceforge coordination tools. Please only work when you have an task, bug, etc. assigned so we see who is working on what. Please be aware that we are currently working on the itracker 3 release, and we need to concentrate on just closing bugs for the time being.
+
+*Is there anyone who manages the itracker development?
+
+  *There is a group of developers listening on the dev mailing list. The Project Admins from Sourceforge's itracker project are managing the project. Currently the project is managed very openly
+
+*How do i commit my changes?
+
+  *If you have developer access to the subversion, you first code, then you test, and if your code really works, you commit.
+   
+  *If you don't have developer access, then you upload a patch into Sourceforge.
+
+*Is there any branching?
+
+  say like i have my own branch where i can check-in all my changes and someone who manages the main branch will integrate my work after reviewing my code or so.
+  
+  *If working on bigger issues/changes, please create yourself a branch from the appropriate location, usually trunk. Name of this branch should be named <<<<original trunk|tag>_<bug#|describe what>_<sf-login>_<yymmdd>>>>
+
+*Please forward me if you have any material or guidelines ..
+
+  which will help me as a new developer in the team to better understand the itracker development practices
+
+  *Read the {{{./getting-started.html}Getting started}} section for guidelines and documentation.

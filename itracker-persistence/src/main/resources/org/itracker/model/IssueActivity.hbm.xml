@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+
+    <class name="IssueActivity" table="issueactivitybean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true"/>
+            <generator class="native"/>
+        </id>
+
+        <many-to-one not-null="true" name="issue" class="Issue" cascade="none" insert="true" update="true">
+            <column name="issue_id" not-null="true"/>
+        </many-to-one>
+
+        <many-to-one name="user" class="User">
+            <column name="user_id" not-null="true"/>
+        </many-to-one>
+
+        <property name="activityType">
+            <column name="activity_type" not-null="true"/>
+
+            <type name="org.itracker.persistence.dao.EnumCodeUserType">
+                <param name="enumClassName">org.itracker.model.IssueActivityType</param>
+            </type>
+        </property>
+
+        <property name="description">
+            <column name="description" length="255" not-null="false"/>
+        </property>
+
+        <property name="notificationSent"
+                  type="org.itracker.persistence.dao.IntBooleanType">
+            <column name="notification_sent" sql-type="int" not-null="true"/>
+        </property>
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+    </class>
+
+    <!-- Named queries (loaded, validated and cached at application startup). -->
+
+    <query name="IssueActivitiesByIssueQuery"><![CDATA[
+    select activity 
+    from IssueActivity as activity
+    where activity.issue.id = :issueId ]]>
+    </query>
+
+    <query name="IssueActivitiesByIssueAndNotificationQuery"><![CDATA[
+    select activity 
+    from IssueActivity as activity
+    where activity.issue.id = :issueId 
+    and activity.notificationSent = :notificationSent ]]>
+    </query>
+
+</hibernate-mapping>

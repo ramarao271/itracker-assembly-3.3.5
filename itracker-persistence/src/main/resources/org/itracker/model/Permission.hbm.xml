@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="Permission" table="permissionbean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true"/>
+            <generator class="native"/>
+        </id>
+
+        <natural-id mutable="false">
+            <property not-null="true" name="permissionType" index="permisionTypeIdx">
+                <column name="permission_type" not-null="true"/>
+                <type name="org.itracker.persistence.dao.EnumCodeUserType">
+                    <param name="enumClassName">org.itracker.model.PermissionType</param>
+                </type>
+            </property>
+
+            <many-to-one not-null="true" name="project" class="Project" lazy="false">
+                <!-- May be null to indicate a permission on all projects. -->
+                <column name="project_id"/>
+            </many-to-one>
+
+            <many-to-one not-null="true" name="user" class="User" lazy="false">
+                <column name="user_id" not-null="true"/>
+            </many-to-one>
+        </natural-id>
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+    </class>
+
+    <!-- Named queries (loaded, validated and cached at application startup). -->
+
+    <query name="PermissionsByUserQuery"><![CDATA[
+    select permission 
+    from Permission as permission
+    where permission.user.id = :userId ]]>
+    </query>
+
+    <query name="PermissionsByProjectAndTypeQuery"><![CDATA[
+    select permission 
+    from Permission as permission
+    where permission.project.id = :projectId
+    and permission.permissionType = :permissionType ]]>
+    </query>
+
+</hibernate-mapping>

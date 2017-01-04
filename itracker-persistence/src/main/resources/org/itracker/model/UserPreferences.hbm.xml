@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="UserPreferences" table="userpreferencesbean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true"/>
+            <generator class="foreign">
+                <param name="property">user</param>
+            </generator>
+        </id>
+
+        <!-- TODO cleanup for 3.4 -->
+        <property name="saveLogin">
+            <column name="save_login" not-null="false" default="0"/>
+        </property>
+
+        <property name="userLocale">
+            <column name="user_locale" not-null="true"/>
+        </property>
+
+        <property name="numItemsOnIndex">
+            <column name="num_items_index" not-null="true"/>
+        </property>
+
+        <property name="numItemsOnIssueList">
+            <column name="num_items_issue_list" not-null="true"/>
+        </property>
+
+        <property name="showClosedOnIssueList">
+            <column name="show_closed" not-null="true"/>
+        </property>
+
+        <property name="sortColumnOnIssueList">
+            <column name="sort_column" not-null="true"/>
+        </property>
+
+        <property name="hiddenIndexSections">
+            <column name="hidden_index_sections" not-null="true"/>
+        </property>
+
+        <property name="rememberLastSearch">
+            <column name="remember_last_search" not-null="true"/>
+        </property>
+
+        <property name="useTextActions" type="boolean">
+            <column name="use_text_actions" not-null="true"/>
+        </property>
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+        <one-to-one name="user" class="User" constrained="false"/>
+
+    </class>
+
+</hibernate-mapping>

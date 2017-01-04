@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+    <properties>
+        <title>itracker 3.1.3 release-notes</title>
+    </properties>
+
+    <body>
+        <section name="Environmental changes since 3.1.2">
+            <ul>
+                <li>
+                    Database Reports table:
+                    <code>ALTER TABLE reportbean CHANGE COLUMN report_type report_type INT(11) NULL  ;</code>
+                    <code>ALTER TABLE reportbean CHANGE COLUMN data_type report_type INT(11) NULL  ;</code>
+                    <code>ALTER TABLE reportbean CHANGE COLUMN class_name report_type INT(11) NULL  ;</code>
+                    or remove all:
+                    <code>ALTER TABLE reportbean DROP COLUMN class_name , DROP COLUMN report_type , DROP COLUMN data_type ;</code>
+                </li>
+                <li>
+                    To fix the DB unique key on projectscript, so the same script can be set on different fields in one project. SQL to Fix the DB:
+                    <code>ALTER TABLE projectscriptbean DROP INDEX project_id, ADD UNIQUE INDEX project_id (project_id ASC, script_id ASC, field_id ASC) ; </code>
+                </li>
+            </ul>
+        </section>
+
+        <section name="itracker 3.1.3 release-notes - Changes from 3.1.2">
+
+            <p>
+                Import/Export Fixes.
+            </p>
+
+            <p>
+                Report Fixes.
+            </p>
+
+            <p>
+                Upgrades for dependencies.
+            </p>
+
+            <p>
+                Project Script fixes.
+            </p>
+
+
+        </section>
+
+
+        <section name="Migration from 2.4">
+            <p>see
+                <a href="itracker-3.0-stable.html">itracker-3.0 release notes</a>
+            </p>
+        </section>
+    </body>
+</document>

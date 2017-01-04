@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+	<properties>
+		<title>itracker Configuration</title>
+	</properties>
+
+	<body>
+        <section name="Spring Context">
+            <p>
+                The Spring main application context is <code>/WEB-INF/classes/application-context.xml</code>
+                which is optionally overridden by properties loaded in <code>/WEB-INF/classes/application.properties</code>.
+            </p>
+            <p>
+                Since most configuration can be done from configuration properties (see below) and can be overridden by the JNDI bindings,
+                usually there is no need to edit these files directly to configure the itracker application.
+            </p>
+
+        </section>
+
+        <section name="JNDI Context">
+            <p>
+                Some JNDI environment resources are configured from the container running the itracker webapp.
+                The lookup names are found in <code>application.properties</code>.
+            </p>
+            <ul>
+                <li>
+                    Configurable <code>configurationServiceTarget.jndiPropertiesOverridePrefix</code> from <code>WEB-INF/classes/application.properties</code>,
+                    useful for overriding values in <code><a href="#Configuration_Properties">configuration.properties</a></code> from <code>java:comp/env/itracker</code>.<br/>
+                    <em>eg. override <code>system_base_url</code> value with <code>java:comp/env/itracker/system_base_url</code> using the web.xml or context.xml.</em>
+                </li>
+                <li>
+                    <strong>Datasource</strong> (database connection):
+                    <code>java:comp/env/itracker/itracker_ds</code> (see also <code>dataSource.jndiName</code> in application.properties and datasource.xml)
+                </li>
+                <li>
+                    <strong>DB Dialect</strong> (hibernate dialect):
+                    <code>java:comp/env/itracker/db_dialect</code> (see also <code>db_dialect.defaultObject</code> in application.properties and datasource.xml)
+                </li>
+                <li>
+                    <strong>Mailsession</strong> (notifications, password, ..)):
+                    <code>java:comp/env/itracker/mail/Session</code><br/>
+                    <em>You can also override the lookup name by setting <code>configurationServiceTarget.mailSessionLookupName</code> but
+                        usually you want to rather configure a mail-session accordingly for your web context.</em>
+                </li>
+
+            </ul>
+        </section>
+
+		<section name="Configuration Properties">
+			<p>There are some properties which you're able to configure for your
+			itracker (
+			<code>classpath:configuration.properties
+			</code>
+			) or override the properties with env-entries under <code>java:comp/env/itracker/</code>
+			</p>
+			<ul>
+
+				<li>
+					<strong>system_base_url</strong>
+					: This property can be used to override the url determined
+					dynamically
+					by the system when a user submits an issue or self registers. This
+					is mainly due to some users using private domain names that wouldn't
+					be accessible to all recipiants of a notification email. This
+					property is only used to create urls in emails sent to all users.
+					<br />
+					<em>default: http://localhost:8080/itracker</em>
+
+				</li>
+
+				<li>
+					<strong>web_session_timeout</strong>
+					This property can be used to set the web session inactivity
+					timeout. This number is the number of minutes that can elapse
+					before the users
+					session times out due to inactivity.
+					<br />
+					<em>default: 30 minutes</em>
+				</li>
+
+				<li>
+					<strong>site_logo</strong>
+					Set this if you wish to use an alternate image logo in the header
+					of all
+					pages. It must be a resolvable absolute path to the context-root. (type : String)
+					<br />
+					<em>default: shows no logo (null)</em>
+				</li>
+                <li>
+                    <strong>site_title</strong>
+                    Set this if you wish to use an alternate site title in the header
+                    of all pages.
+                    <br />
+                    <em>default: itracker.org</em>
+                </li>
+
+				<li>
+					<strong>available_locales</strong>
+					Comma-separated list of available locales to the frontend.
+					<br />
+					<em>default: current default_locale from the configuration</em>
+				</li>
+
+				<li>
+					<strong>default_locale</strong>
+					Set to the default locale of the server. This controls the default
+					language
+					for users after they are logged in, and also the language of the login
+					page before they are logged in. This HAVE TO be in the format
+					language_country (eg. en_US, de_DE, pt_PT, it_IT) (type : String)
+					<br />
+					<em>default: en_US</em>
+				</li>
+
+				<li>
+					<strong>create_super_user</strong>
+					Set to true to create a default admin user if no other users exist
+					in the
+					database (type : Boolean)
+					<br />
+					<em>default: true</em>
+				</li>
+
+				<li>
+					<strong>allow_forgot_password</strong>
+					Set to true to allow users to recover their passwords (type :
+					Boolean)
+					<br />
+					<em>default: true</em>
+				</li>
+
+				<li>
+					<strong>allow_self_register</strong>
+					Set to true to allow users to self register for your sever. This is
+					a global
+					setting that must be enabled for the project level options to be
+					effective. If enabled, you must then go into each project you want
+					accessible to self registered
+					users, and which permissiosn you want. Currently only create and view all
+					are
+					available (view own is automatically granted), if you want other
+					permissions, you
+					must grant them using the normal user administration procedures. (type
+					: Boolean)
+					<br />
+					<em>default: true</em>
+				</li>
+
+				<li>
+					<strong>allow_save_login</strong>
+					Set to true to allow users to save their login in a cookie on their
+					machine
+					for auto login. Setting this to false will not allow any user on the
+					system
+					to use this feature. (type : Boolean)
+					<br />
+					<em>default: true</em>
+				</li>
+				<li>
+					<strong>save_login_key</strong>
+					The "key" used to identify cookies from a specific token-based
+					remember-me application.
+					<br />
+					<em>default: itracker</em>
+				</li>
+				<li>
+					<strong>save_login_timeout</strong>
+					The period (in seconds) for which the remember-me cookie should be valid.
+					<em>default: 2592000 (30 days)</em>
+				</li>
+
+				<li>
+					<strong>allow_workflowscripts</strong>
+					Set to false to deny execution of workflowscripts for the system.
+					Be sure that your system is protected against injection of
+					malicious scripts when enabled. (type : Boolean)
+					<br />
+					<em>default: true</em>
+				</li>
+
+				<li>
+					<strong>reminder_notification_days</strong>
+					Defines the number of days after which issue reminder notifications will
+					be sent.<br />
+					Set to <code>0</code> to disable reminder notifications. (type : Integer)
+					<br />
+					<em>default: 30</em>
+					<br />
+					<em>
+					To configure when reminders are sent, see application.properties reminder_cron.defaultObject
+					</em>
+				</li>
+
+				<li>
+					<strong>authenticator_class</strong>
+                    This parameter sets the class to use for authentication.
+                    The class must be resident in the classpath that the ear is loaded in,
+                    and extend the org.itracker.services.authentication.PluggableAuthenticator
+					abstract class. (type : String)
+					<br />
+					<em>default: Default-Authenticator</em>
+				</li>
+
+                <li>
+                    <strong>max_attachment_size</strong>
+                    The maximum size of an individual issue attachment in kb.
+                    <br />
+                    <em>default: 512</em>
+                </li>
+
+                <li>
+                    <strong>max_total_attachment_size</strong>
+                    The maximum total size of all attachments in kb.
+                    <br />
+                    <em>default: 100000</em>
+                </li>
+
+				<li>
+					<strong>notification_from_address</strong>
+                    <em>Deprecated: </em> From address for email notifications to use, if not set,
+                    the mail-session default (mail.from) value will be used.
+					<br />
+					<em>default: mail.from as defined in mail-session</em>
+				</li>
+
+				<li>
+					<strong>notification_from_text</strong>
+					<em>Deprecated: </em> From address text for email notifications to use
+					<br />
+					<em>default: ITracker Notification System</em>
+				</li>
+
+				<li>
+					<strong>notification_replyto_address
+					</strong>
+					<em>Deprecated: </em> ReplyTo address for email notifications to use, if not set,
+					the notification_from_address value will be used.
+					<br />
+					<em>default: mail.from as defined in mail-session</em>
+				</li>
+
+				<li>
+					<strong>notification_smtp_host</strong>
+                    <em>Deprecated: </em> SMTP hostname for email notifications to use
+					<br />
+					<em>default: localhost</em>
+				</li>
+
+				<li>
+					<strong>notification_smtp_charset</strong>
+					<em>Deprecated: </em> SMTP notificate character set. You might need to change this for
+					some locales
+					<br />
+					<em>default: the mail-session mail.mime.charset </em>
+				</li>
+
+				<li>
+					<strong>notification_smtp_password and
+						notification_smtp_userid</strong>
+                    <em>Deprecated: </em> SMTP authentication userid and password if required by
+					your application server
+					<br />
+                    <em>it is recommended to use a mail-session instead, only use this for fallback support. </em>
+				</li>
+
+                <li>
+                    <strong>pdf.export.fonts</strong>
+                    Fonts which will be included in exported PDFs, they are used from Jasper reports.
+                    your application server
+                    <br />
+                    <em>Fonts are looked up in classpath: /fonts/#name#.ttf </em>
+                </li>
+
+			</ul>
+		</section>
+	</body>
+</document>

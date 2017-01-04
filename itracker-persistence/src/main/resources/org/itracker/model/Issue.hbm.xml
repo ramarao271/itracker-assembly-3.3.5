@@ -1,0 +1,311 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="Issue" table="issuebean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true"/>
+            <generator class="native"/>
+        </id>
+
+        <property name="description">
+            <column name="description" not-null="true"/>
+        </property>
+
+        <property name="severity" index="issuebeanSeverityIdx">
+            <column name="severity" not-null="true"/>
+        </property>
+
+        <property name="status" index="issuebeanStatusIdx">
+            <column name="status" not-null="true"/>
+        </property>
+
+        <property name="resolution" index="issuebeanResolutionIdx">
+            <column name="resolution" not-null="false"/>
+        </property>
+
+        <many-to-one name="project" class="Project">
+            <column name="project_id" not-null="true"/>
+        </many-to-one>
+
+        <many-to-one name="creator" class="User">
+            <column name="creator_id" not-null="true"/>
+        </many-to-one>
+
+        <many-to-one name="owner" class="User">
+            <column name="owner_id"/>
+        </many-to-one>
+
+        <many-to-one name="targetVersion" class="Version">
+            <column name="target_version_id"/>
+        </many-to-one>
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+        <bag name="components" table="issue_component_rel" lazy="true">
+            <key>
+                <column name="issue_id"/>
+            </key>
+            <many-to-many class="Component" column="component_id" outer-join="auto"/>
+        </bag>
+
+        <bag name="versions" table="issue_version_rel" lazy="true">
+            <key>
+                <column name="issue_id"/>
+            </key>
+            <many-to-many class="Version" column="version_id" outer-join="auto"/>
+        </bag>
+
+        <bag name="notifications" table="notificationbean" cascade="all" lazy="true" inverse="true">
+            <key>
+                <column name="issue_id"/>
+            </key>
+            <one-to-many class="Notification"/>
+        </bag>
+
+        <bag name="attachments" table="issueattachmentbean" cascade="all" lazy="true" inverse="true">
+            <key>
+                <column name="issue_id"/>
+            </key>
+            <one-to-many class="IssueAttachment"/>
+        </bag>
+
+        <bag name="fields" table="issuefieldbean" cascade="all" lazy="true" inverse="true">
+            <key>
+                <column name="issue_id"/>
+            </key>
+            <one-to-many class="IssueField"/>
+        </bag>
+
+        <bag name="history" table="issuehistorybean" cascade="all" lazy="true" inverse="true">
+            <key>
+                <column name="issue_id"/>
+            </key>
+            <one-to-many class="IssueHistory"/>
+        </bag>
+
+        <bag name="relations" table="issuerelationbean" cascade="all" lazy="true" inverse="true">
+            <key>
+                <column name="issue_id"/>
+            </key>
+            <one-to-many class="IssueRelation"/>
+        </bag>
+
+        <bag name="activities" table="issueactivitybean" cascade="all" lazy="false" inverse="true">
+            <key>
+                <column name="issue_id" not-null="true"/>
+            </key>
+            <one-to-many class="IssueActivity"/>
+        </bag>
+
+    </class>
+
+    <!-- Named queries (loaded, validated and cached at application startup). -->
+
+    <query name="IssuesAllQuery"><![CDATA[
+    select issue
+    from Issue as issue ]]>
+    </query>
+
+    <query name="IssuesByStatusQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    where issue.status = :issueStatus ]]>
+    </query>
+
+    <query name="IssuesByStatusLessThanQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    where issue.status < :maxExclusiveStatus ]]>
+    </query>
+
+    <query name="IssuesByStatusLessThanEqualToQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    where issue.status <= :maxStatus ]]>
+    </query>
+
+    <query name="IssuesByStatusLessThanEqualToInAvailableProjectsQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    inner join issue.project as project
+    where project.status in (1, 2)
+    and issue.status <= :maxStatus ]]>
+    </query>
+
+
+    <query name="FindNextIssues"><![CDATA[
+    	select issue
+    	  from Issue as issue
+    	 where issue.id > :issueId
+    	   and issue.project.id = (select project.id from Issue where id = :issueId)
+    	 order by issue.id asc]]>
+    </query>
+    <query name="FindPreviousIssues"><![CDATA[
+    	select issue
+    	  from Issue as issue
+    	 where issue.id < :issueId
+    	   and issue.project.id = (select project.id from Issue where id = :issueId)
+    	 order by issue.id desc]]>
+    </query>
+
+    <query name="IssuesBySeverityQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    where issue.severity = :severity ]]>
+    </query>
+
+    <query name="IssuesByProjectQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    where issue.project.id = :projectId ]]>
+    </query>
+
+    <query name="IssueCountAll"><![CDATA[
+    select count(issue)
+    from Issue as issue ]]>
+    </query>
+
+    <query name="IssueCountByProjectQuery"><![CDATA[
+    select count(issue)
+    from Issue as issue
+    where issue.project.id = :projectId ]]>
+    </query>
+
+    <query name="IssuesByProjectAndLowerStatusQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    where issue.project.id = :projectId
+    and issue.status < :maxExclusiveStatus ]]>
+    </query>
+
+    <query name="IssueCountByProjectAndLowerStatusQuery"><![CDATA[
+    select count(issue)
+    from Issue as issue
+    where issue.project.id = :projectId
+    and issue.status < :maxExclusiveStatus ]]>
+    </query>
+
+    <query name="IssuesByProjectAndHigherStatusQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    where issue.project.id = :projectId
+    and issue.status >= :minStatus ]]>
+    </query>
+
+    <query name="IssueCountByProjectAndHigherStatusQuery"><![CDATA[
+    select count(issue)
+    from Issue as issue
+    where issue.project.id = :projectId
+    and issue.status >= :minStatus ]]>
+    </query>
+
+    <query name="IssuesByOwnerQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    where issue.owner.id = :ownerId
+    and issue.status < :maxExclusiveStatus ]]>
+    </query>
+
+    <query name="IssuesByOwnerInAvailableProjectsQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    inner join issue.project as project
+    where project.status in (1, 2)
+    and issue.owner.id = :ownerId
+    and issue.status < :maxExclusiveStatus ]]>
+    </query>
+
+    <query name="IssuesUnassignedQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    where issue.owner is null
+    and issue.status <= :maxStatus ]]>
+    </query>
+
+    <query name="IssuesByCreatorQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    where issue.creator.id = :creatorId
+    and issue.status < :maxExclusiveStatus ]]>
+    </query>
+
+    <query name="IssuesByCreatorInAvailableProjectsQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    inner join issue.project as project
+    where project.status in (1, 2)
+    and issue.creator.id = :creatorId
+    and issue.status < :maxExclusiveStatus ]]>
+    </query>
+
+    <query name="IssuesByNotificationQuery"><![CDATA[
+    select distinct issue
+    from Issue as issue
+    inner join issue.notifications as notification
+    where notification.user.id = :userId
+    and issue.status < :maxExclusiveStatus ]]>
+    </query>
+
+    <query name="IssuesByNotificationInAvailableProjectsQuery"><![CDATA[
+    select distinct issue
+    from Issue as issue
+    inner join issue.project as project
+    inner join issue.notifications as notification
+    where project.status in (1, 2)
+    and notification.user.id = :userId
+    and issue.status < :maxExclusiveStatus]]>
+    </query>
+
+    <query name="IssuesByComponentQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    inner join issue.components as component
+    where component.id = :componentId ]]>
+    </query>
+
+    <query name="IssueCountByComponentQuery"><![CDATA[
+    select count(issue)
+    from Issue as issue
+    inner join issue.components as component
+    where component.id = :componentId ]]>
+    </query>
+
+    <query name="IssuesByVersionQuery"><![CDATA[
+    select issue
+    from Issue as issue
+    inner join issue.versions as version
+    where version.id = :versionId ]]>
+    </query>
+
+    <query name="IssueCountByVersionQuery"><![CDATA[
+    select count(issue)
+    from Issue as issue
+    inner join issue.versions as version
+    where version.id = :versionId ]]>
+    </query>
+
+    <query name="MaxIssueModificationDateQuery"><![CDATA[
+    select max(issue.lastModifiedDate)
+    from Issue as issue
+    where issue.project.id = :projectId ]]>
+    </query>
+
+    <query name="FindByTargetVersion"><![CDATA[
+    	select issue
+    	from Issue as issue 
+    	where issue.targetVersion.id = :versionId ]]>
+    </query>
+
+</hibernate-mapping>

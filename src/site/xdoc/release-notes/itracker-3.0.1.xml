@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+	<properties>
+		<title>itracker 3.0.1 release-notes</title>
+	</properties>
+
+	<body>
+		
+<section name="itracker 3.0.1 release-notes - Changes from 3.0.0">
+<p>Major updates on core resources (ItrackerResources) and language-admin section. </p>
+<p>Minor fixes on JSPs, internationalizations, permissions. </p>
+<p>Tests re-enabled or changed.</p> 
+<p>Fixes some charset issues when using UTF-8 database, <strong>databases should be updated manually to support UTF-8</strong>. Please refer to <a href="http://dev.mysql.com/doc/refman/5.0/en/charset-conversion.html">Mysql migration guide</a>.
+</p>
+<p> Language-keys will not be initialized on database, the defaults are consumed from the properties (fallback) and are overridden by database if re-defined in language-admin. Defaulted keys can be removed from database manually.
+</p>
+
+</section>
+
+		<section name="Fixed bugs">
+			<table>
+				<tr>
+					<th >3.0-rc1</th>
+				</tr>
+				<tr>
+					<td>Translation bugs fixed
+				</td>
+				</tr>
+				<tr>
+					<td>Minor fixes
+				</td>
+				</tr>
+				<tr>
+					<td>Admin home bugs fixed
+				</td>
+				</tr>
+				<tr>
+					<td>Validation bugs fixed
+				</td>
+				</tr>
+				<tr>
+					<td>Custom fields bugs fixed
+				</td>
+				</tr>
+				<tr>
+					<td>Backed testing bugs fixed
+				</td>
+				</tr>
+			</table>
+		</section>
+		
+
+		<section name="Migration from 2.4">
+			<ul>
+				<li>migrate from 2.4</li>
+				<li>use it for internal or less critical projects</li>
+				<li>try to break it (over the web-interface)</li>
+				<li>provide feedback on bugs or failures in JIRA please.</li>
+			</ul>
+			<p>see also <a href="itracker-3.0-stable.html">itracker-3.0 release notes</a></p>
+		</section>
+	</body>
+</document>

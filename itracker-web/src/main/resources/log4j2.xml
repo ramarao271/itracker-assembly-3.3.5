@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+    <Appenders>
+        <File name="A1" fileName="logs/itracker.log" append="true">
+            <PatternLayout pattern="%d{ABSOLUTE} %-5p %c{2} - %m%n"/>
+        </File>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{ABSOLUTE} %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.apache"          additivity="false" level="error">
+            <AppenderRef ref="A1"/>
+            <AppenderRef ref="STDOUT"/>
+        </Logger>
+        <Logger name="org.apache.log4j.xml" additivity="false" level="warn">
+          <AppenderRef ref="A1"/>
+          <AppenderRef ref="STDOUT"/>
+        </Logger>
+        <Logger name="org.springframework" additivity="false" level="warn">
+            <AppenderRef ref="A1"/>
+            <AppenderRef ref="STDOUT"/>
+        </Logger>
+        <Logger name="org.springframework.security" additivity="false" level="warn">
+            <AppenderRef ref="A1"/>
+            <AppenderRef ref="STDOUT"/>
+        </Logger>
+        <Logger name="org.hibernate"       additivity="false" level="error">
+            <AppenderRef ref="A1"/>
+            <AppenderRef ref="STDOUT"/>
+        </Logger>
+        <Logger name="org.itracker"        additivity="false" level="info">
+            <AppenderRef ref="A1"/>
+            <AppenderRef ref="STDOUT"/>
+        </Logger>
+        <Root level="warn">
+            <AppenderRef ref="A1"/>
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+    </Loggers>
+</Configuration>

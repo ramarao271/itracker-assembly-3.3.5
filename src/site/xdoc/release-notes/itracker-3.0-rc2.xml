@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+	<properties>
+		<title>itracker 3.0-rc2 Release Notes</title>
+	</properties>
+
+	<body>
+		<section name="Introduction">
+			<p>Release Candidate 2 focuses on improving the code stability and clean
+			up
+			of scriptlet codes. There are also major bugs that were fixed.</p>
+		</section>
+		<section name="Fixed Bugs">
+			<table>
+				<tr>
+					<th>ID</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>2191377</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2191377&amp;group_id=54141&amp;atid=472807">
+							Logout does leave a cookie
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2189460</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2189460&amp;group_id=54141&amp;atid=472807">
+							R3.0: Target Version and Version Of Issue not being saved.
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2163876</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2163876&amp;group_id=54141&amp;atid=472807">
+							R3.0: Customfields not updated
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2163860</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2163860&amp;group_id=54141&amp;atid=472807">
+							R3.0: missing calendar-icon
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2163523</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2163523&amp;group_id=54141&amp;atid=472807">
+							R3.0: Assign issue, malformed url
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2163366</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2163366&amp;group_id=54141&amp;atid=472807">
+							R3.0: Watch-issue form issuesearch does not work
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2156993</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2156993&amp;group_id=54141&amp;atid=472807">
+							R3.1: Search-Issues form sort-order of criteria-lists
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2151498</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2151498&amp;group_id=54141&amp;atid=472807">
+							R3.0: Unordered Projects-list
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2141933</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2141933&amp;group_id=54141&amp;atid=472807">
+							Userpreference Number of Issues Shown
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2138537</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2138537&amp;group_id=54141&amp;atid=472807">
+							portalhome not displayed
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2135762</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2135762&amp;group_id=54141&amp;atid=472807">
+							Admin update user password
+                        </a>
+					</td>
+				</tr>
+			</table>
+		</section>
+	</body>
+</document>

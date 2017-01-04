@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+    <formset>
+        <form name="importForm">
+            <field property="importFile" depends="required">
+                <arg0 key="itracker.web.attr.file"/>
+            </field>
+        </form>
+        <form name="configurationForm">
+            <field property="value" depends="validwhen">
+                <msg key="itracker.web.error.validate.required" name="validwhen"/>
+                <arg0 key="itracker.web.attr.value"/>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>
+                        ((action != 'createstatus') or (*this* !=
+                        null))
+                    </var-value>
+                </var>
+
+            </field>
+        </form>
+
+        <form name="reportForm">
+            <field property="name" depends="required">
+                <arg0 key="itracker.web.attr.name"/>
+            </field>
+            <field property="nameKey" depends="required">
+                <arg0 key="itracker.web.attr.namekey"/>
+            </field>
+            <field property="description" depends="required">
+                <arg0 key="itracker.web.attr.description"/>
+            </field>
+            <field property="fileDataFile" depends="requiredif">
+                <arg0 key="itracker.web.attr.file"/>
+                <var>
+                    <var-name>field[0]</var-name>
+                    <var-value>id</var-value>
+                </var>
+                <var>
+                    <var-name>fieldTest[0]</var-name>
+                    <var-value>NULL</var-value>
+                </var>
+            </field>
+        </form>
+
+        <form name="componentForm">
+            <field property="name" depends="required,maxlength">
+                <arg0 key="itracker.web.attr.name"/>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>30</var-value>
+                </var>
+            </field>
+            <field property="description" depends="required,maxlength">
+                <arg0 key="itracker.web.attr.description"/>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>255</var-value>
+                </var>
+            </field>
+        </form>
+
+        <form name="versionForm">
+            <field property="description" depends="required,maxlength">
+                <arg0 key="itracker.web.attr.description"/>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>255</var-value>
+                </var>
+            </field>
+            <field property="id" depends="required">
+                <arg0 key="itracker.web.attr.id"/>
+            </field>
+            <field property="number" depends="required,maxlength">
+                <arg0 key="itracker.web.attr.number"/>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>255</var-value>
+                </var>
+            </field>
+        </form>
+
+        <form name="workflowScriptForm">
+            <field property="name" depends="required">
+                <arg0 key="itracker.web.attr.name"/>
+            </field>
+            <field property="event" depends="required">
+                <arg0 key="itracker.web.attr.event"/>
+            </field>
+            <field property="script" depends="required">
+                <arg0 key="itracker.web.attr.script"/>
+            </field>
+        </form>
+
+        <form name="projectForm">
+            <field property="name" depends="required,maxlength">
+                <arg0 key="itracker.web.attr.name"/>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>255</var-value>
+                </var>
+            </field>
+            <field property="description" depends="required,maxlength">
+                <arg0 key="itracker.web.attr.description"/>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>255</var-value>
+                </var>
+            </field>
+        </form>
+
+        <form name="customFieldForm">
+            <field property="fieldType" depends="required">
+                <arg0 key="itracker.web.attr.fieldtype"/>
+            </field>
+
+        </form>
+        <form name="customFieldValueForm">
+            <field property="base_locale" depends="required">
+                <arg0 key="itracker.web.attr.baselocale"/>
+            </field>
+            <field property="value" depends="mask">
+                <arg0 key="itracker.web.attr.value"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>
+                        [A-Za-z0-9\.:]*
+                    </var-value>
+                </var>
+            </field>
+
+            <field property="sortOrder" depends="integer">
+                <arg0 key="itracker.web.attr.sortorder"/>
+            </field>
+        </form>
+    </formset>
+</form-validation>

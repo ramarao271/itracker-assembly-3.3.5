@@ -1,0 +1,74 @@
+<dataset>
+
+    <table name="issuebean">
+
+        <column>id</column>
+        <column>create_date</column>
+        <column>last_modified</column>
+        <column>description</column>
+        <column>severity</column>
+        <column>status</column>
+        <column>resolution</column>
+        <column>project_id</column>
+        <column>creator_id</column>
+        <column>owner_id</column>
+        <column>target_version_id</column>
+
+        <row>
+            <value>1</value>
+            <value>2006-01-01</value>
+            <value>2006-01-01</value>
+            <value>test_description</value>
+            <value>1</value>
+            <value>100</value>
+            <value>test_resolution</value>
+            <value>2</value>
+            <value>2</value>
+            <value>2</value>
+            <value>1</value>
+        </row>
+
+        <row>
+            <value>2</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>test_description 2</value>
+            <value>1</value>
+            <value>200</value>
+            <value>test_resolution 2</value>
+            <value>2</value>
+            <value>2</value>
+            <value>2</value>
+            <value>1</value>
+        </row>
+
+        <row>
+            <value>3</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>test_description 3</value>
+            <value>1</value>
+            <value>300</value>
+            <value>test_resolution 3</value>
+            <value>2</value>
+            <value>2</value>
+            <value>2</value>
+            <value>1</value>
+        </row>
+
+        <row>
+            <value>4</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>test_description 4</value>
+            <value>1</value>
+            <value>300</value>
+            <null/>
+            <value>2</value>
+            <value>2</value>
+            <value>2</value>
+            <value>1</value>
+        </row>
+    </table>
+
+</dataset>

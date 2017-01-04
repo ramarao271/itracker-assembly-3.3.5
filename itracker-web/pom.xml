@@ -1,0 +1,928 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.itracker</groupId>
+        <artifactId>itracker</artifactId>
+        <version>3.3.5</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>itracker-web</artifactId>
+    <packaging>war</packaging>
+
+    <dependencyManagement>
+       <dependencies>
+          <dependency>
+             <groupId>org.apache.httpcomponents</groupId>
+             <artifactId>httpclient</artifactId>
+             <version>4.5.2</version>
+             <scope>test</scope>
+          </dependency>
+       </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.itracker</groupId>
+            <artifactId>itracker-services</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+        </dependency>
+        <dependency>
+            <artifactId>commons-beanutils</artifactId>
+            <groupId>commons-beanutils</groupId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>antlr</groupId>
+            <artifactId>antlr</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>quartz</groupId>
+            <artifactId>quartz</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>rome</groupId>
+            <artifactId>rome</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>bsh</groupId>
+            <artifactId>bsh</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts-tiles</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts-extras</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts-taglib</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts-el</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-servlet-2.x</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap-datepicker</artifactId>
+            <version>1.6.1</version>
+           <exclusions>
+              <exclusion>
+                 <artifactId>jquery</artifactId>
+                 <groupId>org.webjars</groupId>
+              </exclusion>
+           </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>font-awesome</artifactId>
+            <version>4.6.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <artifactId>xml-apis</artifactId>
+            <groupId>xml-apis</groupId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.subethamail</groupId>
+            <artifactId>subethasmtp</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.itracker</groupId>
+            <artifactId>itracker-persistence</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>1.1.6</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.dtd</include>
+                    <include>**/*.xsd</include>
+                    <include>**/*.ttf</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.xml</exclude>
+                    <exclude>**/*.dtd</exclude>
+                    <exclude>**/*.xsd</exclude>
+                    <exclude>**/*.ttf</exclude>
+                </excludes>
+            </resource>
+
+            <resource>
+                <directory>${jetty.configSrc}</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <targetPath>${project.build.directory}/jetty-itracker</targetPath>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.xml</exclude>
+                    <exclude>**/*.dtd</exclude>
+                    <exclude>**/*.xsd</exclude>
+                </excludes>
+                <targetPath>${project.build.testOutputDirectory}</targetPath>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.dtd</include>
+                    <include>**/*.xsd</include>
+                </includes>
+                <targetPath>${project.build.testOutputDirectory}</targetPath>
+            </testResource>
+        </testResources>
+        <finalName>itracker</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+
+                <configuration>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>java.naming.factory.initial</name>
+                            <value>org.eclipse.jetty.jndi.InitialContextFactory</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>java.naming.provider.url</name>
+                            <value>rmi://localhost:8099</value>
+                        </systemProperty>
+                    </systemProperties>
+                    <httpConnector>
+                        <port>${application.port}</port>
+                        <idleTimeout>60000</idleTimeout>
+                    </httpConnector>
+                    <daemon>false</daemon>
+                    <webAppConfig>
+                        <contextPath>/${application.path}</contextPath>
+                        <jettyEnvXml>${project.build.directory}/jetty-itracker/jetty-env.xml</jettyEnvXml>
+                    </webAppConfig>
+                    <jettyXml>${project.build.directory}/jetty-itracker/jetty.xml</jettyXml>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>${application.port}</port>
+                            <maxIdleTime>600000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.mail</groupId>
+                        <artifactId>mail</artifactId>
+                        <version>${mail.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>c3p0</groupId>
+                        <artifactId>c3p0</artifactId>
+                        <version>${c3p0.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.hsqldb</groupId>
+                        <artifactId>hsqldb</artifactId>
+                        <version>${hsqldb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>${h2.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql-connector-java.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${postgresql.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.derby</groupId>
+                        <artifactId>derby</artifactId>
+                        <version>${derby.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>itracker.tomcat</id>
+            <properties>
+                <mail.smtp.host>mail.example.com</mail.smtp.host>
+                <mail.smtp.auth>false</mail.smtp.auth>
+                <mail.from>itracker@example.com</mail.from>
+                <mail.transport.protocol.rfc822>smtps</mail.transport.protocol.rfc822>
+                <mail.smtp.starttls.enable>true</mail.smtp.starttls.enable>
+                <cargo.container>tomcat6x</cargo.container>
+                <cargo.tomcat.useHttpOnly>true</cargo.tomcat.useHttpOnly>
+                <!-- additional settings -->
+                <!--main.dataSource.jdbcUrl>jdbc:hsqldb:file:itrackerdev-tomcat;create=true;hsqldb.cache_rows=10000;hsqldb.nio_data_file=false</main.dataSource.jdbcUrl-->
+                <!--main.dataSource.jdbcUrl>${test.dataSource.jdbcUrl}</main.dataSource.jdbcUrl-->
+                <!--main.dataSource.user>${test.dataSource.user}</main.dataSource.user>
+                <main.dataSource.password>${test.dataSource.password}</main.dataSource.password>
+                <main.dataSource.driverClass>${test.dataSource.driverClass}</main.dataSource.driverClass>
+                <main.hibernate.dialect>${test.hibernate.dialect}</main.hibernate.dialect-->
+
+                <!--main.dataSource.user>itracker</main.dataSource.user>
+                <main.dataSource.password><your password></main.dataSource.password-->
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>javax.mail</groupId>
+                    <artifactId>mail</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>c3p0</groupId>
+                    <artifactId>c3p0</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.hsqldb</groupId>
+                    <artifactId>hsqldb</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.derby</groupId>
+                    <artifactId>derby</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/tomcat</directory>
+                        <filtering>true</filtering>
+                        <includes>
+                            <include>**/*.xml</include>
+                        </includes>
+                        <targetPath>${project.build.directory}/tomcat-itracker</targetPath>
+                    </resource>
+                </resources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven2-plugin</artifactId>
+                        <configuration>
+                            <container>
+                                <containerId>${cargo.container}</containerId>
+                                <dependencies>
+                                    <dependency>
+                                        <groupId>javax.mail</groupId>
+                                        <artifactId>mail</artifactId>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>c3p0</groupId>
+                                        <artifactId>c3p0</artifactId>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>org.hsqldb</groupId>
+                                        <artifactId>hsqldb</artifactId>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>com.h2database</groupId>
+                                        <artifactId>h2</artifactId>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>mysql</groupId>
+                                        <artifactId>mysql-connector-java</artifactId>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>postgresql</groupId>
+                                        <artifactId>postgresql</artifactId>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>org.apache.derby</groupId>
+                                        <artifactId>derby</artifactId>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>org.apache.logging.log4j</groupId>
+                                        <artifactId>log4j-core</artifactId>
+                                    </dependency>
+                                    <dependency>
+                                        <groupId>org.apache.logging.log4j</groupId>
+                                        <artifactId>log4j-1.2-api</artifactId>
+                                    </dependency>
+                                </dependencies>
+                            </container>
+                            <configuration>
+                                <type>standalone</type>
+                                <home>${project.build.directory}/${cargo.container}</home>
+                                <configfiles>
+                                  <configfile>
+                                    <file>${project.build.directory}/tomcat-itracker/context.xml</file>
+                                    <todir>conf/Catalina/localhost</todir>
+                                    <tofile>${project.build.finalName}.xml</tofile>
+                                  </configfile>
+                                  <configfile>
+                                    <file>${project.build.directory}/tomcat-itracker/tomcat-users.xml</file>
+                                    <todir>conf</todir>
+                                  </configfile>
+                                </configfiles>
+                                <properties>
+                                    <cargo.servlet.port>${application.port}</cargo.servlet.port>
+                                    <cargo.logging>low</cargo.logging>
+                                    <cargo.tomcat.context.reloadable>true</cargo.tomcat.context.reloadable>
+                                </properties>
+                            </configuration>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>itracker.jetty</id>
+            <properties>
+                <main.hibernate.dialect>org.hibernate.dialect.HSQLDialect</main.hibernate.dialect>
+
+                <main.dataSource.jdbcUrl>jdbc:hsqldb:file:${project.build.directory}/itrackerdev-jetty</main.dataSource.jdbcUrl>
+                <main.dataSource.user>sa</main.dataSource.user>
+                <main.dataSource.password />
+                <main.dataSource.driverClass>org.hsqldb.jdbcDriver</main.dataSource.driverClass>
+                <main.hibernate.dialect>org.hibernate.dialect.HSQLDialect</main.hibernate.dialect>
+                <jetty.configSrc>${project.basedir}/src/main/jetty</jetty.configSrc>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>jetty-start</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+                <resources>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <!-- SELENIUM TESTING -->
+            <!-- SELENIUM TESTING -->
+            <!-- SELENIUM TESTING -->
+            <!-- SELENIUM TESTING -->
+            <id>selenium</id>
+
+            <properties>
+                <itracker.it.skip>true</itracker.it.skip>
+                <forkCount>1</forkCount>
+                <selenium.firefox.binary>*firefox</selenium.firefox.binary>
+                <selenium.host>localhost</selenium.host>
+                <selenium.browser>firefox</selenium.browser>
+                <selenium.browserLogLevel>warn</selenium.browserLogLevel>
+                <selenium.speed>200</selenium.speed>
+                <selenium.useXPathLibrary>javascript-xpath</selenium.useXPathLibrary>
+                <selenium.test />
+                <selenium.skip>false</selenium.skip>
+                <!-- set to false to run with remote server -->
+                <selenium.no.server>true</selenium.no.server>
+                <!-- set to false to start remote server from maven -->
+                <selenium.server.skip>${selenium.no.server}</selenium.server.skip>
+                <!--
+                <selenium.port />
+                <selenium.datasource.port />
+                <it.application />
+                -->
+
+                <application.host>localhost</application.host>
+                <!-- it.application.port is set-up by helper-->
+                <application.path>itracker</application.path>
+
+                <!-- selenium.datasource.port is set-up by helper -->
+                <selenium.datasource.name>itrackerdev-selenium</selenium.datasource.name>
+
+                <!-- main.dataSource.jdbcUrl must not be used, port is set-up by helper after property is created-->
+                <main.dataSource.jdbcUrl>jdbc:hsqldb:hsql://localhost:${selenium.datasource.port}/${selenium.datasource.name}</main.dataSource.jdbcUrl>
+                <main.dataSource.user>sa</main.dataSource.user>
+                <main.dataSource.password />
+                <main.dataSource.driverClass>org.hsqldb.jdbcDriver</main.dataSource.driverClass>
+                <main.hibernate.dialect>org.hibernate.dialect.HSQLDialect</main.hibernate.dialect>
+
+                <!-- main.dataSource.jdbcUrl must not be used, port is set-up by helper after property is created-->
+                <test.dataSource.jdbcUrl>jdbc:hsqldb:hsql://localhost:${selenium.datasource.port}/${selenium.datasource.name}</test.dataSource.jdbcUrl>
+                <test.dataSource.user>sa</test.dataSource.user>
+                <test.dataSource.password />
+                <test.dataSource.driverClass>org.hsqldb.jdbcDriver</test.dataSource.driverClass>
+                <test.hibernate.dialect>org.hibernate.dialect.HSQLDialect</test.hibernate.dialect>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>reserve-network-port</id>
+                                <goals>
+                                    <goal>reserve-network-port</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                                <configuration>
+                                    <portNames>
+                                        <portName>selenium.port</portName>
+                                        <portName>selenium.datasource.port</portName>
+                                        <portName>selenium.smtp.port</portName>
+                                        <portName>it.application.port</portName>
+                                        <portName>jetty.stopPort</portName>
+                                    </portNames>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>output-info-process-sources</id>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <echo>running process-sources phase</echo>
+                                    </target>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>output-info-process-test-classes</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <echo>running process-test-classes phase</echo>
+                                    </target>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>output-info-pre-integration-test</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <echo>running pre-integration-test phase</echo>
+                                    </target>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>override-log4j-with-console-output</id>
+                                <phase>test-compile</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <skip>false</skip>
+                                    <target>
+                                        <copy overwrite="true" file="${project.build.testOutputDirectory}/log4j2.xml" todir="${project.build.testOutputDirectory}/" />
+                                    </target>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>hsql-server-start</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <failOnError>true</failOnError>
+                                    <target>
+                                        <property name="ant.classpath" refid="maven.plugin.classpath" />
+
+                                        <delete failonerror="false" verbose="true">
+                                            <fileset dir="${project.basedir}/target" includes="itrackerdev-test*" />
+                                        </delete>
+
+                                        <java fork="true" spawn="true" dir="${java.io.tmpdir}" classname="org.hsqldb.Server" classpath="${ant.classpath}">
+                                            <arg value="-database.0" />
+                                            <arg value="${project.basedir}/target/${selenium.datasource.name}" />
+                                            <arg value="-dbname.0" />
+                                            <arg value="${selenium.datasource.name}" />
+                                            <arg value="-port" />
+                                            <arg value="${selenium.datasource.port}" />
+                                            <arg value="--no_system_exit" />
+                                            <arg value="true" />
+                                        </java>
+                                        <echo>Database started on ${selenium.datasource.port}:${selenium.datasource.name} (CP: ${ant.classpath})
+                                        </echo>
+                                    </target>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>hsql-server-stop</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <failOnError>true</failOnError>
+                                    <target>
+                                        <property name="plugin_classpath" refid="maven.plugin.classpath" />
+
+                                        <echo>DB Shutdown...</echo>
+                                        <concat destfile="${project.build.directory}/temp.bsh">
+                                        <![CDATA[
+                                        import java.sql.*;
+
+                                        try {
+                                            Class.forName("org.hsqldb.jdbcDriver");
+                                            String url = bsh.args[0];
+                                            Connection con = DriverManager.getConnection(url, "sa", "");
+                                            String sql = "SHUTDOWN";
+                                            Statement stmt = con.createStatement();
+                                            stmt.executeUpdate(sql);
+                                            stmt.close();
+                                            print("shutdown " + url + " complete");
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        ]]>
+                                        </concat>
+                                        <echo>DB Shutdown script created: ${project.build.directory}/temp.bsh</echo>
+
+                                        <java classname="bsh.Interpreter" classpath="${plugin_classpath}">
+                                            <arg line="${project.build.directory}/temp.bsh jdbc:hsqldb:hsql://localhost:${selenium.datasource.port}/${selenium.datasource.name}" />
+                                        </java>
+                                        <echo>Shut-down DB jdbc:hsqldb:hsql://localhost:${selenium.datasource.port}/${selenium.datasource.name}</echo>
+                                        <delete failonerror="false" verbose="true">
+                                            <fileset dir="${project.build.directory}" includes="temp.bsh" />
+                                            <fileset dir="${java.io.tmpdir}/hsqldb" includes="itrackerdev-test*" />
+                                        </delete>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>bsh</groupId>
+                                <artifactId>bsh</artifactId>
+                                <version>${bsh.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.hsqldb</groupId>
+                                <artifactId>hsqldb</artifactId>
+                                <version>${hsqldb.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.apache.logging.log4j</groupId>
+                                <artifactId>log4j-core</artifactId>
+                                <version>${log4j2.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.apache.logging.log4j</groupId>
+                                <artifactId>log4j-1.2-api</artifactId>
+                                <version>${log4j2.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>selenium-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>start-selenium</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>start-server</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>stop-selenium</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop-server</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+
+                        <configuration>
+                            <startURL>http://${application.host}:${application.port}/${application.path}</startURL>
+                            <suite>none</suite>
+                            <skip>${selenium.server.skip}</skip>
+                            <background>true</background>
+                            <!--old(<multiWindow>true</multiWindow>-->
+                            <singleWindow>true</singleWindow>
+                            <port>${selenium.port}</port>
+                            <browser>${selenium.browser}</browser>
+                            <timeout>50</timeout>
+                            <systemProperties>
+                                <selenium.pathToFirefoxBinary>${selenium.firefox.binary}</selenium.pathToFirefoxBinary>
+                            </systemProperties>
+                            <debug>true</debug>
+                            <logOutput>true</logOutput>
+                            <logFile>${project.build.directory}/selenium/selenium-plugin.log</logFile>
+                            <browserSideLog>true</browserSideLog>
+                            <ensureCleanSession>false</ensureCleanSession>
+                        </configuration>
+                    </plugin>
+
+
+                    <plugin>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-maven-plugin</artifactId>
+                        <configuration>
+
+                            <stopPort>${jetty.stopPort}</stopPort>
+                            <stopKey>foo</stopKey>
+                            <systemProperties>
+                                <systemProperty>
+                                    <name>java.naming.factory.initial</name>
+                                    <value>org.eclipse.jetty.jndi.InitialContextFactory</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <name>java.naming.provider.url</name>
+                                    <value>rmi://localhost:8099</value>
+                                </systemProperty>
+                            </systemProperties>
+                            <daemon>true</daemon>
+                            <useProvidedScope>false</useProvidedScope>
+                            <waitForChild>false</waitForChild>
+                            <webAppConfig>
+                                <contextPath>/${application.path}</contextPath>
+                                <jettyEnvXml>${project.build.testOutputDirectory}/jetty-env.xconf</jettyEnvXml>
+                            </webAppConfig>
+                            <jettyXml>${project.build.testOutputDirectory}/jetty.xconf</jettyXml>
+                            <httpConnector>
+                                <port>${it.application.port}</port>
+                                <idleTimeout>60000</idleTimeout>
+                            </httpConnector>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>start-jetty</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                                <configuration>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stop-jetty</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <!--skip>true</skip-->
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>pre-selenium-testing</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <configuration>
+                                    <!--skip>false</skip-->
+                                    <includes>
+                                        <include>org/itracker/**/*PreTest.java</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+
+                        <executions>
+                            <execution>
+                                <id>failsafe-selenium-integration-test</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+
+                                <configuration>
+                                    <test>${selenium.test}</test>
+                                    <useSystemClassLoader>true</useSystemClassLoader>
+                                    <!--reportsDirectory>${project.build.directory}/failsafe-selenium-reports</reportsDirectory-->
+                                    <skip>${selenium.skip}</skip>
+                                    <includes>
+                                        <include>org/itracker/**/*SeleniumIT.java</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.eclipse.jetty</groupId>
+                                <artifactId>jetty-plus</artifactId>
+                                <version>${maven-jetty-plugin.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.eclipse.jetty</groupId>
+                                <artifactId>jetty-jndi</artifactId>
+                                <version>${maven-jetty-plugin.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+            <dependencies>
+
+
+                <dependency>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-server</artifactId>
+                    <version>${maven-jetty-plugin.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-jndi</artifactId>
+                    <version>${maven-jetty-plugin.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+    </profiles>
+</project>

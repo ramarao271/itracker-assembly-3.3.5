@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+    <description>
+        This tag library contains functionality specific to the ITracker
+        issues tracking system.
+    </description>
+    <tlib-version>1.0</tlib-version>
+    <short-name>
+        ITracker_Tag_Library
+    </short-name>
+    <uri>http://www.cowsultants.com/taglibs/itracker-1.0</uri>
+    <tag>
+        <description>
+            Adds an error to the session for later display. name - Name
+            of the session-scope bean to check for [ERROR_KEY] key - the
+            resource bundle key to add to the list
+        </description>
+        <name>addError</name>
+        <tag-class>org.itracker.web.taglib.AddErrorTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>key</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <description>
+            Clears the errors from the session. name - Name of the
+            session-scope bean to clear [ERROR_KEY]
+        </description>
+        <name>clearErrors</name>
+        <tag-class>org.itracker.web.taglib.ClearErrorsTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <description>
+            Formats the date supplied in the format specified for the
+            locale date - the date to format format - the format to use.
+            One of short, notime, full [default]. emptyKey - the key for
+            the message to display if the date is null or can't be
+            formatted
+        </description>
+        <name>formatDate</name>
+        <tag-class>org.itracker.web.taglib.FormatDateTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>date</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>format</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>emptyKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <description>
+            Formats the body of the tag to truncate for length
+            truncateLength - the maximum length of the formatted results
+            [default: 40] truncateKey - the key for the message that
+            will be used to indicate a truncated value [default:
+            itracker.web.generic.truncated]
+        </description>
+        <name>formatDescription</name>
+        <tag-class>
+            org.itracker.web.taglib.FormatDescriptionTag
+        </tag-class>
+
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>truncateLength</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>truncateKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <description>
+            Formats a history entry to display links to other issues
+            forward - the forward to use in the url [default viewissue]
+            paramName - name of parameter to pass if any [default id]
+            paramValue - value of parameter to pass if any [default $2]
+            styleClass - a styleClass to use [default history]
+            issueNamesKey - the key to use to get a list of issue names
+            [default itracker.web.generic.issuenames] textPattern - the
+            pattern to use for the anchor text [default $1 $2]
+        </description>
+        <name>formatHistoryEntry</name>
+        <tag-class>
+            org.itracker.web.taglib.FormatHistoryEntryTag
+        </tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>forward</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>paramName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>paramValue</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>issueNamesKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>textPattern</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>projectOptions</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <description>
+            Formats the link for use with per line image actions action
+            - the action to use in the url [action or forward required]
+            module - The module to use. forward - the forward to use in
+            the url [action or forward required] paramName - name of
+            parameter to pass if any paramValue - value of parameter to
+            pass if any src - the source location of the image
+            textActionKey - the key value for the text tag to be used if
+            the preferences are set to use text vs. images altKey - the
+            key value of the alt text for the image arg0 - the first
+            replacement arg for the alt text caller - add a caller
+            parameter to the url with the specified value targetAction -
+            add an action parameter to the url with the specifed value
+            target - the html window to target
+        </description>
+        <name>formatImageAction</name>
+        <tag-class>
+            org.itracker.web.taglib.FormatImageActionTag
+        </tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>forward</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>action</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>module</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>paramName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>paramValue</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>src</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>altKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>arg0</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>textActionKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>border</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>caller</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>target</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>targetAction</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+            <description>
+                Formats the link for use with glyph icon actions. action
+                - the action to use in the url [action or forward required]
+                module - The module to use. forward - the forward to use in
+                the url [action or forward required] paramName - name of
+                parameter to pass if any paramValue - value of parameter to
+                pass if any icon - the glyphicon name
+                textActionKey - the key value for the text tag to be used if
+                the preferences are set to use text vs. icons arg0 - the first
+                replacement arg for the alt text caller - add a caller
+                parameter to the url with the specified value targetAction -
+                add an action parameter to the url with the specifed value
+                target - the html window to target
+            </description>
+            <name>formatIconAction</name>
+            <tag-class>
+                org.itracker.web.taglib.FormatIconActionTag
+            </tag-class>
+            <body-content>JSP</body-content>
+            <attribute>
+                <name>forward</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>action</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>module</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>paramName</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>paramValue</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>icon</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>styleClass</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>iconClass</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>styleId</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>arg0</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>textActionKey</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>info</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>caller</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>target</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+            <attribute>
+                <name>targetAction</name>
+                <required>false</required>
+                <rtexprvalue>true</rtexprvalue>
+            </attribute>
+        </tag>
+
+    <tag>
+        <description>
+            Formats the date supplied in the format specified for the
+            locale issue - the issue whose owner to display format - the
+            format to use. One of short or full [default]. emptyKey -
+            the key for the message to display if the issue is null or
+            there is no owner
+        </description>
+        <name>formatIssueOwner</name>
+        <tag-class>
+            org.itracker.web.taglib.FormatIssueOwnerTag
+        </tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>issue</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>format</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>emptyKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <description>
+            Formats the link for use in pagination page - the page to
+            use in the url order - the sort order of the page projectId
+            - the project id if needed start - the number to start on
+            (defaults to 0) styleClass - the stylesheet class for the
+            link
+        </description>
+        <name>formatPaginationLink</name>
+        <tag-class>
+            org.itracker.web.taglib.FormatPaginationLinkTag
+        </tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>page</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>order</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>projectId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>start</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <description>
+            Formats a resolution, both fixed and string. displayType -
+            currently only view is supported projectOptions - the set of
+            options for the project the issue belongs to
+        </description>
+        <name>formatResolution</name>
+        <tag-class>
+            org.itracker.web.taglib.FormatResolutionTag
+        </tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>displayType</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>projectOptions</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <description>
+            Formats the body of the tag to truncate for length field -
+            the CustomField to format currentValue - the current value
+            of the field displayType - whether to output a form field,
+            or just viewable text [view|edit] (default edit) formName -
+            name of the form this element belongs to listOptions - List
+            of NameValuePairs to use for options in a select list
+        </description>
+        <name>formatCustomField</name>
+        <tag-class>
+            org.itracker.web.taglib.FormatCustomFieldTag
+        </tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>field</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>currentValue</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>displayType</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>formName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>listOptions</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <description>
+            Formats the link for use with actions action - the action to
+            use in the url [action or forward required] forward - the
+            forward to use in the url [action or forward required]
+            queryString - a query string to append directly to the url
+            parameters, only the name/value pairs, with equals, are
+            needed, not th e initial question mark. This may be used in
+            conjunction with all of the other ways to add parameters
+            paramName - name of parameter to pass if any paramValue -
+            value of parameter to pass if any caller - add a caller
+            parameter to the url with the specified value targetAction -
+            add an action parameter to the url with the specifed value
+            titleKey - the key value of the title text for the link arg0
+            - the first replacement arg for the title text styleClass -
+            CSS class name target - the html window to target
+        </description>
+        <name>link</name>
+        <tag-class>org.itracker.web.taglib.FormatLinkTag</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>forward</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>action</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>paramName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>paramValue</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>queryString</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>titleKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>arg0</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>caller</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>target</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>targetAction</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <description>
+            Returns a localied key from the resources key - the key to
+            return from the resources arg0 - an optional argument to
+            format in the message arg1 - an optional argument to format
+            in the message arg2 - an optional argument to format in the
+            message locale - a locale string to use to for the message
+            localeKey - the key to a locale in the users HttpSession
+        </description>
+        <name>message</name>
+        <tag-class>org.itracker.web.taglib.FormatMessageTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>key</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>arg0</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>arg1</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>arg2</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>locale</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>localeKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <function>
+        <description>
+            Returns a status name from resource bundle
+        </description>
+        <name>getStatusName</name>
+        <function-class>
+            org.itracker.model.util.IssueUtilities
+        </function-class>
+        <function-signature>
+            java.lang.String getStatusName(java.lang.String, java.util.Locale)
+        </function-signature>
+    </function>
+
+    <function>
+        <description>
+            Returns resolution name from resource bundle
+        </description>
+        <name>getResolutionName</name>
+        <function-class>
+            org.itracker.model.util.IssueUtilities
+        </function-class>
+        <function-signature>
+            java.lang.String getResolutionName(java.lang.String, java.util.Locale)
+        </function-signature>
+    </function>
+
+    <function>
+        <description>
+            Returns severity name from resource bundle
+        </description>
+        <name>getSeverityName</name>
+        <function-class>
+            org.itracker.model.util.IssueUtilities
+        </function-class>
+        <function-signature>
+            java.lang.String getSeverityName(java.lang.String, java.util.Locale)
+        </function-signature>
+    </function>
+
+    <function>
+        <description>
+            Returns custom field name from resource bundle
+        </description>
+        <name>getCustomFieldName</name>
+        <function-class>
+            org.itracker.model.util.CustomFieldUtilities
+        </function-class>
+        <function-signature>
+            java.lang.String getCustomFieldName(java.lang.Integer, java.util.Locale)
+        </function-signature>
+    </function>
+
+    <function>
+        <description>
+            Returns custom field type string from resource bundle
+        </description>
+        <name>getCustomFieldTypeString</name>
+        <function-class>
+            org.itracker.model.util.CustomFieldUtilities
+        </function-class>
+        <function-signature>
+            java.lang.String getTypeString(int, java.util.Locale)
+        </function-signature>
+    </function>
+
+    <function>
+        <description>
+            Returns a locale-based string from resource bundle
+        </description>
+        <name>ITrackerResources_GetString</name>
+        <function-class>
+            org.itracker.core.resources.ITrackerResources
+        </function-class>
+        <function-signature>
+            java.lang.String getString(java.lang.String, java.lang.String)
+        </function-signature>
+    </function>
+
+    <function>
+        <description>
+            Returns true if param is a long string
+        </description>
+        <name>ITrackerResources_IsLongString</name>
+        <function-class>
+            org.itracker.core.resources.ITrackerResources
+        </function-class>
+        <function-signature>
+            boolean isLongString(java.lang.String)
+        </function-signature>
+    </function>
+</taglib>
+
+
+ 	  	 

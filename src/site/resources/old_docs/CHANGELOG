@@ -1,0 +1,724 @@
+Version 2.5.0 (Development)
+---------------------------
+TODO
+o Add in property that defines which locales are to loaded from the db
+o Add in related/duplicate issues
+  -- Add relation type (Clone, Split, Duplicate, Parent, Child, Related)
+  -- Add in action to link an issue
+  -- Add in code to display all linked issues (type, id, status, description, lastmod date)
+  -- Add in code to remove a link
+  -- Add in code to update all related issues (?)
+o Add in issue clone/split
+  -- Clone copies all data into new issue and adds clone relation
+  -- Split copies all data into new issue, but description and history, and adds split relation
+o Add saved search queries
+o Add user configurable notifications
+  -- Add support for multiple notification types, but no other types are defined yet
+o Add in preference for text links instead of icons
+o Add totals to myITracker blocks and projects pages
+o Add scripting support for custom fields
+  -- Allow for text scripts
+  -- Provide some default scripts
+  -- Provide utilities for generating users/projects/versions/components lists
+  -- Multiple scripts: OnCreate, OnValidate, OnSubmit
+
+Version 2.4.1 (Production)
+---------------------------
+  Feature Changes:
+  o Added the id custom fields to the view/edit pages
+  o Added current time to page footers
+  o Added property to control characterset for email notifications
+
+  Fixes:
+  o Fixed a bug with custom fields not being available in reports
+  o Changed Eclipse plugin to disable component/version pulldowns if they are not
+    defined in the issue
+  o Changed Eclipse plugin to display the owner name as text if the user can not
+    change the owner
+  o Fixed the Eclipse plugin to not display an error id the status or resolution
+    fields are left blank
+	o Fixed a bug where users may not be able to save their preferences
+  o Fixed a bug where severity names were not being translated correctly
+  o Fixed a bug where view issue would still show deleted history entries
+  o Fixed a bug with issue search form not reseting empty text fields
+  o Fixed a bug where the selected project could not be changed in search
+    after the intial query was run
+
+Version 2.4.0 (Production)
+---------------------------
+  *** Includes all changes since since 2.2.1 ***
+
+  New Features
+  o Added back in issue severity report as an example report including
+    charts
+  o Added the ability to update issues to the eclipse client
+  o Added project level filtering to the eclipse client
+
+  Feature Changes:
+  o Added several new attributes available to reports
+
+  Fixes:
+  o Fixed a bug where an issue's status was always reset to assigned when the
+    owner was changed
+  o Fixed a bug where blobs didn't work correctly with Oracle.  Changed columns
+    to use LONG RAW instead
+  o Fixed a bug where reports weren't updated correctly
+  o Fixed a bug where one of the project options didn't show up on the project
+    admin page
+  o Fixed several bugs in the eclipse client around custom fields
+
+Version 2.3.3 (Development)
+---------------------------
+  New Features:
+  o Added parameter to set the session timeout for users
+  o Add export link from admin page to export all data
+
+  Feature Changes:
+  o Removed custom field deletion due the potential loss of data.  Instead,
+    the field should just be unlinked from the project
+  o Added create link from the edit and view issue pages
+  o Changed close permission to work with limited edit
+  o Changed permissions to have limited/full edit breakout
+  o Changed edit page to use static text for fields that can't be edited
+
+  Fixes:
+  o Fixed bug where target version still showed up on the edit form if no versions
+    were defined
+  o Fixed bug where users with unassign self permission couldn't unassign the issue
+  o Fixed a bug where the custom field type wasn't being displayed properly on the edit
+    project screen
+  o Fixed a bug where issue fields and configuration data wasn't being removed properly
+    from the system
+  o Fixed a few pages that were using nested double quotes in jsp tags.  These pages
+    couldn't be compiled under older versions of JBoss
+  o Fixed a bug in language export where unicode characters weren't being encoded properly
+  o Fixed a bug where option values were lost when updating an existing list custom field
+  o Fixed a bug for languages where child locales weren't updated properly when the parent
+    locale was changed
+  o Removed caching on permission names so that updated language keys would be reflected
+    immediately
+
+Version 2.3.2 (Development)
+---------------------------
+  Upgraded core struts libraries to the 1.1 final version.
+
+  New Features:
+  o Added export of attachment data
+  o Added export of reports
+  o Added ability for the system to load predefined reports
+  o Added code to support issue activity in notifications.
+  o Moved custom fields management to be performed via a web interface
+  o Added ability to import configuration and custom fields from XML
+  o Added import verification and import options
+  o Added calendar to select dates for date custom fields
+  o Added code to support creation of issues on another users behalf
+
+  Feature Changes:
+  o Added ability to search issues on targeted version
+  o Added fixed resolutions to the search issues page
+  o Changed editing reports so you uploaded the report definition instead
+    of updating the XML directory on the web page.
+  o Change ordering of custom fields that are loaded for issues to be sorted by
+    the custom field id
+  o Changed language administration to use textareas if the base value contained
+    newline characters
+  o Added the ability for pluggable authentication to set a custom error page to
+    display to the user during login for an exception
+  o Added code to call methods in the pluggable authentication to notify the system
+    of profile updates and creates
+  o Added code to pull all permissions from the pluggable authentication, not just
+    when a user logs in
+  o Changed code to transform newlines into <br> tags for history entries, if no project
+    options were selected that already changed the history text display
+  o Changed several permissions.
+    - Changed Edit User's to only allow assignment of an issue, if the user is the creator
+    - Added new permission Allow Assignment which allows any issue to be assigned to
+      the user if the have Edit User's
+    - Broke Assign Self into two permissions, Assign Self now allows users to assign an
+      issue to themselves, Unassign Self allows users who are currently the owner of an issue
+      to move it back into the unassigned state.  The combination of these two issues would
+      operate like Assign Self used to.
+
+  Fixes:
+  o Fixed bug where components and versions still showed up in some cases on the
+    edit form and view form.
+  o Fixed bug with attachments and mysql that prevented any attachment over 65k
+    from being stored.
+  o Fix bug where updating custom fields leaves rows in the issuefieldbean table
+    with null issue ids.
+  o Fixed bug where reports could not be created
+  o Fixed a bug where the edit link didn't show up on the view pages if the user
+    only had edit own permission
+  o Fixed a bug where if a user edits preferences, it will automatically select the
+    first language in the list if they have not previously selected one
+  o Fixed bug where selected user permissions aren't retained if there is a form error.
+
+
+Version 2.3.1 (Development)
+---------------------------
+  New Features:
+  o Moved custom fields from resources bundles into the database
+  o Added the ability to import users, projects, issues into ITracker from an XML file
+  o Added attachment support to the API
+  o Updated the API to allow for issue updates
+
+  Feature Changes:
+  o Changed all session ejbs, except the web services ones, to only use local
+    interfaces
+  o The plugable authentication interfaces and classes were changed to allow
+    for other types of authentication information than passwords (shared secrets,
+    certificates), and to differentiate requestors (eg web app, api).
+  o The plugable authentication now checks both request attributes, and then if form
+    data, for plain text and encrypted password data.
+  o The plugable authentication was extended to check if certian types of
+    user information is allowed to be processed through ITracker.  The supported
+    types are core profile, password, preferences, and permissions.
+  o The plugable authentication was changed to so that permissions are pulled
+    from the authentication source.
+  o Added better i18n support for mysql.  Changes to the db creation scripts
+    and a new filter for request processing.
+  o Added code to support custom fields and attachments in an export
+  o Changed the XML to use both a system ID and a unique id for better DOM support
+  o Changed the resources bundles so an individual key could be updated.  This
+    allows the system to update cached values without reloading all the locales.
+  o Added code to surpress component and version sections on forms if none are defined
+    for the project
+  o Changed all attachments to be stored in the database form the filesystem.  This
+    makes them more portable and also accessible from the EJB's
+  o Added in code to move preexisting attachments into the database
+
+  Fixes:
+  o Fixed a bug in edit preferences where the form would not load correctly.
+  o Fixed a bug where the option value would be displayed instead of the label
+    on list custom fields.
+  o Fixed a bug where the cached configuration items weren't being reloaded in
+    circumstances.
+  o Fixed a bug where the activity owner wasn't set correctly when an owner was
+    assigned to an issue when it was created.
+  o Fixed a bug where translated help files couldn't be loaded.  Now the name of the
+    new page is as a resource property.
+  o Fixed a bug where the last permission on a project for a user couldn't be removed.
+  o Fixed some bugs when updating a language online.
+  o Fixed a bug where on the issue create screen some of the data would be lost if
+    the page did not pass validation.
+  o Fixed error handling on report page when no project is selected.
+  o Fixed some forms to always use session based attributes for data.  This allows
+    validation to work better if javascript is disabled.  There was no need for request
+    based attributes since all forms were using transactional support that prevented a
+    user from having more than one form open at a time (in a single session).
+  o Fixed code so that users with Edit User's permission can be issue owners.
+  o Fixed spacing between columns on main page and list issues to make it easier to read
+    when fields are close together
+  o Fixed view issue with fixed resolutions to show the appropriate text
+
+
+Version 2.3.0 (Development)
+---------------------------
+  New Features:
+  o Added in basic report processing using JFreeReport.  Admins can now
+    define new reports through a web interface.
+  o Added new Russian, Turkish, and Chinese translations
+  o Moved all language resources to the database, and added the ability to
+    maintain, and export languages through a web interface.  Replaced default
+    struts property message factory with ITracker message factory.
+  o Moved resolutions, severity and status configurations to be performed via
+    a web interface and out of the property files.  Also reorganized much of the
+    code to take this new configuration into account.
+  o Added new MessageFormat class to allow for more than 10 options
+
+  Feature Changes:
+  o Changed some database column names to allow for firebird support
+  o Moved the scheduler classes to the web package from ejb.  Any custom tasks
+    will need to be updated
+  o Changed the search to remember the last query performed.  A new user
+    preference was also added to disable this feature
+  o Changed issue export to provide more information so it can be used in
+    the new import feature
+  o Changed all jsp pages to use UTF-8 encoding
+  o Converted all image buttons (Create, Update, Submit, etc.) to use HTML buttons
+    with a stylesheet.
+
+  Fixes:
+  o Fixed a bug in custom fields where the current value for a list wouldn't
+    be displayed when editing an issue
+  o Fixed a bug where a null string could be returned when stripping html from
+    a string
+  o Fixed a missing image on the login page
+  o Fixed a bug in notification creation where contributors weren't being properly
+    created.
+  o Fixed a bug in notfications where creators may not have been notified properly.
+
+
+Version 2.2.1 (Production)
+---------------------------
+  Feature Changes:
+  o Added the ability to restrict by severity to the Reminder Notification task
+  o Added better checking of custom field configuration values
+
+  Fixes:
+  o Fixed several German translations
+  o Fixed Reminder Notification to parse the attributes correctly
+  o Fixed Reminder Notification bug that could cause an ArrayIndexOutOfBounds
+    Exception
+  o Fixed a bug where inactive or deleted users could still get notifications
+  o Fixed a bug where custom fields wouldn't repopulate correctly.
+  o Fixed a bug in all of the jsp tags that caused them to retain information across
+    calls
+
+Version 2.2.0 (Production)
+---------------------------
+  Fixes:
+  o Fixed edit issue so custom field validation worked correctly
+
+Version 2.1.3 (Development)
+---------------------------
+  New Features:
+  o Added new literal html project option so that html in history entries will
+    be displayed intact with no translation or processing.  Note that the surpress
+    html project option will superceed this option.
+  o Added new user permission that allows a user to edit their own issues.  This new
+    permision is a limited edit, the user can only change the description, and add
+    new history entries and attachments
+
+  Fixes:
+  o Fixed problem in IssueSearchHandler where statements weren't being closed
+  o Fixed bug where new projects could not be created
+  o Fixed bug in display of custom fields on the view issue page
+  o Fixed bug where a user couldn't change their password
+
+Version 2.1.2 (Development)
+---------------------------
+  New Features:
+  o Added support for Orion Application Server (2.0.2)
+  o Added new Spanish translation
+
+  Feature Changes:
+  o Change role column name in notificationbean table to user_role
+  o Changed all web services to allow for encrypted passwords
+  o Changed code so that password information is never included in returned user
+    models
+  o Changed the email handler to send text/html using the ISO-8859-1 character set
+
+  Fixes:
+  o Fixed bug with email session handler
+  o Changed some hard coded strings to resource keys in ForgotPasswordAction
+  o Fixed redirect when deleting a scheduled task
+  o Fixed a bug where watches couldn't be set
+
+
+Version 2.1.1 (Development)
+---------------------------
+  New Features:
+  o Added new property to allow an administrator to set a system base URL
+    used in email notifications.  This can be used to override the dynamic
+    URLs determined by the system.
+
+  Feature Changes:
+  o Changed the authenticator to be an interface instead of abstract class
+
+  Fixes:
+  o Fixed bug where the default system locale wasn't being set correctly
+  o Fixed bug in search issues where you couldn't reset your query to any creator/
+    owner/contributor
+  o Fixed a bug in the formatHistoryDescription tag code where there was not
+    set method
+
+Version 2.1.0 (Development)
+---------------------------
+  New Features:
+  o Added custom attributes to issues/projects.  This allows an adminstrator
+    to add custom, per-project fields to issues easily.
+  o Changed authentication to be plugable.  By writing your own class, you can
+    change the source of user authentication.  Currently users must still be
+    created on ITracker, but you can use an external source to authenticate
+    whether a new registration is allowed.  Also things like user password
+    changes on ITracker won't actually change the password in the remote system.
+  o Added new ability to move an issue into a different project
+  o Added a scheduler so that scheduled tasks can be performed on issues/projects
+  o Added new project option to disallow attachments for a project
+  o Added a configuration parameter so you can change the header logo to an
+    alternate image by supplying a URL
+  o Added new preference to hide sections of the myITracker page
+
+  Feature Changes:
+  o Changed the default Datasource from DefaultDS to ITrackerDS.  This change
+    makes it easier to use ITracker on JBoss 3.2+
+  o Added issue creation and assignment to the api
+
+  Fixes:
+  o Added code lost in struts conversion that computed the major and minor
+    numbers of a project version
+
+Version 2.0.3 (Production)
+---------------------------
+  Fixes:
+  o Fixed misspelled word in German translation
+  o Fixed bug where a user could not change their own password
+  o Fixed a bug in the IDCache when new id groups were created
+  o Fixed a bug in the code that dynamically generates links to other issues
+    when displaying history entries
+  o Fixed a bug where versions weren't being set when an issue was created
+  o Fixed a bug where a normal user couldn't edit an unassigned issue
+
+Version 2.0.2 (Production)
+---------------------------
+  Internal version
+
+Version 2.0.1 (Production)
+--------------------------
+  New Features:
+  o Added new global system property that will allow an admin to disable
+    the ability of all users to use the autologin feature
+
+  Fixes:
+  o Fixed bug with fixed project resolutions
+  o Fixed bug that prevented the export CSV report from being run
+  o Fixed bug where issue components wouldn't show up in some lists
+  o Added German translations for the buttons on the site
+
+Version 2.0.0 (Production)
+--------------------------
+  *** Includes all features and fixes from Version 1.7.0 through 1.7.3
+
+  Fixes:
+  o Fixed bug with checking notifications on search form
+  o Fixed bug with column sorting on list issues page
+
+
+Version 1.7.3 (Development)
+--------------------------
+  New Features:
+  o Added 2 new translations, German and Portugese
+
+  Feature Changes:
+  o Added new tag to format an issues owner
+  o Changed code to perform less owner/creator lookups to increase performace
+    of the application with long lists of issues.
+
+  Fixes:
+  o Fixed javascript on search forms
+  o Fixed bug with project search where the project was not passed to the search
+
+
+Version 1.7.2 (Development)
+--------------------------
+  Fixes:
+  o Fixed bug where you couldn't edit a user if they didn't have
+    all permissions, or no permissions
+  o Fixed default resource files to put newlines in the emails that
+    are sent.
+  o Fixed the edit_issue page to no wrap the delete history image
+  o Fixed the link to delete the history entries to use the correct action
+  o Fixed bug in RemoveHistoryEntryAction where id was sent as String instead
+    of Integer
+  o Fixed bug in formatDescriptionTag where wrong key was used for tuncate
+    character
+  o Fixed a bug where user permissions were not being loaded unless you
+    were a superuser.
+
+
+Version 1.7.1 (Development)
+--------------------------
+  Feature Changes:
+  o Changed locking for JBoss to NoLock.  This means that without changes
+    to the jboss.xml file, ITracker will only run on JBoss version 3.0.3+.
+    If you wish to run it on an older version, you will need to change
+    the entity locking back to MethodOnlyEJBLock from NoLock.
+  o Changed code to make it easier to add reports.  Now the only changes
+    required is adding a new line to struts_config.xml, listing the report
+    in the ResourceBundle and adding the report to the directory.
+
+  Fixes:
+  o Fixed bug where the user could not login if the local in their
+    preferences was set to an empty string
+  o Added code to clear session info if any error occurs during login
+  o Fixed problem with help displaying
+  o Fixed missing title for user update
+  o Fixed problem with html tag stripping.  New method uses regular
+    expressions instead of simple character iteration.
+  o Fixed bug with redirect where it wasn't setting the attribute into
+    the request under some conditions
+
+
+Version 1.7.0 (Development)
+--------------------------
+  New Features:
+  o Web application completely rewritten in Jakarta struts.
+  o Added transactional support to key forms to prevent double clicking
+  o Added form validation where needed
+  o Moved all static text on the web site to resource bundles to support
+    internationalization.  Only currently supported locale is en_US but
+    any translations by the community will be added to the release.
+  o Added ability to customize issue statuses and severities through
+    the resource bundles
+  o Added user preference to let an individuals pick the locale the
+    site will be displayed in.
+  o Added code so a pattern like issue ### is turned into a link to that
+    issue in the history entries automatically.  The list of words are
+    controled through the resource bundles.
+  o Added a targeted version to an issue to track when issues will be fixed.
+
+  Feature Changes:
+  o Added code to the my preferences page so that no password information
+    is displayed, and the current password is required to submit the form.
+  o Changed passwords to be saved as SHA1 hashes in the database
+
+  API Changes:
+  o Redesigned the web services API to use the existing EJB's.  New service
+    now supports issue retrieval, and project information
+
+  Fixes:
+  o Fixed bug in CSV report
+
+
+Version 1.6.1 (Production)
+--------------------------
+  Fixes:
+  o Fixed bug on main page where a user with only assign self
+    permissions and unassigned issues, couldn't log in.
+
+
+Version 1.6.0 (Production)
+--------------------------
+  *** Includes all features and fixes from Version 1.5.0 and 1.5.1
+
+
+Version 1.5.1 (Development)
+---------------------------
+  New Features:
+  o Added support for authenticated email
+  o Added self registration.  Each project can be independently configured
+    to allow self registration access.  By default a self registered user will
+    not have access to projects.  A project must enable the create option
+    and/or the view_all options to give those permissions to newly self_registered
+    users.  Other permissions must be added through the normal user administration
+    process.
+
+  Feature Changes:
+  o Added a property that allows you to turn off the forgot your passsword
+    function for the server
+
+  Fixes:
+  o Fixed bug in search page compilation
+  o Fixed bug where search results weren't being cleared
+  o Added code to check for null descriptions
+
+Version 1.5.0 (Development)
+---------------------------
+  New Features:
+  o Added issue owner to the notification emails
+  o Added ability for a user to unassign an issue if they can at least assign it
+    to themself.  This allows people to put it back into a status when a person
+    who has the ability to assign it to others see it on their myITracker page
+  o Changed status values to be larger values so new statuses can be inserted
+    in between them easier.  Also added new unassigned status for when the issue
+    was previously assigned but no longer has an owner.
+  o Added hiding of permissions on the user admin screen when a project
+    is locked
+  o Added code to allow a super user to delete (hide) history entries and
+    override the status of an issue.
+  o Added basic csv export for import into a spreadsheet program
+  o Added project specific options (surpress HTML in history, allow assigned
+    to closed status, and using a fixed set of resolution entries)
+
+  Feature Changes:
+  o Added ability to add users/permissions to a project when it is created
+  o Default issue sort now applies to index page and issue list
+  o Now the issue activity reports displays who assigned the issue instead of
+    who the issue was assigned to in the user column
+
+  Fixes:
+  o Fixed bug in forgot_your password where the servlet wasn't registered
+  o Changed owner names to use first initial on the index page to match the
+    other pages
+  o Fixed problem in url redirection if multiple parameters are passed
+  o Fixed problem with using double quotes in the test fields of an issue
+
+
+Version 1.4.0 (Production)
+---------------------------
+  *** Includes all features and fixes from Version 1.3.0 through 1.3.2 ***
+
+  Fixes:
+  o Fixed bug in link to projects on issue severity report
+  o Fixed encoding in form handler so international chars could
+    be submitted on issue forms
+
+
+Version 1.3.2 (Development)
+---------------------------
+  New Features:
+  o Added forgot password pages
+  o Added mssql scripts courtesy of David Cowan
+  o Added status to projects, components and versions
+  o Added the ability to lock a project so it is completely unavailable, or
+    only available for viewing/searching
+  o Added more functions to web services API
+  o Average Time Per User Report contributed by Anthony Di Paola
+
+  Fixes:
+  o Fixed the incredibly annoying ApplicationDeadlockExceptions in JBoss.
+    This was done by changing the entity access in the container config in
+    the jboss.xml file.  Many, many thanks to Arthur Wang for fixing this.
+  o Fixed mysql database scripts to not use timestamps.  This was causing
+    the create dates to constantly reset.
+  o Major bug in WebLogic deployment descriptor exactly like the JBoss one.
+    This caused the many-to-many relations ships to be stored in the wrong
+    columns in the database.  This had to be changed to facilitate changes
+    to the search engine. If you wish to keep your existing component,
+    version, and project owner relationships you must use SQL to rename the
+    columns.  The installation instructions have more info.
+  o Changed code so only active (not locked) users can have issues assigned
+  o Changed code so only active (not locked) users can be project owners.
+    Locking a user removes them as a project owner from all projects.
+  o Fixed compilation bug in issue search page
+  o Fixed bug with some image urls in the header and index pages
+  o Changed charset to ISO-8859-1 to see if that fixes international
+    character issues
+
+Version 1.3.1 (Development)
+---------------------------
+  Fixes:
+  o Fixed bug with users not able to edit their preferences
+  o Fixed bug in binary releases where they would only run on JBoss
+
+
+Version 1.3.0 (Development)
+---------------------------
+  Feature Changes:
+  o Added the ability to search on components, versions, owners, creators and resolution
+  o Added additional preferences to control the issue list display
+  o Added sorting by user on some displays
+  o Added the ability to assign owner when creating an issue
+  o Added additional info to notification messages
+  o Shortened some date formats to fit the screen better
+  o Updated reports to use JFreechart 0.9.2
+  o Updated web services client to use Apache Axis
+  o Changed code to allow JNDI names to be changed, and changed
+    references to follow the J2EE standards better
+
+  Fixes:
+  o Major bug in JBoss deployment descriptor caused the many-to-many
+    relations ships to be stored in the wrong columns in the database.
+    This had to be changed to facilitate changes to the search engine.
+    If you wish to keep your existing component, version, and project owner
+    relationships you must use SQL to rename the columns.  The installation
+    instructions have more info.
+  o Numerous changes to get weblogic working again.  More complete installation
+    instructions were also added for Weblogic.
+
+
+Version 1.2.2 (Stable)
+----------------------
+  Fixes:
+  o Fixed international character issues
+  o Fixed problems with export issues
+  o Added sample itrackerApplication.properties file
+
+
+Version 1.2.1 (Stable)
+----------------------
+  Fixes:
+  o Fixed bug when editing issues
+  o Fixed bug when viewing issues with attachments that caused a server error
+
+
+Version 1.2.0 (Stable)
+----------------------
+  *** Includes all features and fixes from Version 1.1.0 through 1.1.2 ***
+
+  Fixes:
+  o Fixed bug in issue severity report when the project contained old issues
+
+
+Version 1.1.2 (Development)
+---------------------------
+  Fixes:
+  o Fixed Oracle date column types
+  o Fixed size column name in issuepreferencesbean table
+  o Fixed error on edit_issue_action.jsp
+
+
+Version 1.1.1 (Development)
+---------------------------
+  Fixes:
+  o Fixed bug with saving full pathname of file in attachments
+    where client was a different OS than server
+
+  Feature Changes:
+  o Added more user preferences for controlling the myITracker page
+  o Added code to list and delete attachments
+  o Added max attachment size, and max total attachments size
+
+Version 1.1.0 (Development)
+---------------------------
+  Fixes:
+  o Fixed bug in autologin where system error occurred on first page
+    load
+  o Fixed bug with autologin where page query parameters weren't passed
+    on the redirect
+  o Fixed notifications to only add new entries if an existing entry
+    does not already exist
+
+  Feature Changes:
+  o Added a default search criteria when search page is loaded
+  o Changed version numbers to allow multiple levels
+
+  New Features:
+  o Added issue attachments
+
+
+Version 1.01 (Stable)
+------------------------
+  Fixes:
+  o Minor bug fixes
+  o Updated jboss.xml and some code to support JBoss3.0(final)
+    Previous versions were tested against JBoss3.0RC1 which had
+    a different way of parsing the jboss.xml files.
+
+
+Version 1.0 (Stable)
+------------------------
+  Fixes:
+  o Minor bug fixes with cookie parsing
+  o Minor bug fixes with version number validation upon creation
+
+
+Version 0.95 (Development)
+--------------------------
+  New Features:
+  o Enhanced web service to support authentication and authorization
+    The current service will obtain a list of visible issues for a user
+  o Added basic issue search capabilities
+  o Charts have been added to the severity reports.  This functionality
+    makes use of JFreeChart(c) from object-refinary.com.
+
+  Fixes:
+  o Minor bug fixes with autologin.
+
+  Known Problems:
+  o ApplicationDeadlockExceptions occur infrequently when assigning issues
+    from the myITracker page.  It is not consistently reproducible
+    but I'm continuing to work on it.
+
+
+
+Version 0.91
+------------
+  o Minor bug fixes
+  o Reorganizes some of the packages to support easier deployment
+  o Additional comments and documentation have been added to help with
+    the build and deployment processes.
+
+
+Version 0.9
+-----------
+  o This version contains a sample web service to retrieve issue ids.
+    THIS EARLY VERSION OF THE WEB SERVICE IS COMPLETELY UNSECURED.
+    To test it, install Apache SOAP, and then register the service.
+
+    Several new ant tasks were added to support this new functionality.
+      1) deplyws
+      2) undeployws
+      3) testws
+    

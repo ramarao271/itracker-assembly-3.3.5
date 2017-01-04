@@ -1,0 +1,34 @@
+<dataset>
+
+    <table name="componentbean">
+
+        <column>id</column>
+        <column>project_id</column>
+        <column>name</column>
+        <column>description</column>
+        <column>status</column>
+        <column>create_date</column>
+        <column>last_modified</column>
+
+        <row>
+            <value>1</value>
+            <value>2</value>
+            <value>Test Name</value>
+            <value>Test Description</value>
+            <value>1</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>2</value>
+            <value>Test Name2</value>
+            <value>Test Description2</value>
+            <value>2</value>
+            <value>2008-02-02</value>
+            <value>2008-02-02</value>
+        </row>
+
+    </table>
+
+</dataset>

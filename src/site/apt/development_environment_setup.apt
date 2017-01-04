@@ -1,0 +1,102 @@
+ ------
+ itracker Development Environment Setup
+ ------
+ Chris Lim, christopher.a.lim@gmail.com
+ ------
+ 10 January 2008
+ ------
+
+Development Environment Setup
+
+ This guide explains how to use Maven in Eclipse, IDEA and NetBeans.
+
+%{toc}
+
+*Eclipse
+
+  <<using maven integration plugin for eclipse>>
+
+  * Install the eclipse-plugin 'Eclipse Maven Integration' from eclipse marketplace site {{http://marketplace.eclipse.org}}.
+
+  * Check out itracker from SVN, usually trunk-version.
+
+  * Import the checked out project using maven import-wizzard: File > Import ... > General > Maven Projects
+
+ []
+
+  More information: {{http://marketplace.eclipse.org/content/maven-integration-eclipse/}}
+
+*IDEA
+
+  <<Create new project>>
+
+  * VCS > Check out from Version Control > Subversion
+
+  * Connect repository <<https://ranks@svn.code.sf.net/p/itracker/code>>
+
+  * Check out /itracker/trunk
+
+  * Configure the detected Frameworks (Spring, Hibernate, Struts)
+
+  * Set-up <<</src/main/webapp/META-INF/context.xml>>> to configure the environment (datasource, mailsession)
+
+  []
+
+  More information: {{http://marketplace.eclipse.org/content/maven-integration-eclipse/}}
+
+*NetBeans
+
+  NetBeans includes full Maven support since 6.7, including Maven 3 support in 7.0+. You can open any Maven project in the IDE and start coding immediately. For more information see the {{{http://wiki.netbeans.org/Maven}NetBeans.org wiki page}}.
+
+** For older NetBeans
+
+  run <<<mvn netbeans-freeform:generate-netbeans-project>>>
+
+  More details: {{{http://maven.apache.org/guides/mini/guide-ide-netbeans/guide-ide-netbeans.html}this guide}}.
+
+*Maven
+
+**Tomcat Deploy
+
+  To deploy/undeploy application you can use Tomcat Maven Plugin. It provides goals
+  to manipulate WAR projects within the Tomcat servlet container.
+
+  The most interesting are:
+
+  *<<<mvn -Dmaven.test.skip=true clean cargo:deploy>>> deploy application without tests
+
+  *<<<mvn cargo:undeploy>>> undeploy application.
+
+  []
+
+  More information: {{{https://codehaus-cargo.github.io/cargo/Tomcat+7.x.html}Tomcat 7 deploy reference}}
+
+  For application debug you can use RemoteDebug mode.
+
+  It is useful to install antiJARLocking="true" property in context.xml to avoid JAR file locking
+  If true, the Tomcat classloader will take extra measures to avoid JAR file locking when resources
+  are accessed inside JARs through URLs. This will impact startup time of applications, but could
+  prove to be useful on platforms or configurations where file locking can occur. If not specified,
+  the default value is false.
+
+  More information: {{http://tomcat.apache.org/tomcat-6.0-doc/config/context.html}}
+
+**Run Tomcat
+
+  To run itracker directly from Maven using tomcat6 or 7 plugin (default 'main' database) use the command \
+  <<<mvn package cargo:run -Dcargo.container=tomcat6x -Pitracker.tomcat>>>  \
+  or <<<mvn package cargo:run -Dcargo.container=tomcat6x -Pitracker.tomcat>>>
+
+  Configure the file <<<src/main/tomcat/context.xml>>> to change the runtime environment
+  which are filtered and copied for runtime to <<<target/tomcat-itracker/>>> or set the appropriate properties in maven POM.
+
+  open browser at {{{http://localhost:8888/itracker}http://localhost:8888}}
+
+**Run Jetty
+
+  To run directly fom Maven using jetty plugin (in-memory database) use the command <<<mvn package jetty:run >>>
+
+  Configure files in <<<$\{jetty.configSrc\}>>> (<<<src/main/jetty/jetty.xml>>> and <<<src/main/jetty/jetty-env.xml>>>)
+  which are filtered and copied for runtime to <<<target/jetty-itracker/>>>  or set the appropriate properties in maven POM.
+
+  open browser at {{{http://localhost:8888/itracker}http://localhost:8888}}

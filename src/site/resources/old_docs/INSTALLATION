@@ -1,0 +1,1117 @@
+1.0 LICENSE:
+------------
+ITracker is Copyright(c) 2002, 2003, 2004 by Jason Carroll.  You can
+reach the author at jcarroll@cowsultants.com.  Any modification or
+distribution of the program does not release the user from this copyright
+without express permission of the author.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+A copy of the GPL is available in the docs/license directory of this download.
+Please don't remove any of the copyright notices from the code or pages.
+If you have concerns about the license or copyright, please contact me at
+jcarroll@cowsultants.com to see if some other arrangements can be made.
+
+Also I would greatly appreciate any and all comments, suggestions, requests,
+and contributions.  Please post any feedback to the ITracker forums at
+http://www.cowsultants.com/phpBB/index.php  Also if possible, please
+post how and where you are using ITracker and your server configuration.
+
+2.0 DOWNLOADING ITRACKER:
+-------------------------
+
+  2.1 EXPRESS RELEASE:
+  ---------------------
+    Starting with ITracker 2.4.0, a release is available that bundles ITracker
+    with a preconfigured version of JBoss.  It is the same as the binary release
+    with the API, but includes a recent version of JBoss configured to use HSQL
+    as the database.  This release is just the Express Install described in
+    section 8.1 of these instructions done for you.  You will need to download
+    and install seperately a full JDK installation (1.4.x recommended)
+    before installing and running this release.  To have full functionality, you
+    may also need to perform Application configuration after the installation
+    as described in section 8.2.
+
+    To start the application, you need to install the JDK, and set your JAVA_HOME
+    environment variable.  Then edit the itrackerApplication properties file
+    in jboss-3.2.5\server\default\conf to fit your installation.  Then cd to the
+    jboss-3.2.5\bin directory and start the server.
+
+    If you are running the server on a unix/linux machine, you may need to modify
+    the run.sh script to support the charts in the reports.  The script has been
+    changed to support the headless=true attribute so X is not required.  However
+    this will only work if the JVM you are using is 1.4 or greater.  For a 1.3 jvm,
+    you will need to either start X, or install something like pja to handle the
+    AWT calls.  You can find more information on the forums about pja.
+
+  2.2 BINARY RELEASES:
+  --------------------
+    ITracker is available in two forms as a binary release.  You only need
+    ONE of these versions depending on how you want to use ITracker.  The one
+    marked as noaxis does not include the axis war for running the ITracker web
+    services API.  If you don't want to run the web services api, already have
+    axis or want to use a web services plaform built into your application server,
+    this may be an option for you.  The other download is marked as containing
+    axis which includes the axis war preconfigured for ITracker.  Further
+    information on using the API can be found in section 8.3 of this document.
+
+  2.3 SOURCE RELEASE:
+  -------------------
+    You can also download ITracker as a source release.  This version contains all
+    of the ITracker source code, the needed libraries, and the axis war but you have
+    the option of creating an ear with or without axis.
+
+
+3.0 REQUIREMENTS:
+-----------------
+ o Java SDK 1.3+ with some additional libraries (see default.properties)
+ o J2EE 2.0 Application server (and web container)
+ o Relational database set up for use with your J2EE application server
+   NOTE IF YOU WANT TO USE A NON ENGLISH LOCALE, YOUR DATABASE MUST SUPPORT
+   UTF-8 ENCODING.  THIS MEANS MYSQL PRIOR TO 4.1.1 WILL NOT WORK.
+ o log4j 1.2.6+ : This is used for all application logging.  This must be
+                  installed into your web and ejb application servers.  A
+                  copy of the jar file is included in the lib directory.
+ o Axis 1.1 if you wish to use the web services API (supplied in some versions)
+
+4.0 ASSOCIATED SOFTWARE:
+------------------------
+ITracker's dynamic charts and reports capability makes use of the JFree software
+(JFreeChart and JFreeReport) and JasperReports, that is separately licensed under
+the LGPL.  The libraries are included in the ITracker downloads but the full source
+code is available for download at http://www.jfree.org.  The text of the LGPL license
+is available in the docs/license directory.
+
+
+5.0 TESTED ON:
+--------------
+Version 2.4.x:
+ o JBoss3.2.4 with MySQL
+ o JBoss3.2.5 with MySQL
+
+Version 2.3.x:
+ o JBoss3.2.2 with PostgreSQL and MySQL
+    Due to changes in made in ITracker 1.7.1, only JBoss 3.0.3+ is now
+    supported. See the changelog for more details.
+
+    MySQL will still be supported for english installations, but MySQL versions
+    prior to 4.1.1 will not work with other locales due to it's lack of UTF-8
+    support.  If you want to support non English locales, you should use
+    MySQL 4.1.1 or switch to another compliant database such as postgres.
+
+Version 2.2.x:
+ o JBoss3.0.7 with MySQL (embedded Jetty)
+   (Note due to changes in 1.7.1, only JBoss 3.0.3+ is now supported.  See
+    changelog for more details)
+
+Version 2.1.x:
+ o JBoss3.0.7 with MySQL (embedded Jetty)
+   (Note due to changes in 1.7.1, only JBoss 3.0.3+ is now supported.  See
+    changelog for more details)
+
+Version 2.0.x:
+ o JBoss3.0.7 with MySQL (embedded Jetty)
+   (Note due to changes in 1.7.1, only JBoss 3.0.3+ is now supported.  See
+    changelog for more details)
+
+Version 1.7.x:
+ o JBoss3.0.7 with MySQL (embedded Jetty)
+   (Note due to changes in 1.7.1, only JBoss 3.0.3+ is now supported.  See
+    changelog for more details)
+
+Version 1.6.x:
+ o JBoss3.0.x with MySQL (embedded Jetty)
+
+Version 1.5.x:
+ o JBoss3.0.x with MySQL (embedded Jetty)
+
+Version 1.4.x:
+ o JBoss3.0.0 with MySQL (embedded Jetty)
+ o WebLogic 6.1sp3 with MySQL
+
+Version 1.3.0:
+ o JBoss3.0.0 with MySQL (embedded Jetty)
+ o WebLogic 6.1sp3 with MySQL
+
+Version 1.2.2:
+ o JBoss3.0 with MySQL (embedded Jetty)
+
+Version 1.0.1:
+ o JBoss3.0 with MySQL (embedded Jetty)
+ o WebLogic 6.1 with Oracle 8i
+
+
+6.0 UPGRADING INSTRUCTIONS:
+---------------------------
+Before starting any upgrade, it is highly recommended that you make a backup of
+your database and the attachments directory (in versions prior to 2.3.1).
+
+From 2.3.3:
+    ORACLE ONLY:  The BLOB datatypes do not work correctly with CMP, so they
+      were converted to use LONG RAW instead.  If you have BLOB data types
+      for the file_data columns in the issueattachmentbean and reportbean
+      tables, you will need to convert them to use LONG RAW.
+
+From 2.3.2:
+    A new column, report_type, was added to the reportbean table.  This column
+    should be created and set to 1 for all current reports.
+
+    Permissions were slightly changed.  Any users that previously had Edit All
+    permission, should be given Full Edit permission.  If this permission isn't
+    given, then those users wil not be able to edit all of the details of an issue.
+
+From 2.3.1:
+    The reportbean table was changed.  The column xml was removed, and a new column
+    file_data was added.  If you had reports that were created in 2.3.0, you should
+    copy the data from the xml field and place it in the file_data field.  You can
+    either do this manually, or save the data to a file and then edit the report
+    online and use the new file.
+
+    The issueactivitybean table was modified.  A new column notification_sent was added.
+    This column should be added, and initialized to 1 for all rows.
+
+    Follow Instructions for 2.3.2.
+
+From 2.3.0:
+    A new table project_field_rel was added.  This table needs to be created.  To
+    populate the table, the easiest thing to do is to edit all of your projects online,
+    and reassociate the custom fields with the project.
+
+    A new column file_data was added to the table issueattachmentbean.  This column needs
+    to be added to the table.  This new column is now used to store the attachment file
+    contents instead of using file storage on the web server.  The data from your existing
+    attachments will automatically be loaded into the database when the system is first
+    started.  After the attachments have been moved and you have verified that they were
+    loaded correctly, you should remove all the files from the attachment directory so they
+    will not be reprocessed the next time the system is started.
+
+    The bit_value field in the customfieldbean table is no longer used.
+    The custom_fields field in the projectbean table is no longer used.
+
+    Follow Instructions for 2.3.1.
+
+From 2.2.x:
+    NOTE: ITracker now requires a UTF-8 compilant database for non english locales.
+          MySQL prior to 4.1.1 will not work correctly with non english locales
+          as of ITracker version 2.3.0
+
+    A new table reportbean was added to support reporting.  Add this table,
+    but no initialization of data is required.
+
+    A new table configurationbean was added to support online configuration.  Add this
+    table, but no initialization of data is required.
+
+    A new table languagebean was added to support online configuration.  Add this table,
+    but no initialization of data is required.
+
+    A new table customfieldbean was added to support online configuration.  Add this
+    table, but no initialization of data is required.
+
+    A new table customfieldvaluebean was added to support online configuration.  Add
+    this table, but no initialization of data is required.
+
+    A new column remember_last_search was added to the userpreferencesbean table.
+    Create this column and set it to 0 for all rows.
+
+    The following columns were renamed to provide better database support (firebird):
+        Table userbean                password -> user_password
+        Table issueactivitybean       type -> activity_type
+        Table issueattachmentbean     type -> attachment_type
+        Table permissionbean          type -> permission_type
+
+    If you are currently using custom fields, you will also need to perform some amount
+    of data conversion.  First you will need to use the new online configuration,
+    and redefine all of your custom fields so they are loaded into the database.  Then
+    you will need to map all the old custom field data to the new custom fields.  This is
+    done by modifing the field_id column in the issuefieldbean table to correspond to the
+    id of the matchinging custom field from the customfieldbean table.  Be aware that in 2.2.1
+    the field_id column, was actually the bitvalue that was defined in the resource bundle.
+    So if your old custom field with a bit value of 8, because a new custom field with an
+    id of 43, you would update the data in the issuefieldbean table to change the field_id
+    from 8 to 43.  Note that this will require that you manually compare each of your old
+    fields with the new ones in the database.  As long as you don't change the values of
+    options in the old custom fields, to the new ones, you shouldn't need to make any other
+    changes.
+
+    Follow Instructions for 2.3.0.
+
+From 2.1.1:
+    The column role in the notificationbean table has been renamed user_role.
+
+    Follow Instructions for 2.2.x.
+
+From 2.0.x:
+    A new column hidden_index_sections was added to the userpreferencesbean table.
+    Create this column and set it to 0 for all rows.
+
+    A new column custom_fields was added to the projectbean table.  Create this
+    column and set it to 0 for all projects.
+
+    A new table issuefieldbean was added to support custom fields.  Add this table,
+    but no initialization of data is required.
+
+    A new table scheduledtaskbean was added to support the scheduler.  Add this table,
+    but no initialization of data is required.
+
+    Follow Instructions for 2.1.1.
+
+From 1.7.x:
+    Follow Instructions for 2.0.x.
+
+From 1.6.x:
+    A new column user_locale to support internationalization was added to the
+    userpreferencesbean table.  This column must be added but no value is required.
+
+    A new column target_version_id must be added to the issuebean table.  No
+    data conversion is required.
+
+    Then follow instructions for 2.0.x.
+
+From 1.5.0:
+    If you want to keep your existing users, you must add a new column to the
+    userbean table called registration_type. After creating the column,
+    update all existing records with a value of 1 to represent they were not
+    self_registered users.
+
+    Then follow the instructions for 1.6.x.
+
+From 1.4.x:
+    The status values have been updated to use different numbers to allow
+    for better customization of statuses.  If you want to keep your existing
+    data you will need to update the status field in the issuebean table as
+    follows:
+
+      Change 1 -> 100
+      Change 2 -> 300
+      Change 3 -> 400
+      Change 4 -> 500
+
+    Also a new integer column should be added to the projectbean table called
+    options.  This is used to store project specific boolean options.  After
+    creating the column, you must update it's value to 0 for all existing projects.
+
+    Also a new column needs to be added to the issuehistorybean table called status.
+    This is used to allow a super user to remove a history entry but still maintain
+    it in the database for archive purposes.  After creating the column, you must
+    update all existing history entires to have a status of 1.
+
+    Then follow the instructions for 1.5.0.
+
+From 1.2.2:
+    In all previous versions there was a bug in the way JBoss and WebLogic
+    were storing the component/version issue relations. Basically the data
+    was in the wrong columns so the issue_id had the component's id and the
+    component_id had the issue's id. Normally this wouldn't matter because
+    it was consistent but the search uses straight SQL which would cause
+    problems on different platforms. As such I had to fix it to get search
+    to work correctly. If you want to keep your existing data, you'll need
+    to go in and alter the tables to reverse the data before you run the
+    new code. The easiest thing to do is rename issue_id column to temp,
+    rename component_id to issue_id, and then rename temp to component_id.
+    This needs to be done on all 3 relationship tables.
+
+    Also a new column, status, was added to the projectbean, componentbean
+    and versionbean tables.  You will need to add this column to the tables
+    and populate it with a value of 1.
+
+    Also for MySQL, all the timestamp columns were changed to datetime.  While
+    the system will work if this isn't changed, it will cause the create
+    dates for all components to constantly reset and be incorrect.  This will
+    prevent the user, or future features from determining how long an issue
+    has been open.
+
+    Then follow the instructions for 1.4.x.
+
+From 1.2.1:
+    Follow instructions for 1.2.2.
+
+From 1.2.0:
+    Follow instructions for 1.2.2.
+
+From 1.1.1:
+    You will need to change the column 'size' in the issueattachmentbean table
+    to be 'file_size'.  Then follow the instructions for 1.2.2.
+
+From 1.1.0:
+    1) To upgrade from 1.1.0 and keep your existing data, you need to add the
+       column 'file_size' of type int to the issueattachmentbean table.
+
+    2) Update the issueattachmentbean table and set the size for each entry.
+       The easiest way to do this is just set the size of all existing rows
+       to 0.  This means existing attachments won't be used to enforce the quotas
+       but is much easier than putting realistic values into a lot of data.
+
+    3) After altering the table, follow the instructions for 1.2.2.
+
+From 1.0.x:
+    1) To upgrade from 1.0 and keep your existing data, you need to create
+       the issueattachmentbean table manually instead of rebuilding the entire
+       database.  The schema for the issueattachmentbean can be found in the
+       create_itracker_core.sql script in the sql/<db>/install directory, where
+       <db> is either mysql, postgres, or oracle.
+
+    2) After creating the new table, follow the instructions for 1.2.2.
+
+
+7.0 BUILD INSTRUCTIONS:
+-----------------------
+
+1) Install ant version 1.5+
+
+2) Edit the build.properties file in the root directory to fit your environment.
+
+3) Modify the deployment descriptors to fit your environment.  Make sure the
+   env-entries for the ApplicationPropertiesBean are appropriate for your
+   environment.  More information on this can be found in #3 of the installation
+   instructions below.
+
+3) Use ant tasks to build software.
+   Major tasks:
+   <none>       Compiles and builds ear
+   deploy       Compiles and builds ear then copies to deployment directory
+   compile      Compiles all classes
+   createdb     Creates database tables
+   deletedb     Deletes database tables
+   deployws     Deploys the web services API to an axis server
+   testws       Test the web services API to ensure it was deployed correctly
+
+   Then just run ant with no arguments to compile and build the ear.
+   You can then follow the installation instructions below for installing the ear,
+   or use the ant createdb task followed by the ant deploy task to deploy
+   the application into your application server.  If you are running on an
+   application server other than weblogic, or jboss, you might want to
+   create the appropriate deployment descriptors for your server and have the
+   build.xml automatically include them in the ear.  If you do this, please
+   email them to me or post them to the ITracker message board so I can include
+   them in a future release.
+
+
+8.0 INSTALLATION INSTRUCTIONS:
+------------------------------
+  8.1 DATABASE INSTRUCTIONS:
+  --------------------------
+      ITracker now requires a UTF-8 compliant database.  It has been tested on postgreSQL
+      and MySQL 4.1.1.
+
+      MySQL 4.1.1+:
+      -------------
+          The JDBC URL must include the additional parameters useUnicode=true and
+          characterEncoding=UTF-8.  The following is an example URL for jboss:
+
+          jdbc:mysql://localhost:3306/dev?useUnicode=true&characterEncoding=UTF-8
+
+          Note: The URL usually will require the & to be encoded as &amp; or encoded
+                in CDATA tags if you are using it as XML data.
+
+          If you want to support attachments, you may have to modify the setting
+          max_allowed_packet in your mysql config file.  You should set it to
+          something slightly larger than the largest attachment you need to support.
+          So if you allow 1 MB attachments, you should probably set this to 2M.  If
+          you see errors in the logs when saving attachments about packet size to
+          large for the query, then this setting needs to be raised.
+
+
+  8.2 EXPRESS INSTALL (Using JBoss and HSQL):
+  -------------------------------------------
+      ITracker now comes with HSQL scripts available so there is no dependency
+      on an external database.  This allows you to get a system up very quickly
+      by just downloading and installing JBoss, running a single command to
+      create the database tables, and then deploying the itracker.ear.  This
+      section walks you though this quick install just so you can get something
+      up and running quickly.  However the recommended installation for a larger
+      production system is to use a database other than Hypersonic.
+
+      0) Download ITracker and expand the zip/gz.  You can place these anywhere but
+         for the purposes of these instructions I'll assume you expanded the
+         distribution to C:\ITracker.  Since you are reading these instructions,
+         you should have already completed this step.
+
+      1) Download and install JBoss 3.2.x +.  All you should need to do is go
+         to jboss.org, download  the latest binary release of JBoss (without
+         Tomcat) and then install it by extracting the zip/gz to your local
+         system.  For the purposes of these instructions, I'll assume your
+         installation directory is on windows, in the directory
+         C:\JBoss\JBoss-3.2.1 (if you install it elsewhere just modify the paths
+         and scripts you use in the following steps).
+
+      2) Create a new HSQL datasource for ITracker:
+         If you are using JBoss 3.2.2+:
+            You will need to edit the hsqldb service to use TCP connections not the
+            inmemory or file store.  To do this make sure the connection-url is set to:
+
+              <connection-url>jdbc:hsqldb:hsql://localhost:1701</connection-url>
+
+            NOT:
+              <connection-url>jdbc:hsqldb:.</connection-url>
+            OR:
+              <connection-url>jdbc:hsqldb:${jboss.server.data.dir}/hypersonic/localDB</connection-url>
+
+            All three urls are in the file so make sure you have the correct one
+            uncommented.  Now you need to also uncomment the following line near the
+            bottom of the file:
+
+            <depends>jboss:service=Hypersonic</depends>
+
+            Also uncomment the mbean section at the very bottom of the file that looks like this:
+
+           <mbean code="org.jboss.jdbc.HypersonicDatabase" name="jboss:service=Hypersonic">
+             <attribute name="Port">1701</attribute>
+             <attribute name="Silent">true</attribute>
+             <attribute name="Database">default</attribute>
+             <attribute name="Trace">false</attribute>
+             <attribute name="No_system_exit">true</attribute>
+           </mbean>
+
+         Now for all versions, make a copy of this file for the ITracker datasource:
+           copy C:\JBoss\JBoss-3.2.1\server\default\deploy\hsqldb-ds.xml
+             C:\JBoss\JBoss-3.2.1\server\default\deploy\it-hsqldb-ds.xml
+
+      3) Edit the it-hsqldb-ds.xml, and change the <jndi-name>DefaultDS</jndi-name>
+         to <jndi-name>ITrackerDS</jndi-name>.  Also at the bottom of the file delete
+         or comment out the following section (only in the it-hsqldb-ds.xml file):
+
+         <mbean code="org.jboss.jdbc.HypersonicDatabase" name="jboss:service=Hypersonic">
+           <attribute name="Port">1701</attribute>
+           <attribute name="Silent">true</attribute>
+           <attribute name="Database">default</attribute>
+           <attribute name="Trace">false</attribute>
+           <attribute name="No_system_exit">true</attribute>
+         </mbean>
+
+      4) Edit C:\JBoss\JBoss-3.2.1\server\default\conf\standardjbosscmp-jdbc.xml
+         and change <datasource>java:/DefaultDS</datasource> to
+         <datasource>java:/ITrackerDS</datasource> in the defaults section.
+
+      5) If you are using Jboss 3.2.1, there is a bug in the deployment where an
+         incorrect value was supplied.  To fix it edit
+         C:\JBoss\JBoss-3.2.1\server\default\conf\jboss-service.xml
+         and change <attribute name="RecursiveSearch">False</attribute> to
+         <attribute name="RecursiveSearch">True</attribute>.
+
+      6) Start JBoss by issuing the following two commands:
+         cd C:\JBoss\JBoss-3.2.1\bin
+         run.bat
+
+      7) Create the database tables by running this command (all on one line):
+
+         java -cp C:\JBoss\JBoss-3.2.1\server\default\lib\hsqldb.jar
+           org.hsqldb.util.ScriptTool -database default -url
+           jdbc:hsqldb:hsql://localhost:1701: -log true -script
+           C:\ITracker\sql\hsql\install\create_itracker_core.sql
+
+         Depending on the version, if this fails you may need to change the database
+         name.  To do this change -database default to -database "" in the command line
+         above.  The double quotes are important since this means that no database
+         name is being used.
+
+         If you have problems running this, you can also use the jmx console to start
+         the database manager.  Open a browser an go to http://localhost:8080/jmx-console
+         From there find the link "service=Hypersonic" and click on it.  On the next page,
+         scroll down to the startDatabaseManager section and click the invoke button
+         under the method name.  A new application should start.
+
+         Go to File->Connect, and login to the database.  You should select HSQL Database Engine
+         Server as the Type, and the following URL:
+
+            jdbc:hsqldb:hsql://localhost:1476  [JBoss 3.0.x]
+            jdbc:hsqldb:hsql://localhost:1701  [JBoss 3.2.x]
+
+         Then select File->Open Script and load the
+         C:\ITracker\sql\hsql\install\create_itracker_core.sql script file. Now click
+         the Execute button on the right of the loaded sql script.  Finally commit the
+         data by selecting Options->Commit.
+
+      8) Copy the itracker.ear file into the deploy directory.
+         copy C:\ITracker\dist\itracker.ear C:\JBoss\JBoss-3.2.1\server\default\deploy
+
+          You should see in the console, the ear being deployed and you should now
+          be able to login to ITracker as admin/admin.
+
+      9) Certain features (notably email notifications) may not work with the default
+         ITracker configuration.  Please read section 8.2 of these instructions for
+         how to configure the application to fit your specific configuration, especially
+         the email addresses and SMTP server settings.
+
+
+  8.3 APPLICATION SERVER SETUP (Normal Install):
+  ----------------------------------------------
+      8.3.1 JBoss 3.x Setup:
+      ----------------------
+          Datasource:
+            Create a new DataSource that maps to your chosen database.  You should
+            bind it to java:/ITrackerDS.  If you use a different name, you will
+            need to configure the applition to find it.  Sample configuration files
+            can be found in the JBoss distribution, on the JBoss forums, and ones
+            for mysql and oracle are distributed with this release in the docs/jboss
+            directory.
+
+            Now edit the standardjbosscmp-jdbc.xml file in server/default/conf.
+            Change the default datasource to be ITrackerDS and the database mapping
+            to the database you are using.  An alternative for this if you have
+            other applications deployed is to edit the jbosscmp-jdbc.xml deployment
+            descriptor in the ear to define the datasource and database you want to
+            use.
+
+            You will also need to place the jdbc driver for your database
+            either in the server classpath, or just drop it in the lib directory.
+
+            You will also need to configure ITracker to use the different DS name, if
+            you did not user ITrackerDS.  This is done by editing the
+            itrackerApplication.properties file or modifying the env-entry in the
+            ejb-jar.xml file in the ear.
+
+            Even if you aren't using HSQL as your datasource, you should still leave the
+            hsql datasource that is supplied with JBoss and bound to DefaultDS.  JBoss
+            uses this datasource for storing JMS messages by deafult.  If you really
+            want to get rid of it, you will need to either configure your new datasource
+            to be the storage location for JMS persistance, or configure JMS to use
+            file based storage.  There are some threads on the ITracker support forums
+            if you need more information.
+
+            ORACLE ONLY:
+            ------------
+              If you are using Oracle on JBoss, you will need to modify the deployment
+              file to allow for CLOB data types.  You will need to edit the jbosscmp-jdbc.xml
+              file in the ejb-app.jar in the itracker ear (or change it before you build from
+              the source release.  Find the following code in the file under the LanguageBean
+              entity bean:
+
+              <cmp-field><field-name>resourceValue</field-name><column-name>resource_value</column-name></cmp-field>
+
+              and change it to this:
+
+              <cmp-field>
+                <field-name>resourceValue</field-name>
+                <column-name>resource_value</column-name>
+                <jdbc-type>CLOB</jdbc-type>
+                <sql-type>CLOB</sql-type>
+              </cmp-field>
+
+              Also it seems that Oracle is very slow when loading the initial language
+              resources.  If you experience transaction timeouts when starting ITracker
+              for the first time, you can increase the transaction timeout to see if that
+              solves the problem.  This is done by editing the file
+              server/default/conf/jboss-service.xml.  In there find the following code and
+              increase the timeout from 300 to something like 600 or 900.
+
+                 <mbean code="org.jboss.tm.TransactionManagerService"
+                    name="jboss:service=TransactionManager">
+                    <attribute name="TransactionTimeout">300</attribute>
+
+                    <depends optional-attribute-name="XidFactory">jboss:service=XidFactory</depends>
+                 </mbean>
+
+              Another user reported that Oracle is much faster if you disable
+              read-ahead in staradardcmp-jdbc.xml like this:
+
+                <read-ahead>
+                  <strategy>none</strategy>
+                  <page-size>1000</page-size>
+                  <eager-load-group>*</eager-load-group>
+                </read-ahead>
+
+
+          JMS:
+            No additional configuration should be required if you use the
+            supplied deployment descriptors.  If you wish to change the JMS
+            Connection Factory or supply a different queue name, then you
+            will need to edit the jboss.xml deployment descriptor in the ear.
+
+            If you have problems with notifications with JBOss 3.2.x+ and are using a
+            database other than HSQL, you probably will need to change the JMS deployment
+            to use your database for persistance.  You can do this by editing the JMS
+            deployment as follows:
+
+            1. Copy mysql-jdbc2-service.xml from JBOSS_HOME/docs/examples/jms to
+               JBOSS_HOME/server/default/deploy/jms edit the datasource name to your
+               datasource name, e.g. change from MySqlDS to UrDS
+            2. Remove hsqldb-jdbc2-service.xml in the JBOSS_HOME/server/default/deploy/jms
+            3. Add the destination in the jbossmq-destinations-service.xml in the
+               JBOSS_HOME/server/default/deploy/jms
+
+               <mbean code="org.jboss.mq.server.jmx.Queue"
+                      name="jboss.mq.destination:service=Queue,name=ITrackerNotificationQueue">
+                  <depends optional-attribute-name="DestinationManager">jboss.mq:service=DestinationManager</depends>
+               </mbean>
+
+
+      8.3.2 Weblogic 8.x (may work with 6.1sp3 and up) Setup:
+      -------------------------------------------------------
+          Start the server (without ITracker deployed) and open the default
+          console.  The sample section of the config.xml produced by the
+          following actions can be found in docs/weblogic.  You can cut and
+          paste those lines into the config.xml after modifying the values
+          to be appropriate for your database.
+
+          Logging:
+            Weblogic needs to be configured for log4j.  First put the supplied
+            log4j.jar file into the weblogic lib directory.  Now create a
+            directory called log4j in the lib directory, and place the supplied
+            log4j.xml file in there.  The log4j.jar can be found in the
+            lib/required directory of the distribution, the sample log4j.xml
+            file can be found in the docs/build directory of the distribution.  Now
+            modify the log4j.xml in the lib/log4j directory to the appropriate
+            values.
+
+            Now you must edit the startWebLogic.cmd file (or the appropriate UNIX
+            version).  Add the following entries to the classpath environment variable:
+
+            .\lib\log4j.jar;.\lib\log4j
+
+            On the java command line add the following defines on one line,
+            changing the file location to point to the log4j.xml file's correct
+            location:
+
+            -Dlog4j.defaultInitOverride=false
+            -Dlog4j.configuration=file:/c:/bea/wlserver6.1/lib/log4j/log4j.xml
+
+          Datasource:
+            Configure a new Connection Pool under the JDBC entry and
+            supply the appropriate information including the Name, URL, Driver,
+            and userid and password in the properties box.  Click the Create
+            button to create the Connection Pool.  Click on the targets
+            tab and select the server the application will be deployed to and
+            move it to the chosen list and click Apply.
+
+            Now configure a new Tx Data Source under the JDBC entry. Use
+            "ITrackerDS" without quotes as the JNDI name and the name of the
+            Connection Pool that you just created as the Pool Name.  Click the
+            Create button to create the Data Source.  Click on the targets tab
+            and select the server the application will be deployed to and move
+            it to the chosen list and click Apply.
+
+            ORACLE ONLY:
+            ------------
+              If you are using Oracle on WebLogic, you will need to modify the deployment
+              file to allow for CLOB data types.  You will need to edit the weblogic-cmp-rdbms-jar.xml
+              file in the ejb-app.jar in the itracker ear (or change it before you build from
+              the source release.  Find the following code in the file under the LanguageBean
+              entity bean:
+
+              <field-map><cmp-field>resourceValue</cmp-field><dbms-column>resource_value</dbms-column></field-map>
+
+              and change it to this:
+
+             <field-map>
+               <cmp-field>resourceValue</cmp-field>
+               <dbms-column>resource_value</dbms-column>
+               <dbms-column-type>OracleClob</dbms-column-type>
+             </field-map>
+
+          JMS:
+            Configure a new Connection Factory under the JMS entry.  For
+            the JNDI name use "jms/ConnectionFactory" without quotes.  Click the
+            Create button. Click on the targets tab and select the server the
+            application will be deployed to and move it to the chosen list and
+            click Apply.
+
+            Configure a new Server under the JMS entry.  The default entries are
+            ok.  Click the Create button. Click on the targets tab and select the
+            server the and click Apply.  Click on the Configuration tab and then
+            click Configure Destinations at the bottom.  Now configure a new
+            JMSQueue.  For the JNDI name type in
+            "jms/ITrackerNotificationQueue" without quotes and click Apply.
+
+            Also weblogic by default will retry JMS messages until they succeed.  In
+            the even that ITracker has a JMS failure, this can lead to the same notification
+            email being sent out numerous times.  It is suggest you turn this feature
+            off in weblogic by setting the Redelivery Limit parameter for the
+            notification queue to 0, instead of -1 (no limit).
+
+      8.3.3 Orion 2.0.2 Setup:
+      ------------------------
+          Logging:
+            Orion needs to be configured for log4j.  First put the supplied
+            log4j.jar file into the orion lib directory.  Also place the supplied
+            log4j.xml file in there.  The log4j.jar can be found in the
+            lib/required directory of the distribution, the sample log4j.xml
+            file can be found in the docs/build directory of the distribution.  Now
+            modify the log4j.xml in the lib directory to the appropriate
+            values.
+
+            On the java command line add the following defines on one line before
+            the -jar option, changing the file location to point to the log4j.xml
+            file's correct location:
+
+            -Dlog4j.defaultInitOverride=false
+            -Dlog4j.configuration=file:/c:/orion/lib/log4j.xml
+
+          Datasource:
+            You will need to configre a new datasource in the config/data-sources.xml
+            file.  Follow the example in the file, and create a new entry for your
+            specific database.  You should use ITrackerDS as the value for the
+            ejb-location property.  You should also copy your database driver jar/zip
+            file into the orion lib directory.
+
+            NOTE: Due to the SQL that Orion generates for finders, only databases that
+                  support the full ANSI spec correctly seem to work.  I could not get
+                  Orion to work with MySQL less than 4.1 (alpha) due to missing
+                  sub-select queries, or with Oracle 8i since it did not support
+                  the inner join syntax used by Orion.  I suspect Oracle 9i, postgreSQL,
+                  and others would work but was not tested.
+
+            An example datasource using mysql 4.1 is included in the docs/orion
+            directory.  Also since the database schema for MySQL isn't supplied, that
+            can be found in the directory also.  That file sould be placed in the
+            config/database-schemas directory and renamed to mysql.xml if you are
+            using MySQL.
+
+          JMS:
+            First you will need to create a new queue in the config/jms.xml file.  Add
+            a new entry under the Demo Queue entry.  You should set the location property
+            to be:
+
+            jms/ITrackerNotificationQueue
+
+            You also must enable JMS, since it is disabled by default.  Open the
+            config/server.xml file and uncomment the following line:
+
+            <jms-config path="./jms.xml" />
+
+          Application Deployment:
+            To deploy the application, copy the ear into the applications directory.
+            Now you need to edit the config/server.xml file add add a new application
+            by adding the following line just before the end of the file:
+
+            <application name="ITracker" path="../applications/itracker.ear" />
+
+            If you are using a version of the JDK greater than 1.3.1, you must also add the
+            following line to the config/server.xml file with the correct path to your
+            tools.jar file from the JDK:
+
+            <library path="c:/j2sdk1.4.2/lib/tools.jar" />
+
+            Now you must set up the web applications.  Open the config/default-web-site.xml
+            file and and add the following lines after the default-web-app entry:
+
+            <web-app application="ITracker" name="web-app" root="/itracker" load-on-startup="true"/>
+            <web-app application="ITracker" name="axis" root="/itracker/api" load-on-startup="true"/>
+
+            This should set up the application and the web applications to start
+            automatically.
+
+      8.3.4 Websphere 5.0:
+      --------------------
+          I have not created deployment descriptors for ITracker for WAS 5.0, however
+          ITracker should run under this server.  It may be necessary to import the
+          source code into WSAD and deploy from there.
+
+      8.3.5 JRun 4.0:
+      ---------------
+          I have not created deployment descriptors for ITracker for JRun 4.0, however
+          ITracker should run under this server.
+
+
+  8.4 APPLICATION SETUP:
+  ----------------------
+
+    1) Create the necessary database tables.  Example scripts for
+       MySQL, MSSQL, Oracle, and PostgreSQL are included.  If you use these scripts,
+       much less customization will be necessary when the application is deployed.
+
+    2) Deploy the itracker.ear file into the application server. The ear file
+       is located in the dist directory in the binary release.  Deployment
+       descriptors are included for both WebLogic 6.1sp3, JBoss3.0.x.
+
+    3) Configure the application.  You may need to modify some of the deployment
+       attributes depending on your environment.  The most likely ones that will
+       need modifying are the env-entries in the ApplicationProperties session bean,
+       and the table and column names for the entity beans if you changed anything
+       from the example sql scripts.  Note that the datasource is defined in the
+       ejb-jar.xml file.  This must match the same datasource you have configured
+       your container to use for CMP.  It is set by default to ITrackerDS, so you
+       only need to change this if you did not create your datasource as ITrackerDS.
+       This entry isn't used by the entity beans, but is used by several key sessions
+       beans to generate primary keys and do searching.  Examples are supplied for
+       several app servers. Also depending on your database, some of the database
+       types for the CMP entity beans may need to be modified.
+
+       ALSO YOU MUST CHANGE THE REPLY-TO AND FROM EMAIL ADDRESS FOR NOTIFICATIONS.
+       Some mail servers may not work with the default values, and anyone that
+       replies will get bounced email.
+
+       Another option if the only thing you need to modify are the env-entries is to
+       create an itrackerApplication.properties in app servers classpath.  This
+       properties file is loaded after the env-entries are parsed so they take precedence
+       over anything in the deployment descriptor.  The property names are the same as
+       the env-entry-name but remove the itracker/properties from each one.  For example,
+       itracker/properties/notification_queue_name becomes just notification_queue_name
+       in the properties file.  Also make sure the file is in the app servers classpath.
+       For example in JBoss, you must set the JBOSS_CLASSPATH environment variable
+       to include the directories you want JBoss to look for classes in.  A sample of
+       this file is included in the docs directory.
+
+    4) The application is configured to create a default admin user (userid: admin,
+       password: admin) if no users exist in the database.  This feature can
+       be disabled in the ejb-jar.xml file in the environment entries for the
+       ApplicationProperties session bean.  It is recommended that you not disable
+       this feature since you would then need to manually create a row in the
+       database for the first admin user so the user admin screens can be accessed.
+
+
+  8.5 WEB SERVICES API SETUP:
+  ---------------------------
+      8.5.1 Installing Axis:
+      ----------------------
+          There are two options for getting Axis into your application server.
+          You can use the supplied version with ITracker or install your own.  A third
+          option would be to use any web services implimentation that comes with your
+          application server, but I may not be able to help much if you run into
+          problems.
+
+          8.5.1.1 Installing ITracker supplied Axis:
+          ------------------------------------------
+            1) The easiest way to get the web services API, is to install the version of
+               ITracker that includes AXIS in the ear.  This installs both ITracker and
+               also Axis mapped to /itracker/api.  This prevents it conflicting with any
+               other installed version of axis.  The only downsides to this is the larger
+               download and the posibility of having axis installed twice in your
+               application server.
+
+          8.5.2.1 Installing Axis manually:
+          ---------------------------------
+            1) Install axis 1.1 into your web container.  The easiest way to do this is to
+               download the latest axis version and then deploy the axis.war into your web
+               container.  Due to the size, axis is not included in this distribution, but
+               can be downloaded from http://ws.apache.org.
+
+               NOTE: .Net has a bug where it can't interoperate with an axis isntallation
+                     without turning on a workaround in axis to prevent the collapse of
+                     empty array elements. To turn on this feature, you need to modify the
+                     axis server-config.wsdd file to include the following parameter:
+
+                     <parameter name="axis.sendMinimizedElements" value="false"/>
+
+                     A sample server-config.wsdd is provided in the docs directory.  To
+                     include it, download the latest axis distribution, and expand the war
+                     to a temporary directory.  Copy in the same server-config.wsdd to the
+                     axis/WEB-INF directory, and rebuild the war using jar.
+
+            2) You may have problems with classpaths on weblogic.  If so the easiest fix
+               is to use the version of ITracker that includes axis since Axis has full
+               access to ITrackers classes when they are in the same ear.
+
+      8.5.2 Deploying Services:
+      -------------------------
+          After deploying the main ITracker application and axis into your server, you can
+          use the deployws ant task to deploy the web services.  Also the ws-dd.xml file is
+          provided if you need to merge it into another web service already running or want
+          to modify the deployment.  Note that there are different ws-dd.xml files for
+          different servers to support the differences in JNDI.
+
+          Once the server is deployed, you can use the testws ant task to ensure that the
+          service was deployed correctly.  This requires that you have already logged onto
+          ITracker through the web and that you have created a project and at least one issue.
+
+          If you have the binary release of ITracker, you won't have ant or the build files.
+          In this case you should go to the wsapi directory in the ITracker distribution and
+          run the command deployws (deployws.bat on Windows, deployws.sh on UNIX/Linux).  The
+          format of the command is:
+
+          deployws HOST:PORT APPSERVER
+
+          where HOST:PORT is the host and post of the ITracker server, for example,
+          localhost:8080 and APPSERVER is either jboss or weblogic depending on which server
+          you deployed to.
+
+
+9.0 CUSTOMIZING ITRACKER:
+-----------------------
+  9.1 USING THE SCHEDULER:
+  ------------------------
+    ITracker now supports a built in scheduler for tasks that need to be run periodically.  The
+    scheduler supports two types of jobs.  The first are predefined tasks that are included with
+    the application.  The system also supports custom tasks, just by implementing the
+    cowsultants.itracker.web.scheduler.SchedulableTask interface.  The new class should
+    then be placed in the classpath so it is available to the ITracker ear.
+
+    To scedule a new task, click on the create new task icon, and fill out the screen.  To use a
+    predefined task, select it from the list.  To use a custom task that has been written, leave
+    the pulldown set to the blank option, and type in the full class name, including the package
+    (i.e.  cowsultants.itracker.task.custom.MyTask).  Then fill out the arguments list as needed.
+    To set the times the task should be run, fill out the fields like a cron entry.  A * in
+    a field, or leaveing a field blank, will mean any value for that field, an explicit set of
+    numbers (comma seperated) indicate those exact times.  So leaving all fields blank will mean
+    run every minute.  Filling out the minute to be 0,10,20,30,40,50 will mean run every ten
+    minutes.  Filling out just the hour to 2 will mean run at 2:00 am every day.
+
+    The following tasks are provided with ITracker:
+      o Reminder Notifications -- sends reminder notifications to users who are responsible for
+          issues.  It sends notifications for all unresolved issues.  It is configurable to only
+          run for some projects, and a configurable age and severity.
+          Arguments (space seperated):
+            [1] The base url of your itracker installation [default: http://localhost:8080/itracker]
+            [2] Minimum age (last modified) of an issue to send reminder for [default: 30 days]
+            [3] Project to run for.  You can limit it to a single project. [default: All projects]
+            [4] Issue Sevrity to look for.  You can limit it to a single severity. [default: All severities]
+
+  9.2 CUSTOMIZING STATUSES AND SEVERITIES:
+  ----------------------------------------
+    This is now done through the online system configuration interface.
+
+  9.3 ADDING CUSTOM FIELDS:
+  -------------------------
+    This is now done through the online system configuration interface.
+
+  9.4 ADDING REPORTS:
+  -------------------
+    New reports are now created using the online report administration.  To create a new
+    JFreeReport you just reference the XML file for the report field on the administration
+    web page.  To create a new JasperReport, you should compile the report and use the
+    .jasper file on the admin page.  You must compile the report using version 0.5.2 of jasper
+    reports.  For most reports this is all you need to do, however you can optionally create
+    your own report class, in case you want to use a different data source, have complex
+    logic that can't be performed through the report definition alone, or maybe want to use
+    something other than JasperReports or JFreeReports.  In this case you should create the
+    class and reference the complete path in the report class field on the admin page.  If you
+    do not need to create your own class, you should leave the class field blank on the admin
+    page so the appropriate default class is used.
+
+    When creating reports, the following fields are available in the datasource:
+
+      issueid
+      projectid
+      description
+      status
+      severity
+      projectname
+      createdate
+      lastmoddate
+      ownername
+      owneremail
+      creatorname
+      creatoremail
+      targetversion
+      resolution
+      components                (array of ComponentModel objects)
+      componentsstring          (string with comma seperated component names)
+      versions                  (array of VersionModel objects)
+      versionsstring            (string with comma seperated version numbers)
+      history                   (array of HistoryModel objects)
+      historystring             (string containing comma seperated history entries in form desc, date, user)
+      lasthistory
+      lasthistorydate
+      lasthistoryuser
+
+      All fields are strings except where noted.  The date fields are also strings,
+      preformated to the locale of the user running the report.  Also all custom fields
+      are available.  They should be accessed by using the name customfield<id>.  So to
+      access the custom field with an id of 131 you would use the name: customfield131
+
+    If you want to create dynamic charts, it gets a little more complicated. The only report
+    with them now is Issue Severity report, which you can use as an example. The charts are
+    placed into a map and then served automatically from a servlet.  You can create them in a
+    custom report class, or you could generate them in a scriptlet (in the jasper report case)
+    and then put them into a report variable.
+
+    If you are running the server on a unix/linux machine, you may need to modify
+    the server startup script to support the charts in the reports.  The best way
+    to accomplish this is to specify the java.awt.headless=true option when the jvm
+    is started.  However this will only work if the JVM you are using is 1.4 or greater.
+    For a 1.3 jvm, you will need to either start X, or install something like pja to
+    handle the AWT calls.  You can find more information on the forums about pja.
+
+    A more detailed report guide will be created in the future, but for now, all questions
+    should be posted to the forums.
+
+  9.5 ADDING TRANSLATIONS/LOCALIZATIONS:
+  --------------------------------------
+    To add a new language to ITracker, you should use the online administration screens to
+    add the new language. If you want to use this as the default lanaguage for the server,
+    change the locale in your itrackerApplication.properties.
+
+    There are no longer any static images that need to be translated.  The images that used to
+    exist have been changed to HTML buttons and are now generated through the translations
+    maintained in the database.
+
+    Also if you do add a new translation, please send it to me so I can add it to future releases.
+    You can do this by clicking the export button on the language administration screen, which
+    will generate a new properties file for me to include in the releases.
+
+    Parameters are used in the message following the MessageFormat class guidelines, for example
+    parameter 4 would be {4} in the message text.  Most of the base translations and replacement
+    parameters are self explanitory.  However there are a large number of parameters available for
+    notifications.  These parameters are listed below.
+
+    For self registration (itracker.email.selfreg.body):
+      Parameter 0 is the user's login id
+      Parameter 1 is the login page url
+
+    For notification emails (itracker.email.issue.body.standard):
+      Parameter 0 in the subject is the issue id
+      Parameter 1 in the subject is the project name
+      Parameter 2 in the subject is the number of days since last modification (only sent in reminders)
+
+      Parameter 0 in the body is the view_issue page url for this issue
+      Parameter 1 in the body is the project name
+      Parameter 2 in the body is the issue description
+      Parameter 3 in the body is the issue status
+      Parameter 4 in the body is the issue resolution
+      Parameter 5 in the body is the issue severity
+      Parameter 6 in the body is the owner's full name
+      Parameter 7 in the body is the comma seperated component list
+      Parameter 8 in the body is the name of the latest history entry creator
+      Parameter 9 in the body is the text of the latest history entry
+      Parameter 10 in the body is summary of all activity since the last notification
+
+    For reminder emails (itracker.email.issue.body.reminder):
+      Parameter 0 in the subject is the issue id
+      Parameter 1 in the subject is the project name
+      Parameter 2 in the subject is the number of days since last modification (only sent in reminders)
+
+      Parameter 0 in the body is the view_issue page url for this issue
+      Parameter 1 in the body is the project name
+      Parameter 2 in the body is the issue description
+      Parameter 3 in the body is the issue status
+      Parameter 4 in the body is the issue severity
+      Parameter 5 in the body is the owner's full name
+      Parameter 6 in the body is the comma seperated component list
+      Parameter 7 in the body is the name of the latest history entry creator
+      Parameter 8 in the body is the text of the latest history entry
+      Parameter 9 in the body is the number of days since last modification (only sent in reminders)
+      Parameter 10 in the body is summary of all activity since the last notification
+
+
+  9.6 ADDING CUSTOM AUTHENTICATION:
+  ---------------------------------
+    ITracker supports pluggable authentication modules (PAM) for custom authentication.
+    To write your own authentication to interface with an existing authentication source,
+    you should implement the cowsultants.itracker.ejb.authentication.PluggableAuthenticator
+    interface.  A skeleton abstract implementation is provided in
+    cowsultants.itracker.ejb.authentication.AbstractPluggableAuthenticator which can be extended.
+    In addition these modules can authenticate a user that is self registering so it can be used
+    to set up preauthorized users in the external source and then users can then register with
+    their existing credentials.
+
+    ITracker authentication now notifies the pluggable authenticator of profile changes.  The changes
+    can either be allowed through or not, and also allow the authenticator to augment any changes the
+    user may be making.  In addition permissions are now pulled from the authentication source so
+    they can be maintained in an external system.
+
+
+10.0 CONTRIBUTIONS:
+------------------
+    If you find the software useful and would like to contribute to my development server
+    fund, it would be greatly apprieciated.  It costs quite a bit of money to host the servers
+    for the demos.  Any donations can be made through the ITracker website (perferred) or through
+    SourceForge.  If you would like to contribute in other ways, please see the Developer's Corner
+    forum.
+
+    I would like to thank the following people for contributing to ITracker:
+    All ITracker Users -- For all your ideas on how to make the application better
+    Arthur Wang -- All your ideas for fixing the application deadlocks in early versions
+    Rick Szeto -- Providing original script for postgres
+    David Cowan -- Providing original script for mssql
+    Ricardo Trindade -- Original Portugese translation
+    Andreas Wuest -- Original German translation
+    Samuele Reghenzi -- Original Italian translation
+    Yuriy Larin -- Original Russian translation
+     

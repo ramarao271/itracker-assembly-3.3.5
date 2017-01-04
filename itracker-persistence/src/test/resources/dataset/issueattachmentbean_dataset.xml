@@ -1,0 +1,75 @@
+<dataset>
+
+    <table name="issueattachmentbean">
+
+        <column>id</column>
+        <column>issue_id</column>
+        <column>orig_file_name</column>
+        <column>file_name</column>
+        <column>user_id</column>
+        <column>attachment_type</column>
+        <column>description</column>
+        <column>file_size</column>
+        <column>file_data</column>
+        <column>create_date</column>
+        <column>last_modified</column>
+
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <value>Original Filename 1</value>
+            <value>Derived Filename 1</value>
+            <value>2</value>
+            <value>text/xml</value>
+            <value>Attachment Description 1</value>
+            <value>2048</value>
+            <value>src/test/resources/attachments/attachment1.xml</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+        <row>
+            <value>2</value>
+            <value>1</value>
+            <value>Original Filename 2</value>
+            <value>Derived Filename 2</value>
+            <value>2</value>
+            <value>text/xml</value>
+            <value>Attachment Description 2</value>
+            <value>2048</value>
+            <value>src/test/resources/attachments/attachment2.xml</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+        <row>
+            <value>3</value>
+            <value>1</value>
+            <value>Original Filename 3</value>
+            <value>Derived Filename 3</value>
+            <value>2</value>
+            <value>text/xml</value>
+            <value>Attachment Description 3</value>
+            <value>2048</value>
+            <value>src/test/resources/attachments/attachment3.xml</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+        <row>
+            <value>4</value>
+            <value>1</value>
+            <value>Original Filename 4</value>
+            <value>Derived Filename 4</value>
+            <value>2</value>
+            <value>text/xml</value>
+            <value>Attachment Description 4</value>
+            <value>2048</value>
+            <value>src/test/resources/attachments/attachment4.xml</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+    </table>
+
+</dataset>

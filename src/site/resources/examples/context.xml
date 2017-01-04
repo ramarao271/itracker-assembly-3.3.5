@@ -1,0 +1,62 @@
+<!--
+   Example of a Tomcat Context either in server.xml or directly in the deployed app using /META-INF/context.xml
+<Server>
+-->
+
+<Context path="itracker" reloadable="true" >
+ <ResourceLink name="itracker" global="itracker" type="javax.naming.Context"/>
+ <ResourceLink name="jdbc/itracker_ds" global="jdbc/itracker_ds" type="javax.sql.DataSource"/>
+ <ResourceLink name="itracker/mail/Session" global="itracker/mail/Session" type="javax.mail.Session"/>
+</Context>
+
+<!--
+   Example on GlobalNamingResources in server.xml (alternatively configure
+   this in the Context as a private scoped resource instead of a ResourceLink):
+<Server>
+...
+<GlobalNamingResources>
+
+Datasource from JNDI:
+    <Resource   name="jdbc/itracker_ds" scope="Shareable" type="javax.sql.DataSource"
+                url="jdbc:mysql://localhost/itracker?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true"
+                driverClassName="com.mysql.jdbc.Driver"
+                username="itracker"
+                password="..."
+                maxWait="300"
+                maxActive="50"
+                maxIdle="10"
+
+                validationQuery="SELECT 1"
+                testOnBorrow="true"
+                testWhileIdle="true"
+                timeBetweenEvictionRunsMillis="10000"
+                minEvictableIdleTimeMillis="60000" />
+
+Databse dialect from context:
+    <Environment name="itracker/db_dialect"
+                 value="org.hibernate.dialect.MySQL5InnoDBDialect"
+                 type="java.lang.String" override="false"/>
+
+
+Mailsession for JNDI:
+    <Resource name="itracker/mail/Session"
+              auth="Container"
+              type="javax.mail.Session"
+              mail.smtp.host="mail.example.com"
+              mail.smtp.auth="false"
+              mail.from="itracker@example.com"/>
+              mail.mime.charset="UTF-8"
+              <!-
+              If you want to use authentification:
+              mail.smtp.user="itracker@example.com"
+              password="myPassword" ->
+
+
+How-to override application.properties values: 
+    <Environment name="itracker/max_attachment_size" type="java.lang.Integer" value="3072"/>
+    <Environment name="itracker/web_session_timeout" type="java.lang.Integer" value="300"/>
+...
+</GlobalNamingResources>
+...
+</Server>-->
+

@@ -1,0 +1,32 @@
+<dataset>
+
+    <table name="projectbean">
+
+        <column>id</column>
+        <column>create_date</column>
+        <column>last_modified</column>
+        <column>name</column>
+        <column>description</column>
+        <column>status</column>
+        <column>options</column>
+
+        <row>
+            <value>2</value>
+            <value>2006-01-01</value>
+            <value>2006-01-01</value>
+            <value>test_name</value>
+            <value>test_description</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>2006-01-01</value>
+            <value>2006-01-01</value>
+            <value>test_name2</value>
+            <value>test_description2</value>
+            <value>1</value>
+            <value>0</value>
+        </row>
+    </table>
+</dataset>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <!-- define relations to custom fields on this projects issues -->
+    <table name="project_field_rel">
+        <column>project_id</column>
+        <column>field_id</column>
+        <row>
+            <value>2</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>2</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>1</value>
+        </row>
+    </table>
+</dataset>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+ <!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+
+<Configure id="wac" class="org.eclipse.jetty.webapp.WebAppContext">
+    <New id="mailSession" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>java:comp/env/itracker/mail/Session</Arg>
+        <Arg>
+            <New class="org.eclipse.jetty.jndi.factories.MailSessionReference">
+                <Set name="user"></Set>
+                <Set name="password"></Set>
+
+                <Set name="properties">
+                    <New class="java.util.Properties">
+                        <Put name="mail.smtp.host">localhost</Put>
+                        <Put name="mail.smtp.port">2525</Put>
+                        <Put name="mail.from">itracker@example.com</Put>
+                        <Put name="mail.senderName">itracker</Put>
+                        <Put name="mail.debug">false</Put>
+                        <Put name="mail.smtp.auth">false</Put>
+                    </New>
+                </Set>
+            </New>
+        </Arg>
+    </New>
+
+    <New id="itracker_ds" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>java:comp/env/jdbc/itracker_ds</Arg>
+        <Arg>
+            <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <Set name="driverClass">${main.dataSource.driverClass}</Set>
+                <Set name="jdbcUrl">${main.dataSource.jdbcUrl}</Set>
+                <Set name="user">${main.dataSource.user}</Set>
+                <Set name="password">${main.dataSource.password}</Set>
+                <Set name="maxPoolSize">100</Set>
+                <Set name="maxIdleTime" >300</Set>
+                <Set name="loginTimeout" >5</Set>
+            </New>
+        </Arg>
+    </New>
+</Configure>
+

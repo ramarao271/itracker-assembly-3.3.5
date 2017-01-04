@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Itracker Screenshots</title>
+	</properties>
+	<body>
+		<section name="3.0 Screenshots">
+
+			<dl title="screenshots">
+				<dt>Login-screen</dt>
+				<dd>
+					<img src="../images/screenshots/Login.png" alt="login-screen" />
+				</dd>
+				<dt>Home-screen with all sections, displaying 10 issues
+					per section</dt>
+				<dd>
+					<img src="../images/screenshots/Dashboard.png" alt="portal home" />
+				</dd>
+				<dt>Admin-screen</dt>
+				<dd>
+					<img src="../images/screenshots/Admin.png" alt="admin home" />
+				</dd>
+				<dt>Admin users</dt>
+				<dd>
+					<img src="../images/screenshots/UserAdmin.png" alt="user admin" />
+				</dd>		
+				<dt>Preferences for users</dt>
+				<dd>
+					<img src="../images/screenshots/UserPreferences.png" alt="my preferences" />
+				</dd>				
+				<dt>Create project</dt>
+				<dd>
+					<img src="../images/screenshots/CreateProject.png" alt="create project" />
+				</dd>
+				<dt>Project issues</dt>
+				<dd>
+					<img src="../images/screenshots/ProjectIssues.png" alt="project" />
+				</dd>
+
+				<dt>Create issue</dt>
+				<dd>
+					<img src="../images/screenshots/CreateIssue.png" alt="create issue" />
+				</dd>
+				<dt>View issue</dt>
+				<dd>
+					<img src="../images/screenshots/ViewIssue.png" alt="view issue" />
+				</dd>
+				<dt>Edit issue</dt>
+				<dd>
+					<img src="../images/screenshots/EditIssue.png" alt="edit issue" />
+				</dd>
+				<dt>Issue search</dt>
+				<dd>
+					<img src="../images/screenshots/IssueSearch.png" alt="search issues" />
+				</dd>
+			</dl>
+		</section>
+		<section name="Notifications">
+			<dl title="screenshots">
+				<dt>Assign issue</dt>
+				<dd>
+					<img src="../images/screenshots/AssignedNotification.png" alt="assign notification" />
+				</dd>
+				<dt>Update issue</dt>
+				<dd>
+					<img src="../images/screenshots/UpdateNotification.png" alt="update notification" />
+				</dd>
+			</dl>
+		</section>
+	</body>
+</document>

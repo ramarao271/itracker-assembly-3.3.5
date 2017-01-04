@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+	<properties>
+		<title>Install itracker</title>
+	</properties>
+
+	<body>
+		<section name="Install itracker">
+            <p>The basic default setup assuming Tomcat 6.x or 7.x servlet container and a Mysql 5.x database. The database connection will
+            be used from a JNDI env entry <code>java:comp/env/jdbc/itracker_ds</code>.</p>
+			<ol>
+				<li>
+					download and install Apache Tomcat 6.x or 7.x, you can do
+					this here:
+					<a href="http://tomcat.apache.org/whichversion.html">Download Tomcat</a>
+					If you need more instructions about Tomcat take a look at this
+					site:
+					<a href="http://tomcat.apache.org/">Apache Tomcat</a>
+				</li>
+
+				<li>
+					After installing Tomcat you have to set up an empty MySQL
+					database for your itracker.
+					<em><strong>The database must support UTF-8 charset for itracker to function properly.</strong></em>
+					If you need more instructions about
+					MySQL:
+					<a href="http://www.mysql.com/">www.mysql.com</a>.
+				</li>
+
+                <li>
+                    Tomcat context should be configured to have access on the datasource via JNDI
+                    see <a href="./examples/context.xml">this example</a> for a start.
+                </li>
+
+                <li>
+                    itracker assumes the mail and activation libs are provided
+                    in the application class-path either by the JVM or application
+                    server. Best practice is to install	the required files to the
+                    Tomcat lib folder if necessary:
+                    <ol><li>download and extract java activation framework available from oracle.com</li>
+                    <li>copy the jar file <code>activation.jar</code> to the webserver library (eg <code>$TOMCAT_HOME/lib/</code>)</li>
+                    <li>download and extract javamail available from sun.com</li>
+                    <li>copy the jar files <code>mail-api.jar</code> and <code>javamail.jar</code> to the webserver library</li>
+                    <li>restart Tomcat to apply this changes</li></ol>
+                </li>
+
+				<li>
+					If you have all this requirements resolved, download the binary
+					itracker file on Sourceforge. Extract it and deploy the
+					<code>itracker.war</code>
+					file to
+					<code>$TOMCAT_HOME/webapps</code>
+					folder
+				</li>
+
+				<li>
+					You can update configurations in tomcat/webapps/itracker folder:
+					<ul>
+						<li>
+							Database connection configuration you will find in
+							<code>WEB-INF/classes/application.properties
+							</code>, by default a JNDI resource for looking up
+                            the datasource will be used at <code>java:comp/env/jndi/itracker_ds</code>,
+                            but you can still replace the datasource to be in-app by changing the
+                            <code>WEB-INF/classes/datasource.xml</code>.
+						</li>
+						<li>
+							The basic application settings are in this file:
+							<code>
+								<a href="configuration.html">WEB-INF/configuration.properties
+								</a>
+							</code>, or override specific values using the JNDI env entries at
+                            <code>java:comp/env/itracker</code>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					If you have finished the configuration restart the tomcat
+					application to change your settings. You should be able to open the
+					url
+					<a href="http://localhost:8080/itracker">itracker on localhost port 8080</a>
+				</li>
+			</ol>
+		</section>
+	</body>
+</document>

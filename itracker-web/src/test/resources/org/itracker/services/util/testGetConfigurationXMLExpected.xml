@@ -1,0 +1,27 @@
+<configuration-version><![CDATA[1/1]]></configuration-version>
+<custom-fields>
+<custom-field id="custom-field1" systemid="1">
+    <custom-field-label><![CDATA[MISSING KEY: itracker.customfield.1.label]]></custom-field-label>
+    <custom-field-type><![CDATA[STRING]]></custom-field-type>
+    <custom-field-required><![CDATA[false]]></custom-field-required>
+    <custom-field-dateformat><![CDATA[]]></custom-field-dateformat>
+    <custom-field-sortoptions><![CDATA[false]]></custom-field-sortoptions>
+</custom-field>
+<custom-field id="custom-field2" systemid="2">
+    <custom-field-label><![CDATA[MISSING KEY: itracker.customfield.2.label]]></custom-field-label>
+    <custom-field-type><![CDATA[LIST]]></custom-field-type>
+    <custom-field-required><![CDATA[false]]></custom-field-required>
+    <custom-field-dateformat><![CDATA[]]></custom-field-dateformat>
+    <custom-field-sortoptions><![CDATA[false]]></custom-field-sortoptions>
+    <custom-field-option value="value2"><![CDATA[]]></custom-field-option>
+</custom-field>
+</custom-fields>
+<resolutions>
+<resolution value="resolution" order="0"><![CDATA[]]></resolution>
+</resolutions>
+<severities>
+<severity value="severity" order="0"><![CDATA[]]></severity>
+</severities>
+<statuses>
+<status value="status" order="0"><![CDATA[]]></status>
+</statuses>

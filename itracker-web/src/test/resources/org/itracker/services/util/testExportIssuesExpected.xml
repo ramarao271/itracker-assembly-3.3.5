@@ -1,0 +1,96 @@
+<itracker>
+    <configuration>
+        <configuration-version><![CDATA[]]></configuration-version>
+        <custom-fields>
+        </custom-fields>
+        <resolutions>
+        </resolutions>
+        <severities>
+        </severities>
+        <statuses>
+        </statuses>
+    </configuration>
+    <users>
+        <user id="user4" systemid="4">
+            <login><![CDATA[]]></login>
+            <first-name><![CDATA[]]></first-name>
+            <last-name><![CDATA[]]></last-name>
+            <email><![CDATA[]]></email>
+            <user-status>0</user-status>
+            <super-user>false</super-user>
+        </user>
+        <user id="user1" systemid="1">
+            <login><![CDATA[]]></login>
+            <first-name><![CDATA[]]></first-name>
+            <last-name><![CDATA[]]></last-name>
+            <email><![CDATA[]]></email>
+            <user-status>0</user-status>
+            <super-user>false</super-user>
+        </user>
+        <user id="user2" systemid="2">
+            <login><![CDATA[]]></login>
+            <first-name><![CDATA[]]></first-name>
+            <last-name><![CDATA[]]></last-name>
+            <email><![CDATA[]]></email>
+            <user-status>0</user-status>
+            <super-user>false</super-user>
+        </user>
+        <user id="user3" systemid="3">
+            <login><![CDATA[]]></login>
+            <first-name><![CDATA[]]></first-name>
+            <last-name><![CDATA[]]></last-name>
+            <email><![CDATA[]]></email>
+            <user-status>0</user-status>
+            <super-user>false</super-user>
+        </user>
+    </users>
+    <projects>
+        <project id="project1" systemid="1">
+            <project-name><![CDATA[project]]></project-name>
+            <project-description><![CDATA[]]></project-description>
+            <project-status>Active</project-status>
+            <project-options>0</project-options>
+            <project-owners>
+                <project-owner>user1</project-owner>
+            </project-owners>
+        </project>
+    </projects>
+    <issues>
+        <issue id="issue1" systemid="1">
+            <issue-project><![CDATA[project1]]></issue-project>
+            <issue-description><![CDATA[issue description]]></issue-description>
+            <issue-severity>null</issue-severity>
+            <issue-status>null</issue-status>
+            <issue-resolution><![CDATA[]]></issue-resolution>
+            <create-date>01/01/1970 01:00:50</create-date>
+            <last-modified>01/01/1970 03:13:20</last-modified>
+            <creator>user1</creator>
+            <owner>user2</owner>
+            <issue-attachments>
+                <issue-attachment>
+                    <issue-attachment-description><![CDATA[]]></issue-attachment-description>
+                    <issue-attachment-filename><![CDATA[proj1_issue801_attachment1]]></issue-attachment-filename>
+                    <issue-attachment-origfile><![CDATA[ITracker.jmx]]></issue-attachment-origfile>
+                    <issue-attachment-size><![CDATA[192521]]></issue-attachment-size>
+                    <issue-attachment-type><![CDATA[text/plain]]></issue-attachment-type>
+                    <issue-attachment-creator><![CDATA[user4]]></issue-attachment-creator>
+                </issue-attachment>
+            </issue-attachments>
+            <issue-history>
+                <history-entry creator-id="user3" date="11/11/2008 12:11:10" status="1">
+                    <![CDATA[Test issue history entry.]]></history-entry>
+            </issue-history>
+        </issue>
+        <issue id="issue2" systemid="2">
+            <issue-project><![CDATA[project1]]></issue-project>
+            <issue-description><![CDATA[issue description]]></issue-description>
+            <issue-severity>null</issue-severity>
+            <issue-status>null</issue-status>
+            <issue-resolution><![CDATA[]]></issue-resolution>
+            <create-date>01/01/1970 01:00:50</create-date>
+            <last-modified>01/01/1970 03:13:20</last-modified>
+            <creator>user1</creator>
+            <owner>user2</owner>
+        </issue>
+    </issues>
+</itracker>

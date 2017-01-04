@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dataset>
+    <table name="customfieldvaluebean">
+
+        <column>id</column>
+        <column>option_value</column>
+        <column>sort_order</column>
+        <column>custom_field_id</column>
+        <column>create_date</column>
+        <column>last_modified</column>
+
+        <row>
+            <value>1</value>
+            <value>2</value>
+            <value>20</value>
+            <value>4</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>1</value>
+            <value>30</value>
+            <value>4</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>4</value>
+            <value>40</value>
+            <value>4</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+    </table>
+
+</dataset>

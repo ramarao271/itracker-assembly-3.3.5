@@ -1,0 +1,455 @@
+body {
+    font-size: 10pt;
+    background: #fff;
+    overflow-y: scroll;
+}
+header, footer {
+    margin: 2em 0;
+}
+
+a .glyphicon {
+    font-size: 180%;
+}
+
+a.icon,
+a.icon:link,
+a.icon:visited,
+a .glyphicon {
+    margin: 0 .1em;
+    color: #555;
+}
+a.icon .fa-stack {
+   vertical-align: text-bottom;
+   font-size: 0.60em;
+}
+
+.pull-right a.icon.stack {
+   margin-bottom: 1em;
+}
+
+.smallbody {
+    font-size: 1em;
+    background: #fff;
+}
+
+hr {
+    border: none;
+    border-bottom: solid thin black;
+    height: .1em;
+    background: black;
+}
+
+pre, .pre {
+    font-family: monospace;
+    border: solid thin #666;
+    color: #666;
+    padding: 0.5em;
+}
+a.pre {
+    border: none;
+    padding: 0;
+}
+
+a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #5555FF;
+    text-decoration: none;
+}
+
+a:link {
+    color: #5555FF;
+    text-decoration: none;
+}
+
+a.mailto:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+a.mailto:link {
+    color: black;
+    text-decoration: underline;
+}
+
+a.mailto:visited {
+    color: black;
+    text-decoration: underline;
+}
+
+a.history:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+a.history:link {
+    color: black;
+    text-decoration: underline;
+}
+
+a.history:visited {
+    color: black;
+    text-decoration: underline;
+}
+
+.pageHeader {
+    font-weight: bold;
+    text-align: left;
+    font-size: 1.2em;
+    color: black;
+    background-color: white;
+    text-decoration: none;
+}
+.paging {
+    margin: 0 35%;
+    text-align: center;
+}
+a.prev {
+    float: left;
+}
+a.next {
+    float:right;
+}
+
+.locales {
+    float: left;
+    text-align: left;
+}
+
+.headerText,
+.headerTextWelcome {
+}
+
+.headerText, .headerTextWelcome, .headerTextPageTitle {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: black;
+    background-color: white;
+    text-decoration: none;
+}
+
+.headerTextWelcome {
+    text-align: right;
+}
+
+.headerTextPageTitle,
+.headerTextPageTitle h1 {
+    text-align: center;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.headerLinks {
+    font-weight: normal;
+    font-size: 1em;
+    background-color: white;
+    text-decoration: none;
+}
+
+.lookupBox {
+    font-weight: normal;
+    font-size: 8pt;
+    color: black;
+    background-color: white;
+    text-decoration: none;
+}
+
+.footer {
+    clear: both;
+    font-weight: normal;
+    text-align: left;
+    font-size: .75em;
+    color: black;
+    background-color: white;
+    text-decoration: none;
+}
+
+thead,
+thead a,
+.listHeading,
+.listHeading a {
+    font-weight: bold;
+    text-align: left;
+    font-size: 1em;
+    color: white;
+    background-color: #555555;
+    text-decoration: none;
+}
+
+thead a,
+.listHeading a {
+    text-decoration: underline;
+}
+
+thead tr td,
+thead tr th,
+tr.listHeading td, tr.listHeading th {
+    padding: .2em .4em;
+}
+
+.listHeading .editColumnText,
+.listHeading .editColumnText a,
+.listHeading .editColumnText span {
+    background: transparent;
+    font-weight: bold;
+    color: white
+}
+
+.listSubHeading {
+    font-weight: normal;
+    text-align: left;
+    font-size: 1em;
+    color: black;
+    background-color: #555555;
+    text-decoration: none;
+}
+
+thead a:hover,
+thead a:visited,
+thead a:link,
+a.listHeading:hover,
+a.listHeading:visited,
+a.listHeading:link {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.listRowShaded {
+    background-color: #DDDDFF;
+}
+
+
+tr.listRowShaded td,
+tr.listRowUnshaded td {
+    height: 1.5em;
+    padding: .2em;
+}
+.shadeList tr.listRowUnshaded:hover {
+    background-color: #efe;
+}
+
+.shadeList tr.listRowShaded:hover {
+    background-color: #cfc;
+}
+
+.listRowText {
+    font-weight: normal;
+    font-size: 1em;
+}
+
+.listRowSmall {
+    font-weight: normal;
+    font-size: 1em;
+}
+
+.listRowSmall ul, .listRowSmall li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+a.listRow:hover {
+    color: black;
+    text-decoration: none;
+}
+
+a.listRow:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a.listRow:link {
+    color: black;
+    text-decoration: none;
+}
+
+.tableNote {
+    font-weight: normal;
+    text-align: left;
+    font-size: 1em;
+    color: black;
+    background-color: white;
+    text-decoration: none;
+}
+
+h4 {
+   border-bottom: solid 2px black;
+   padding-bottom: .2em;
+}
+
+.editColumnTitle {
+    font-weight: bold;
+    text-align: left;
+    font-size: 1em;
+
+    color: black;
+    background-color: white;
+    text-decoration: none;
+}
+
+.editColumnText {
+    font-weight: normal;
+    text-align: left;
+    font-size: 1em;
+    color: black;
+    background-color: white;
+    text-decoration: none;
+}
+
+div.error,
+div.errors,
+.formError {
+    font-weight: normal;
+    text-align: center;
+    color: red;
+    background-color: white;
+    text-decoration: none;
+}
+
+table.maincontent,
+table.portalhomeMain {
+    width: 100%;
+    border-spacing: 0;
+    padding: .1em;
+    margin: 0;
+    border: none;
+}
+
+.issue-nav {
+   min-width: 4em;
+}
+.historyName {
+    font-style: italic;
+    font-size: 1em;
+}
+
+.help {
+    font-weight: normal;
+    text-align: left;
+    font-size: 1em;
+    color: black;
+    background-color: white;
+    text-decoration: none;
+    line-height: 1.5;
+    vertical-align: baseline;
+}
+
+.helpImage {
+}
+
+.button {
+    font-weight: bold;
+    text-align: left;
+    font-family: verdana, helvetica, sans serif;
+    font-size: 1em;
+    text-decoration: none;
+    color: #000000;
+
+    padding: .2em .4em;
+    background-color: #8888FF;
+    border-style: solid;
+    border-color: #DDDDDD #5555FF #5555FF #DDDDDD;
+    border-top-width: .1em;
+    border-left-width: .1em;
+    border-right-width: .1em;
+    border-bottom-width: .1em;
+
+}
+
+.smalltext {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: small;
+}
+
+.pre-scrollable {
+   overflow-y: auto;
+   -ms-word-wrap: initial;
+   word-wrap: initial;
+}
+
+.panel-heading .btn-group.pull-right,
+.panel-heading .btn.pull-right {
+    margin: -10px 0;
+}
+
+.table .btn-group.pull-right .btn {
+   padding: 0 3px;
+   font-size: inherit;
+}
+
+#configurationForm .systemDefault,
+#customFieldForm .systemDefault {
+    font-style: italic;
+    font-weight: bold;
+    color: #666;
+    float: right;
+    margin-right: 2%;
+}
+
+#languageForm .pre-scrollable {
+    white-space: pre;
+    word-wrap: initial;
+    word-break: initial;
+    font-family: monospace;
+    font-size: 13px;
+    padding: .5em;
+    resize: none;
+    min-height: 5em;
+    max-height: 20em;
+}
+#languageForm textarea.long {
+    width: 40em;
+    height: 100%;
+}
+#languageForm .shadeList td {
+    padding: 1em;
+}
+#languageForm .long pre {
+    overflow: auto;
+    word-break: break-all;
+    font-size: inherit;
+}
+#languageForm .long pre,
+#languageForm code {
+    display: block;
+    border: none;
+    margin: 0;
+    background: inherit;
+    word-break: normal;
+    word-wrap: break-word;
+}
+
+.table-language {
+    table-layout: fixed;
+}
+pre.placeholder {
+    background:white;
+    color: #999999;
+}
+
+#languageForm .tool {
+   position: relative;
+   float: right;
+}
+#languageForm .tool .btn {
+   opacity: .2;
+   position: absolute;
+   right: 2em;
+   top:1em;
+}
+
+#languageForm td:hover .tool .btn,
+pre.placeholder:hover .btn {
+   opacity: 1;
+}
+
+.assignIssueForm select {
+    width: 100%;
+}
+
+#login, #forgotpassword {
+    margin: 10% 0;
+}

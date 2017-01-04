@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="ProjectScript" table="projectscriptbean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true"/>
+            <generator class="native"/>
+        </id>
+
+        <many-to-one name="project" class="Project">
+            <column name="project_id" not-null="true"
+                    unique-key="project_script_ak"/>
+        </many-to-one>
+
+        <many-to-one name="script" class="WorkflowScript">
+            <column name="script_id" not-null="true"
+                    unique-key="project_script_ak"/>
+        </many-to-one>
+
+        <property name="fieldId">
+            <column name="field_id" not-null="true"
+                    unique-key="project_script_ak"/>
+        </property>
+
+        <property name="fieldType"
+                  unique-key="project_script_ak">
+            <column name="field_type" default="5" not-null="true"/>
+
+            <type name="org.itracker.persistence.dao.EnumCodeUserType">
+                <param name="enumClassName">org.itracker.model.Configuration$Type</param>
+            </type>
+        </property>
+
+        <property name="priority">
+            <column name="script_priority" not-null="true"/>
+        </property>
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+    </class>
+
+    <!-- Named queries (loaded, validated and cached at application startup). -->
+
+    <query name="ProjectScriptsAllQuery"><![CDATA[
+    select projectScript 
+    from ProjectScript as projectScript ]]>
+    </query>
+
+    <query name="ProjectScriptsByProjectQuery"><![CDATA[
+    select projectScript 
+    from ProjectScript as projectScript
+    where projectScript.project.id = :projectId ]]>
+    </query>
+
+    <query name="ProjectScriptsByProjectAndFieldQuery"><![CDATA[
+    select projectScript 
+    from ProjectScript as projectScript
+    where projectScript.project.id = :projectId 
+    and projectScript.fieldId = :fieldId ]]>
+    </query>
+
+</hibernate-mapping>

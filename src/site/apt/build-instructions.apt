@@ -1,0 +1,136 @@
+ ------
+ itracker Build Instructions
+ ------
+ Marco Glur, ranks@rosa.com
+ ------
+ 2 November 2012
+ ------
+
+
+Building itracker from Sources
+
+%{toc}
+
+  If you want to check-out the itracker sources yourself, eg. to patch, configure or run/deploy directly from maven,
+  you will find some essential information on how-to make the build work.
+
+  It is not recommended to change files under <<</src>>> in the local workspace,
+  since you have to merge them when updating from the repo.\
+  Consider configuring your local customizations in maven <<<settings.xml>>>,
+  using profiles and repositories according to your demands.
+
+  There are some relevant build properties available, depending on your needs, you find more details in the pom.xml:
+
+* Cargo Plugin
+
+** <<Tomcat run>> with profile <<<itracker.tomcat>>>:
+
+    * <<<main.dataSource.jdbcUrl>>> and <<<main.dataSource.driverClass>>> to run in tomcat against a different database\
+      this is applied to <<</src/main/tomcat/context.xml>>> for runtime.
+
+    * <<<mail.smtp.host>>> (and other mail settings) to use a custom mail-server\
+      this is applied to <<</src/main/tomcat/context.xml>>> for runtime.
+
+    * <<<application.port>>> to run on an http-port other than 8888.
+
+    * {{{https://codehaus-cargo.github.io/cargo/Maven2+Plugin+Reference+Guide.html}cargo plugin reference}}
+
+    []
+
+    start the build, eg: \
+    <<<mvn package cargo:run -Dcargo.container=tomcat6x -Pitracker.tomcat>>>\
+    <<<mvn package cargo:run -Dcargo.container=tomcat7x -Dapplication.port=8080 -Pitracker.tomcat>>>\
+    <<<mvn package cargo:run -Dcargo.container=tomcat8x -Dapplication.port=8080 -Pitracker.tomcat>>>
+
+
+** Tomcat deploy using the Cargo Plugin
+
+    * <<<cargo.remote.username>>> remote manager username
+
+    * <<<cargo.remote.password>>> remote manager password
+
+    * <<<cargo.remote.uri>>> the tomcat-manager URI
+
+*** Tomcat 6.x:
+
+    * {{{https://codehaus-cargo.github.io/cargo/Tomcat+6.x.html}Tomcat 6 deploy reference}}
+
+    []
+
+    eg:\
+    <<<mvn package cargo:deploy -Dcargo.remote.uri=http://itracker-host:8080/manager -Dcargo.remote.username=manager -Dcargo.remote.password=admin>>>
+
+
+*** Tomcat 7.x/8.x:
+
+    * {{{https://codehaus-cargo.github.io/cargo/Tomcat+7.x.html}Tomcat 7 deploy reference}}
+
+    * {{{https://codehaus-cargo.github.io/cargo/Tomcat+8.x.html}Tomcat 8 deploy reference}}
+
+    []
+
+    eg:\
+    <<<mvn package cargo:deploy -Dcargo.remote.uri=http://itracker-host:8080/manager/text -Dcargo.remote.username=manager -Dcargo.remote.password=admin>>>
+
+
+* Jetty Plugin
+
+    * Running Jetty using a in-memory database, eg:\
+    <<<mvn package jetty:run -Dapplication.port:9000 -Dmain.dataSource.jdbcUrl=jdbc:hsqldb:mem:/tmp/itrackerdev-jetty -Pitracker.jetty>>>
+
+    * Using an external jetty-xml path to load jetty.xml and jettyEnv.xml files:\
+    <<<mvn package jetty:run -Djetty.configSrc=/var/itracker/jetty>>>
+
+
+  []
+
+* Testing
+
+  Separate tests for itracker are available for execution when building with maven. They must all pass before checking in code changes,
+  and will be checked later on a build server to work consistently in the trunk.
+
+   * Unit Tests are executed unless skipped, they don't need a database to be executed.\
+   <<<mvn clean package>>>
+
+   * Integration Tests can be executed with the <verify> phase, they run against an in-memory database unless configured differently.\
+   <<<mvn clean verify -Dit.test=ITrackerResourcesIT>>>
+
+   * Frontend Tests with Selenium running against an in-memory database in a Jenkins deployed itracker-application.\
+   <<<mvn clean verify -Dselenium -Dselenium.test=ForgotPasswordTest>>> (against random 'free' ports on the build system)\
+
+    Run selenium tests, eg:\
+    <<<mvn clean verify -Pselenium -Dselenium.browser=firefox>>>
+
+    Run tests in slow-motion:\
+    <<<mvn clean verify -Pselenium>>>
+
+    <If you cancel the build running Selenium Tests, some processes might be left and blocking some ports, you must find and kill them manually.>
+
+  []
+
+* Site
+
+  The site target takes more memory due to intensive reporting, it can be assigned by calling \
+  <<<export MAVEN_OPTS="-Xms512m -Xmx1224m -XX:PermSize=256m -XX:MaxPermSize=512m">>>\
+  on the command line.
+
+  <<<mvn site>>>
+
+* Building for Sonar
+
+  Assuming your Sonar Server runs at http://localhost:9000 and default h2-DB; otherwise provide the <<<sonar.host.url>>> property and DB connection.
+
+  Usually use the two commands:
+
++-------------------------------+
+  mvn clean install -DskipTests=true
+  mvn sonar:sonar
++-------------------------------+
+
+  Or with one single command:
+
+  <<<mvn clean install sonar:sonar -Dmaven.test.failure.ignore=true>>>
+
+Release a final Version
+
+  Follow the {{{./release-instructions.html}release instructions}}.

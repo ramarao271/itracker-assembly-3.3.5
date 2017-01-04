@@ -1,0 +1,28 @@
+<dataset>
+
+    <table name="issuerelationbean">
+
+        <column>id</column>
+        <column>issue_id</column>
+        <column>rel_issue_id</column>
+        <column>relation_type</column>
+        <column>matching_relation_id</column>
+        <column>create_date</column>
+        <column>last_modified</column>
+
+        <!-- issue 1 is connected to issue 2 -->
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <value>2</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2008-10-30</value>
+            <value>2008-10-30</value>
+        </row>
+    </table>
+
+</dataset>
+
+        
+        

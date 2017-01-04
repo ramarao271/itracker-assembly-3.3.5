@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+        <property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</property>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">false</property>
+
+        <mapping resource="org/itracker/model/Configuration.hbm.xml"/>
+        <mapping resource="org/itracker/model/Language.hbm.xml"/>
+        <mapping resource="org/itracker/model/CustomField.hbm.xml"/>
+        <mapping resource="org/itracker/model/CustomFieldValue.hbm.xml"/>
+        <mapping resource="org/itracker/model/User.hbm.xml"/>
+        <mapping resource="org/itracker/model/UserPreferences.hbm.xml"/>
+        <mapping resource="org/itracker/model/Permission.hbm.xml"/>
+        <mapping resource="org/itracker/model/Project.hbm.xml"/>
+        <mapping resource="org/itracker/model/Component.hbm.xml"/>
+        <mapping resource="org/itracker/model/Issue.hbm.xml"/>
+        <mapping resource="org/itracker/model/Version.hbm.xml"/>
+        <mapping resource="org/itracker/model/ProjectScript.hbm.xml"/>
+        <mapping resource="org/itracker/model/WorkflowScript.hbm.xml"/>
+        <mapping resource="org/itracker/model/IssueAttachment.hbm.xml"/>
+        <mapping resource="org/itracker/model/IssueHistory.hbm.xml"/>
+        <mapping resource="org/itracker/model/IssueField.hbm.xml"/>
+        <mapping resource="org/itracker/model/IssueRelation.hbm.xml"/>
+        <mapping resource="org/itracker/model/Notification.hbm.xml"/>
+        <mapping resource="org/itracker/model/IssueActivity.hbm.xml"/>
+        <mapping resource="org/itracker/model/Report.hbm.xml"/>
+
+    </session-factory>
+
+</hibernate-configuration>

@@ -1,0 +1,43 @@
+ ------
+ itracker Getting Started
+ ------
+ Marco Glur, ranks@rosa.com
+ ------
+ 28 October 2008
+ ------
+
+Getting Started
+
+*How to get up and running developing for itracker
+
+  [[1]] {{{/development_environment_setup.html} Setup your Developement Environment}} (recommended: Tomcat 6.x, Eclipse 3.3+ with Maven Integration-/SVN-Plugin)
+  
+  [[2]] Run with main (development) database (configured in <<</src/main/tomcat/context.xml>>>) to run in Tomcat from maven (<<<mvn packge tomcat6:run -Pitracker.tomcat>>>)
+
+    * or alternatively Setup a local MySQL with an existing tomcat installation (IDE) and add links to the JNDI datasource and mailsession using a {{{./examples/context.xml}META-INF/context.xml}}
+  
+  [[3]] Get the Source Code from Subversion
+  
+  [[4]] Check all IDE settings (Runtime Environment, Server-Configuration, Maven Dependency Management etc).
+  
+  [[5]] Set the <<<application-context.xml>>> and <<<configuration.properties>>> (eventually create a {{{./examples/context.xml}META-INF/context.xml}} for webapplication JNDI context)
+  
+  [[6]] Run the application (debug or start) on Tomcat
+  
+  [[7]] If it all works, then log on {{{http://localhost:8080/itracker}local itracker}} in using "<<admin>>", "<<admin>>"
+  
+  [[8]] Start development by following the open bugs and tasks on SourceForge.
+
+  []
+
+  Also read the this question in the {{{./FAQ.html}FAQ}}.
+
+*Please stick to the following rules:
+
+  * Only check in working/tested code, if possible.
+
+  * Don't start anything you don't finish.
+
+  * Register bugs you see.
+
+  * Whatever you do, please make this visible on SourceForge, so we know who is working on which part.

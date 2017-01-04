@@ -1,0 +1,10 @@
+<dataset>
+
+    <table name="issue_version_rel">
+
+        <column>issue_id</column>
+        <column>version_id</column>
+
+    </table>
+
+</dataset>

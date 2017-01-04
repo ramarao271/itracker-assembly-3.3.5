@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+
+<struts-config>
+
+    <!-- ==================================== Data Sources      -->
+    <data-sources>
+    </data-sources>
+
+    <!-- ==================================== Form Beans        -->
+    <form-beans>
+        <form-bean name="removeHistoryForm" type="org.itracker.web.forms.RemoveHistoryForm"/>
+        <form-bean name="issueRelationForm" type="org.itracker.web.forms.IssueRelationForm"/>
+        <form-bean name="moveIssueForm" type="org.itracker.web.forms.MoveIssueForm"/>
+        <form-bean name="issueForm" type="org.itracker.web.forms.IssueForm"/>
+        <form-bean name="createIssueForm" type="org.itracker.web.forms.IssueForm"/>
+        <form-bean name="editIssueForm" type="org.itracker.web.forms.IssueForm"/>
+        <form-bean name="watchIssueForm" type="org.itracker.web.forms.WatchIssueForm"/>
+    </form-beans>
+
+    <!-- ==================================== Global Exceptions -->
+    <global-exceptions>
+    </global-exceptions>
+
+    <!-- ==================================== Global Forwards    -->
+    <global-forwards>
+        <forward name="listprojects" module="/module-projects" path="/list_projects.do"/>
+        <forward name="listissues" module="/module-projects" path="/list_issues.do"/>
+        <forward name="viewissue" module="/module-projects" path="/view_issue.do"/>
+        <forward name="editissue" module="/module-projects" path="/editissueform.do"/>
+        <forward name="moveissue" module="/module-projects" path="/moveissue.do"/>
+        <forward name="error" module="/" path="/error.do"/>
+        <forward name="help" module="/module-help" path="/show_help.do"/>
+        <forward name="unauthorized" module="/" path="/unauthorized.do" redirect="true"/>
+        <forward name="searchissues" module="/module-searchissues" path="/searchissuesform.do"/>
+        <forward name="logoff" path="/logoff.do" module="/"/>
+        <forward name="login" path="/login.do" module="/"/>
+        <forward name="index" path="/portalhome.do" module="/"/>
+        <forward name="createissue" path="/createissueform.do"/>
+        <forward name="watchissue" path="/watchissue.do"/>
+    </global-forwards>
+
+    <!-- ==================================== Action Mappings    -->
+    <action-mappings>
+        <action path="/list_issues" type="org.itracker.web.actions.project.ListIssuesAction">
+            <forward name="list_issues" path="/list_issues.jsp"/>
+
+        </action>
+
+        <action path="/list_projects" type="org.itracker.web.actions.project.ListProjectsAction">
+            <forward name="list_projects" path="/list_projects.jsp" module="/module-projects"/>
+        </action>
+
+        <action path="/removehistory"
+                type="org.itracker.web.actions.project.RemoveHistoryEntryAction"
+                name="removeHistoryForm" scope="request" input="/edit_issue.jsp">
+            <forward name="editissue" module="/module-projects" path="/editissueform.do"
+                     redirect="true"/>
+        </action>
+
+        <action path="/moveissue" type="org.itracker.web.actions.project.MoveIssueAction"
+                name="moveIssueForm" scope="request" input="/move_issue.jsp" validate="true">
+            <forward name="index" module="/" path="/index.jsp" redirect="true"/>
+            <forward name="editissue" module="/module-projects" path="/editissueform.do"
+                     redirect="true"/>
+            <forward name="move_view_issue" module="/module-projects" path="/view_issue.do"
+                     redirect="true"/>
+        </action>
+
+        <action path="/watchissue" type="org.itracker.web.actions.project.WatchIssueAction"
+                name="watchIssueForm" scope="request" input="/list_issues.do" validate="false">
+            <forward name="index" module="/" path="/portalhome.do" redirect="true"/>
+            <forward name="editissue" path="/editissueform.do" redirect="true"/>
+            <forward name="viewissue" path="/view_issue.do" redirect="true"/>
+        </action>
+
+
+        <action path="/moveissueform" type="org.itracker.web.actions.project.MoveIssueFormAction"
+                name="moveIssueForm" scope="request" input="/move_issue.jsp" validate="false"/>
+
+        <action path="/addissuerelation"
+                type="org.itracker.web.actions.project.AddIssueRelationAction"
+                name="issueRelationForm" scope="request" validate="false">
+            <forward name="index" module="/" path="/index.jsp" redirect="true"/>
+            <forward name="editissue" path="/editissueform.do" redirect="true"/>
+            <forward name="viewissue" path="/view_issue.jsp" redirect="true"/>
+        </action>
+
+        <action path="/createissueform"
+                type="org.itracker.web.actions.project.CreateIssueFormAction"
+                name="createIssueForm" scope="request" input="/create_issue.jsp" validate="false"/>
+
+        <action path="/createissue" type="org.itracker.web.actions.project.CreateIssueAction"
+                name="createIssueForm" scope="request" input="/create_issue.jsp" validate="true">
+        </action>
+
+        <action path="/editissue"
+                type="org.itracker.web.actions.project.EditIssueAction"
+                name="issueForm"
+                scope="request"
+                input="/edit_issue.jsp"
+                validate="true">
+            <forward name="index" module="/" path="/index.jsp" redirect="true"/>
+        </action>
+
+        <action path="/editissueform" type="org.itracker.web.actions.project.EditIssueFormAction"
+                name="editIssueForm" scope="request" input="/edit_issue.jsp" validate="false">
+            <forward name="editissueform" path="/edit_issue.jsp" redirect="true"/>
+        </action>
+
+        <action path="/view_issue_activity"
+                type="org.itracker.web.actions.project.ViewIssueActivityAction">
+            <forward name="viewissueactivity" path="/view_issue_activity.jsp"/>
+        </action>
+
+        <action path="/view_issue" type="org.itracker.web.actions.project.ViewIssueAction">
+            <forward name="viewissue" path="/view_issue.jsp" module="/module-projects"/>
+        </action>
+
+        <action path="/error" type="org.itracker.web.actions.ErrorAction">
+            <forward name="error_page" path="/error" module="/"/>
+        </action>
+
+        <action path="/downloadAttachment" type="org.itracker.web.actions.admin.attachment.DownloadAttachmentAction">
+            <forward name="error_page" path="/error" module="/"/>
+        </action>
+
+    </action-mappings>
+
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor">
+        <set-property property="inputForward" value="false"/>
+    </controller>
+
+    <message-resources factory="org.itracker.web.resources.ITrackerMessageResourcesFactory"
+                       parameter="org.itracker.core.resources.ITracker" null="false"/>
+
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames"
+                      value="/WEB-INF/config/validator-rules.xml, 
+                             /WEB-INF/config/validation-module-projects.xml"/>
+    </plug-in>
+</struts-config>
+

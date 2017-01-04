@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+    <properties>
+        <title>itracker 3.2.0 release-notes</title>
+    </properties>
+
+    <body>
+        <section name="Environmental changes since 3.1.5">
+            <ul>
+                <li>
+                    Database relation user-userpreferences changed to make the user-entity the
+                    master of the relation and the preferences referencing to the user (1:1).
+                    <br />
+                    This is done by having the same primary key for user and preferences.
+                    <br />
+                    To apply to the database without loosing existing user preferences,
+                    you will have to stop itracker and apply the following query (MySQL):
+                    <br />
+                    <pre>        ALTER TABLE userpreferencesbean ADD COLUMN newid INT(11) NOT NULL  AFTER id;
+
+        UPDATE userpreferencesbean, userbean
+           SET userpreferencesbean.newid = userbean.id
+         WHERE userpreferencesbean.id = userbean.preferences_id;
+
+
+        ALTER TABLE userbean DROP FOREIGN KEY <strong>`&gt;foreign key name&lt;`</strong> ;
+
+        ALTER TABLE userpreferencesbean
+          CHANGE COLUMN id id INT(11) NOT NULL;
+
+        ALTER TABLE userpreferencesbean DROP PRIMARY KEY;
+
+        ALTER TABLE userpreferencesbean ADD PRIMARY KEY (newid),
+          CHANGE COLUMN newid newid INT(11) NOT NULL AUTO_INCREMENT;
+
+        ALTER TABLE userbean DROP COLUMN preferences_id;
+
+        UPDATE userpreferencesbean
+           SET id = newid;
+
+        ALTER TABLE userpreferencesbean
+          CHANGE COLUMN id id INT(11) NOT NULL AUTO_INCREMENT ,
+          CHANGE COLUMN newid newid INT(11) NOT NULL ,
+          DROP PRIMARY KEY,
+          ADD PRIMARY KEY (id);
+
+        ALTER TABLE userpreferencesbean
+          ADD CONSTRAINT user_fk
+          FOREIGN KEY (id)
+          REFERENCES  userbean (id)
+          ON DELETE RESTRICT
+          ON UPDATE RESTRICT;
+
+        ALTER TABLE userpreferencesbean DROP COLUMN newid;</pre>
+
+
+                    Alternatively, shutdown itracker, drop the table userpreferences, upgrade itracker and start.
+                    <br />
+                    <em>-> Be aware: By doing this, all user-preferences will be reset!</em>
+
+                </li>
+            </ul>
+        </section>
+
+        <section name="itracker 3.2.0 release-notes - Changes from 3.1.5">
+
+
+            <p>
+                This is a dev-release, goals is:
+            </p>
+            <ul>
+                <li>preparing for a stable 3.3 release</li>
+                <li>fix relation between user and user-preferences in the database schema</li>
+            </ul>
+
+
+        </section>
+
+    </body>
+</document>

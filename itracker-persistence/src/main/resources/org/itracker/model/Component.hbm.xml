@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="Component" table="componentbean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true"/>
+            <generator class="native"/>
+        </id>
+
+        <many-to-one name="project" class="Project">
+            <column name="project_id" not-null="true"
+                    unique-key="component_ak"/>
+        </many-to-one>
+
+        <property name="name" index="componentbeanNameIdx">
+            <column name="name" length="30" not-null="true"
+                    unique-key="component_ak"/>
+        </property>
+
+        <property name="description">
+            <column name="description" length="255" not-null="true"/>
+        </property>
+
+        <property name="status" index="componentbeanStatusIdx">
+            <column name="status" not-null="true"/>
+            <type name="org.itracker.persistence.dao.EnumCodeUserType">
+                <param name="enumClassName">org.itracker.model.Status</param>
+            </type>
+        </property>
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+        <!-- bag name="issues" table="issue_component_rel" lazy="true">
+           <key>
+               <column name="component_id"/>
+           </key>
+           <many-to-many class="Issue" column="issue_id"/>
+       </bag -->
+
+    </class>
+
+</hibernate-mapping>

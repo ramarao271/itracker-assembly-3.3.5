@@ -1,0 +1,27 @@
+<Context path="/${application.path}" reloadable="true" >
+    <Resource name="itracker/mail/Session"
+              auth="Container" 
+              type="javax.mail.Session" 
+
+              mail.smtp.host="${mail.smtp.host}" 
+              mail.smtp.auth="${mail.smtp.auth}" 
+              mail.from="${mail.from}"
+              mail.mime.charset="UTF-8"
+              mail.transport.protocol.rfc822="${mail.transport.protocol.rfc822}"
+              mail.smtp.starttls.enable="${mail.smtp.starttls.enable}" />
+    <Environment name="itracker/db_dialect" value="${main.hibernate.dialect}"
+             type="java.lang.String" override="false"/>
+    <Resource name="jdbc/itracker_ds" scope="Shareable" type="javax.sql.DataSource"
+            url="${main.dataSource.jdbcUrl}"
+            driverClassName="${main.dataSource.driverClass}"
+            username="${main.dataSource.user}"
+            password="${main.dataSource.password}"
+            
+            maxWait="300"
+            maxActive="50"
+            maxIdle="10"
+            timeBetweenEvictionRunsMillis="10000"
+            minEvictableIdleTimeMillis="60000" />
+
+</Context>
+

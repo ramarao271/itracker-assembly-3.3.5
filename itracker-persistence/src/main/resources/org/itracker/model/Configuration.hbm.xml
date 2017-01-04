@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="Configuration" table="configurationbean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true"/>
+            <generator class="native"/>
+        </id>
+
+        <natural-id mutable="true">
+
+            <property name="type" index="configurationbeanTypeIdx">
+                <column name="item_type" not-null="true"/>
+                <type name="org.itracker.persistence.dao.EnumCodeUserType">
+                    <param name="enumClassName">org.itracker.model.Configuration$Type</param>
+                </type>
+            </property>
+
+            <property name="value" index="configurationbeanValIdx">
+                <column name="item_value" not-null="true"/>
+            </property>
+
+            <property name="version" index="configurationbeanVersionIdx">
+                <column name="item_version" not-null="true"/>
+            </property>
+        </natural-id>
+
+        <!--natural-id mutable="false"-->
+
+        <!--property name="name">
+            <column name="item_name" not-null="true"/>
+        </property-->
+
+
+        <!--/natural-id-->
+
+        <property name="order" index="configurationbeanOrderIdx">
+            <column name="item_order" not-null="true"/>
+        </property>
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+    </class>
+
+</hibernate-mapping>

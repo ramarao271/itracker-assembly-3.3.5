@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dataset>
+    <table name="issuefieldbean">
+
+        <column>id</column>
+        <column>field_id</column>
+        <column>string_value</column>
+        <column>int_value</column>
+        <column>date_value</column>
+        <column>issue_id</column>
+
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2008-01-01</value>
+            <value>1</value>
+        </row>
+
+        <row>
+            <value>2</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2008-01-01</value>
+            <value>2</value>
+        </row>
+    </table>
+
+</dataset>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+    <properties>
+        <title>itracker 3.1.2 release-notes</title>
+    </properties>
+
+    <body>
+        <section name="Environmental changes since 3.1.1">
+            <ul>
+                <li>
+                    Jetty database fixed for running from Maven in itracker.jetty profile.
+                </li>
+            </ul>
+        </section>
+
+        <section name="itracker 3.1.2 release-notes - Changes from 3.1.1">
+            <p>
+                Maintenance / bugfix release.
+            </p>
+            <p>
+                Fixed some database / language initialization issues.
+            </p>
+            <p>
+                Some templating improvements.
+            </p>
+
+        </section>
+
+
+        <section name="Migration from 2.4">
+            <p>see
+                <a href="itracker-3.0-stable.html">itracker-3.0 release notes</a>
+            </p>
+        </section>
+    </body>
+</document>

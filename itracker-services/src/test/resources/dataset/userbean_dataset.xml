@@ -1,0 +1,93 @@
+<dataset>
+
+    <table name="userbean">
+
+        <column>id</column>
+        <column>create_date</column>
+        <column>last_modified</column>
+        <column>login</column>
+        <column>user_password</column>
+        <column>first_name</column>
+        <column>last_name</column>
+        <column>email</column>
+        <column>status</column>
+        <column>super_user</column>
+        <column>registration_type</column>
+
+        <!-- Superuser -->
+        <row>
+            <value>2</value>
+            <value>2006-01-01</value>
+            <value>2006-01-01</value>
+            <value>admin_test1</value>
+            <value>acQZWOemLAo5nxQqlSdIliu9nVE=</value>
+            <value>admin firstname</value>
+            <value>admin lastname</value>
+            <value>email@email.email</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+        </row>
+
+        <row>
+            <value>3</value>
+            <value>2006-01-01</value>
+            <value>2006-01-01</value>
+            <value>user_test1</value>
+            <value>ba+mhs0gHqWdOijqGe1oTtd71TU=</value>
+            <value>user firstname</value>
+            <value>user lastname</value>
+            <value>email@email.email</value>
+            <value>1</value>
+            <value>0</value>
+            <value>1</value>
+        </row>
+
+        <!-- Project admin (Refer to permissionbean_dataset.xml -->
+        <row>
+            <value>4</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>project_admin1</value>
+            <value>project_admin1</value>
+            <value>project admin firstname</value>
+            <value>project admin lastname</value>
+            <value>email@email.email</value>
+            <value>1</value>
+            <value>0</value>
+            <value>1</value>
+        </row>
+
+        <!-- Inactive user -->
+        <row>
+            <value>5</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>inactive_user1</value>
+            <value>inactive_user1</value>
+            <value>inactive user firstname</value>
+            <value>inactive user lastname</value>
+            <value>email@email.email</value>
+            <value>0</value>
+            <value>0</value>
+            <value>1</value>
+        </row>
+
+        <!-- User that doesn't belong to any projects -->
+        <row>
+            <value>6</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>floating_user1</value>
+            <value>floating_user1</value>
+            <value>floating user firstname</value>
+            <value>floating user lastname</value>
+            <value>email@email.email</value>
+            <value>1</value>
+            <value>0</value>
+            <value>1</value>
+        </row>
+
+    </table>
+
+</dataset>

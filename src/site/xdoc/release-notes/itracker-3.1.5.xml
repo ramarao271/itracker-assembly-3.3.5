@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+    <properties>
+        <title>itracker 3.1.5 release-notes</title>
+    </properties>
+
+    <body>
+        <section name="Environmental changes since 3.1.4">
+            <ul>
+                <li>
+                    none
+                </li>
+            </ul>
+        </section>
+
+        <section name="itracker 3.1.5 release-notes - Changes from 3.1.4">
+
+
+            <p>
+               Database model mappings fixes:<br />
+               To fix the DDL of existing MySQL databases, the following migration-script can be used:<br />
+               <a href="../migration/mysql/timestamp.sql">timestamp.sql</a><br />
+               Consider fixing issue create_date for existing issues:
+               <pre>UPDATE issuebean i
+set i.create_date = (select min(ih.create_date) from issuehistorybean ih where ih.issue_id = i.id)
+</pre>
+            </p>
+            
+
+
+        </section>
+
+
+        <section name="Migration from 2.4">
+            <p>see
+                <a href="itracker-3.0-stable.html">itracker-3.0 release notes</a>
+            </p>
+        </section>
+    </body>
+</document>

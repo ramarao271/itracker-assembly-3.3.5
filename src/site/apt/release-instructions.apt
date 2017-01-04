@@ -1,0 +1,80 @@
+ ------
+ itracker Release Instructions
+ ------
+ Marco Glur, ranks@rosa.com
+ ------
+ 8 November 2012
+ ------
+
+
+Releasing itracker from Sources
+
+  The following steps must be taken when releasing itracker from a trunk snapshot version:
+
+  [[1]] Finalize and link the current release-notes in site.xml and index.xml and release-notes/index.xml
+
+  [[2]] Assign memory to the maven tool (needed for creating the site):
+
+  <<<export MAVEN_OPTS="-Xms512m -Xmx1224m -XX:PermSize=256m -XX:MaxPermSize=512m">>>
+
+  [[3]] Open an interactive ssh shell for sourceforge:
+
+  <<<ssh -t #username#,itracker@shell.sourceforge.net create>>>
+
+  [[4]] Set-up the SVN committer's credentials in <<<settings.xml>>>
+
++-------------------------------+
+  <servers>
+    <server>
+        <id>svn.code.sf.net:443</id>
+        <username>#username#</username>
+        <password>xxx</password>
+    </server>
+  </servers>
++-------------------------------+
+
+  [[3]] Run the prepare release goal:
+
+  <<<mvn release:prepare -Pitracker-release>>>
+
+  [[4]] Run the perform release goal:
+
+  <<<mvn release:perform -Pitracker-release>>>
+
+  [[5]] Upload the files to Sourceforge (3 -- Stable_Production/itracker-#RELEASE_VERSION#)
+
+    Open the folder with SFTP at URL: <<<sftp://#username#,itracker@web.sourceforge.net/home/frs/project/itracker/1%20--%20Stable_Production/>>>
+
+    * Create new Folder following the pattern <<<itracker-#RELEASE_VERSION#>>> using the web-interface (<<check the 'staging' flag!>>)
+
+    * Upload file <<<target/checkout/itracker-assembly/target/itracker-#RELEASE_VERSION#-bin.zip>>>
+
+    <Set this file as default download for all>
+
+    * Upload file <<<target/checkout/itracker-assembly/target/itracker-#RELEASE_VERSION#-src.zip>>>
+
+    * Uncheck the staging-flag for the folder.
+
+  [[6]] Create a news post for the release on source-forge: {{{http://sourceforge.net/p/itracker/news/}News Section}}
+
+  []
+
+Staging the Maven generated Site
+
+  [[1]] Assign memory to the maven tool (needed for creating the site):
+
+  <<<export MAVEN_OPTS="-Xms512m -Xmx1224m -XX:PermSize=256m -XX:MaxPermSize=512m">>>
+
+  [[2]] Open an interactive ssh shell for sourceforge:
+
+  <<<ssh -t #username#,itracker@shell.sourceforge.net create>>>
+
+  [[3]] Build the project
+
+  <<<mvn clean install>>>
+
+  [[4]] Generate and deploy the staging site separated to have code-coverage executed.
+
+  <<<mvn site site:stage-deploy -Pitracker-site>>>
+
+  []

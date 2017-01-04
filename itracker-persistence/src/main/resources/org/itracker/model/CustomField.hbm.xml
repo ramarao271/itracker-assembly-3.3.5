@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="CustomField" table="customfieldbean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+
+        <property name="fieldType" index="customfieldbeanFieldTypeIdx">
+            <column name="field_type" not-null="true"/>
+            <type name="org.itracker.persistence.dao.EnumCodeUserType">
+                <!-- java.lang.ClassNotFoundException: org.itracker.model.CustomField.Type
+                 (see Sun bug #4378381) -->
+                <param name="enumClassName">org.itracker.model.CustomField$Type</param>
+            </type>
+        </property>
+
+        <property name="dateFormat">
+            <column name="date_format"/>
+        </property>
+
+        <property name="required"
+                  type="org.itracker.persistence.dao.IntBooleanType">
+            <column name="is_required" not-null="true"/>
+        </property>
+
+        <property name="sortOptionsByName"
+                  type="org.itracker.persistence.dao.IntBooleanType">
+            <column name="sort_options_by_name" not-null="true"/>
+        </property>
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+        <bag name="options" table="customfieldvaluebean" cascade="all">
+            <key>
+                <column name="custom_field_id" not-null="true"/>
+            </key>
+            <one-to-many class="CustomFieldValue"/>
+        </bag>
+
+        <!--bag name="projects" table="project_field_rel">
+            <key>
+                <column name="field_id"/>
+            </key>
+            <many-to-many class="Project" column="project_id" outer-join="auto"/>
+        </bag-->
+
+    </class>
+
+</hibernate-mapping>

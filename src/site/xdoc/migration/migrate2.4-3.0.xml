@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Migrate Itracker 2.4 to 3.0 Mysql Database</title>
+	</properties>
+
+	<body>
+		<section name="Migration-script">
+			<p>Instructions:</p>
+			<ol>
+				<li>
+					Download and customize
+					<a href="mysql/create_itracker_mig_and_transform.sh">create_itracker_mig_and_transform.sh
+					</a>
+				</li>
+				<li>
+					Download to the same directory:
+					<a href="mysql/itracker_migration_transform_script.sql">itracker_migration_transform_script.sql
+					</a>
+				</li>
+				<li>
+					Download to the same directory:
+					<a href="mysql/itracker_migration_new_indexes.sql">itracker_migration_new_indexes.sql
+					</a>
+				</li>
+				<li>Stop any running itracker-instances pointing to the new
+					database, if appropriate.</li>
+				<li>
+					Execute the migration-script:
+					<code>$ ./mysql/create_itracker_mig_and_transform.sh [&lt;password&gt;]</code></li>
+				<li>Start itracker3 configured to the migrated database</li>
+				<li>Log-in to itracker3 using your previous 2.4 credentials</li>
+			</ol>
+			
+		</section>
+		<section name="Customize transformation">
+			<p>Variables which can be set:</p>
+			<ol>
+				<li>DBUSER: Username for connecting Database.</li>
+				<li>DBPASS: Will be passed as an argument to the execution-call.</li>
+				<li>DATABASE: Name of 2.4 source-database to transform.</li>
+				<li>DBTARGET: Name of the new migrated database.</li>
+				<li>DBHOST: Hostname of mysql-server.</li>
+			</ol>
+		</section>
+		
+		<section name="DDL Transformation script">
+		<pre>
+CREATE TABLE issuerelationbean (
+  id                    INT      NOT NULL auto_increment,
+  issue_id              INT,
+  rel_issue_id          INT,
+  relation_type         INT,
+  matching_relation_id  INT,
+  create_date           DATETIME,
+  last_modified         DATETIME,
+  PRIMARY KEY(id)
+) DEFAULT CHARACTER SET utf8;
+
+CREATE TABLE workflowscriptbean (
+  id                    INT       NOT NULL auto_increment,
+  script_name           VARCHAR(255),
+  event_type            INT,
+  script_data           TEXT,
+  create_date           DATETIME,
+  last_modified         DATETIME,
+  PRIMARY KEY(id)
+) DEFAULT CHARACTER SET utf8;
+
+CREATE TABLE projectscriptbean (
+  id                    INT       NOT NULL auto_increment,
+  project_id            INT,
+  field_id              INT,
+  script_id             INT,
+  script_priority       INT,
+  create_date           DATETIME,
+  last_modified         DATETIME,
+  PRIMARY KEY(id)
+) DEFAULT CHARACTER SET utf8;
+
+alter table languagebean change id id INT NOT NULL AUTO_INCREMENT; 
+
+alter table configurationbean change id id INT NOT NULL AUTO_INCREMENT; 
+
+alter table issuehistorybean change id id INT NOT NULL AUTO_INCREMENT;
+
+alter table issuebean change id id INT NOT NULL AUTO_INCREMENT;
+
+alter table versionbean change id id INT NOT NULL AUTO_INCREMENT;
+UPDATE versionbean SET status = 1 WHERE status IS NULL;
+alter table versionbean change status status INT NOT NULL;
+
+alter table userpreferencesbean change id id INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE userpreferencesbean ADD use_text_actions INT NOT NULL AFTER remember_last_search ;
+
+alter table userbean change id id INT NOT NULL AUTO_INCREMENT;
+
+DELETE  FROM scheduledtaskbean; 
+alter table scheduledtaskbean change id id INT NOT NULL AUTO_INCREMENT;
+
+alter table projectbean change id id INT NOT NULL AUTO_INCREMENT;
+
+alter table permissionbean change id id INT NOT NULL AUTO_INCREMENT;
+
+alter table notificationbean change id id INT NOT NULL AUTO_INCREMENT;
+
+alter table issuefieldbean change id id INT NOT NULL AUTO_INCREMENT;
+
+alter table issueattachmentbean change id id INT NOT NULL AUTO_INCREMENT;
+
+DELETE  FROM issueattachmentbean WHERE orig_file_name IS NULL;
+alter table issueattachmentbean CHANGE issue_id issue_id INT NOT NULL;
+alter table issueattachmentbean CHANGE orig_file_name orig_file_name VARCHAR(255) NOT NULL;
+alter table issueattachmentbean CHANGE description description VARCHAR(255) NOT NULL;
+
+alter table issueactivitybean change id id INT NOT NULL AUTO_INCREMENT;
+
+alter table customfieldvaluebean change id id INT NOT NULL AUTO_INCREMENT;
+
+alter table customfieldbean change id id INT NOT NULL AUTO_INCREMENT;
+
+alter table componentbean change id id INT NOT NULL AUTO_INCREM
+UPDATE componentbean SET status = 1 WHERE status IS NULL;
+alter table componentbean change status status INT NOT NULL;
+			
+		</pre>
+		</section>
+		<section name="Older versions">
+		<p>Check old docs how to upgrade from previous itracker:</p>
+		<p><a href="../old_docs/CHANGELOG">CHANGELOG itracker 2.4</a></p>
+		<p><a href="../old_docs/INSTALLATION">INSTALL itracker 2.4</a></p>
+		</section>
+	</body>
+</document>

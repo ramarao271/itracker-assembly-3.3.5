@@ -1,0 +1,84 @@
+These form beans have existed as DynaValidatorForms, 
+but now are being refactored into real FormBeans. 
+But we have forgotten about the Validation Configuration 
+for them. We have to do it. 
+
+It seems like we have to insert <form> definitions into
+the validator configurations. This is because in
+earlier code there was DynaValidatorForms but now we
+have real FormBeans (which are better because they get
+checked in the IDE before compiling), but now we need
+to tell the Struts framework which fields need to be
+validated (the fields from the form beans are required
+usually).
+
+Take a look at the ReportForm Validator definition in the
+validation-module-admin.xml
+for example. 
+
+
+
+This file tracks pending form validator configuration: [1572869]
+
+
+1. struts-module-admin-config.xml
+
+   Done:
+    componentForm
+    importForm
+    reportForm
+    versionForm
+
+   Pending:
+    userForm
+    languageForm
+    adminActionForm
+    configurationForm
+    customFieldform
+    projectForm
+    projectScriptForm
+    taskForm
+    workflowScriptForm
+
+
+2. struts-module-help-config.xml
+
+   No form beans defined
+
+
+3. struts-module-preferences-config.xml
+
+   Done:
+    preferencesForm
+
+   Pending
+    None
+
+
+4. struts-module-projects-config.xml
+
+   Done:
+    issueForm
+    issueRelationForm
+    moveIssueForm
+
+   Pending:
+    removeHistoryForm
+
+
+5. struts-module-reports-config.xml
+
+   Done:
+    searchForm
+
+   Needs verification:
+    displayReportForm
+
+
+6. struts-module-searchissues-config.xml
+
+   Done:
+    searchForm
+
+   Pending:
+    displayReportForm

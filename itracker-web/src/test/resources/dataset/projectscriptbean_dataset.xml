@@ -1,0 +1,25 @@
+<dataset>
+    <table name="projectscriptbean">
+        <column>id</column>
+        <column>project_id</column>
+        <column>script_id</column>
+        <column>field_id</column>
+        <column>field_type</column>
+        <column>script_priority</column>
+        <column>create_date</column>
+        <column>last_modified</column>
+
+
+        <row>
+            <value>1</value>
+            <value>2</value>
+            <value>1</value>
+            <value>1</value>
+            <value>5</value>
+            <value>1</value>
+            <value>2008-11-03</value>
+            <value>2008-11-03</value>
+        </row>
+
+    </table>
+</dataset>

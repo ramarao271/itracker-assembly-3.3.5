@@ -1,0 +1,92 @@
+<dataset>
+
+    <table name="configurationbean">
+
+        <column>id</column>
+        <column>item_type</column>
+        <column>item_value</column>
+        <column>item_version</column>
+        <column>item_order</column>
+        <column>create_date</column>
+        <column>last_modified</column>
+
+        <row>
+            <value>2000</value>
+            <value>1</value>
+            <!-- locale  TYPE_LOCALE -->
+            <value>Test Value</value>
+            <value>Version 1.0</value>
+            <value>1</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+        <row>
+            <value>2001</value>
+            <value>1</value>
+            <!-- TYPE_INITIALIZED  -->
+            <value>Test Value -1</value>
+            <value>Version 2.0</value>
+            <value>2</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+        <row>
+            <value>2002</value>
+            <value>2</value>
+            <!-- TYPE_STATUS  -->
+            <value>Test Value 1</value>
+            <value>Version 3.0</value>
+            <value>3</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+        <row>
+            <value>2003</value>
+            <value>3</value>
+            <!-- TYPE_SEVERITY  -->
+            <value>Test Value 3</value>
+            <value>Version 4.0</value>
+            <value>4</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+        <row>
+            <value>2004</value>
+            <value>4</value>
+            <!-- TYPE_RESOLUTION  -->
+            <value>Test Value 4</value>
+            <value>Version 5.0</value>
+            <value>5</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+        <row>
+            <value>2005</value>
+            <value>5</value>
+            <!-- TYPE_CUSTOMFIELD  -->
+            <value>Test Value 5</value>
+            <value>Version 6.0</value>
+            <value>6</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+        <row>
+            <value>2006</value>
+            <value>1</value>
+            <!-- locale  TYPE_LOCALE -->
+            <value>va</value>
+            <value>Version 1.0</value>
+            <value>1</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+    </table>
+
+</dataset>

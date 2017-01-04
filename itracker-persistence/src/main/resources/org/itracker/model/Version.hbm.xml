@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="Version" table="versionbean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true"/>
+            <generator class="native"/>
+        </id>
+
+        <many-to-one name="project" class="Project">
+            <column name="project_id" not-null="true" unique-key="version_ak"/>
+        </many-to-one>
+
+        <property name="number" index="versionbeanNumberIdx">
+            <column name="version_number" not-null="true" unique-key="version_ak"/>
+        </property>
+
+        <property name="major">
+            <column name="major" not-null="true"/>
+        </property>
+
+        <property name="minor">
+            <column name="minor" not-null="true"/>
+        </property>
+
+        <property name="description">
+            <column name="description" not-null="true"/>
+        </property>
+
+        <property name="status">
+            <column name="status" not-null="true"/>
+            <type name="org.itracker.persistence.dao.EnumCodeUserType">
+                <param name="enumClassName">org.itracker.model.Status</param>
+            </type>
+        </property>
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+        <!-- bag name="issues" table="issue_version_rel" lazy="true">
+           <key>
+               <column name="version_id"/>
+           </key>
+           <many-to-many class="Issue" column="issue_id"/>
+       </bag -->
+
+    </class>
+
+</hibernate-mapping>

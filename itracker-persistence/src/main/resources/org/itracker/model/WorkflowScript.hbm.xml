@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="WorkflowScript" table="workflowscriptbean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true"/>
+            <generator class="native"/>
+        </id>
+
+        <property name="name">
+            <column name="script_name" not-null="true"
+                    unique-key="workflow_script_ak"/>
+        </property>
+
+        <property name="script" type="text" length="32000">
+            <column name="script_data" not-null="true"/>
+        </property>
+
+        <property name="language">
+            <column name="script_language" default="'BeanShell'"/>
+
+            <type name="org.itracker.persistence.dao.EnumNameUserType">
+                <param name="enumClassName">org.itracker.model.WorkflowScript$ScriptLanguage</param>
+            </type>
+        </property>
+
+        <property name="event">
+            <column name="event_type" not-null="true"/>
+        </property>
+
+        <!--  many-to-one name="projectFields" column="project_id" class="org.itracker.model.Project"/ -->
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+    </class>
+
+</hibernate-mapping>

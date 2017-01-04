@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="IssueAttachment" table="issueattachmentbean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true"/>
+            <generator class="native"/>
+        </id>
+
+        <many-to-one name="issue" class="Issue">
+            <column name="issue_id" not-null="true" unique-key="issue_attachment_ak"/>
+        </many-to-one>
+
+        <property name="originalFileName">
+            <column name="orig_file_name" not-null="true" unique-key="issue_attachment_ak"/>
+        </property>
+
+        <property name="fileName" index="issueattachmentbeanFileNameIdx">
+            <column name="file_name" not-null="true" unique-key="issue_attachment_ak1"/>
+        </property>
+
+        <many-to-one name="user" class="User">
+            <column name="user_id" not-null="true"/>
+        </many-to-one>
+
+        <property name="type" index="typeIdx">
+            <column name="attachment_type" not-null="true"/>
+        </property>
+
+        <property name="description">
+            <column name="description" not-null="true"/>
+        </property>
+
+        <property name="size">
+            <column name="file_size" not-null="true"/>
+        </property>
+
+        <property name="fileData" type="binary" lazy="true">
+            <column name="file_data" not-null="true" length="1000000"/>
+        </property>
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+    </class>
+
+    <!-- Named queries (loaded, validated and cached at application startup). -->
+
+    <query name="AttachmentByFileNameQuery"><![CDATA[
+    select attachment 
+    from IssueAttachment as attachment
+    where attachment.fileName = :fileName ]]>
+    </query>
+
+    <query name="AttachmentsAllQuery"><![CDATA[
+    select attachment 
+    from IssueAttachment as attachment ]]>
+    </query>
+
+    <query name="AttachmentsByIssueQuery"><![CDATA[
+    select attachment 
+    from IssueAttachment as attachment 
+    where attachment.issue.id = :issueId ]]>
+    </query>
+
+    <query name="AttachmentsCountAllQuery"><![CDATA[
+    select count(id) 
+    from IssueAttachment ]]>
+    </query>
+    <query name="TotalAttachmentsSizeQuery"><![CDATA[
+    select sum(size)
+    from IssueAttachment ]]>
+    </query>
+</hibernate-mapping>

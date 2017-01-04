@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>itracker 3.0-rc2 Release Notes</title>
+	</properties>
+	<body>
+		<section name="Introduction">
+			<p>Release Candidate 3 focuses on improving the code stability and clean up of
+			scriptlet codes. There are also major bugs that were fixed.</p> 
+	</section>
+		<section name="Fixed Bugs">
+			<table>
+				<tr>
+					<th>
+						ID
+				</th>
+					<th>
+						Description
+				</th>
+				</tr>
+				<tr>
+					<td>
+						2353392 
+				</td>
+					<td>
+						Lazy Loading problems 
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2308476 
+				</td>
+					<td>
+						Edit Issue - Required Custom Field Validation 
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2353184 
+				</td>
+					<td>
+						ConfigurationServiceImpl 
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2320138 
+				</td>
+					<td>
+						the permissions on projects are not shown, after validation 
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2317185 
+				</td>
+					<td>
+						User preferences not set to user account 
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2308607 
+				</td>
+					<td>
+						Create Issue Validation Attachment 
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2308782 
+				</td>
+					<td>
+						Issue Activities not written
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2305822 
+				</td>
+					<td>
+						Database Migration MySQL (componentbean) 
+				</td>
+				</tr>
+			</table>
+		</section>
+	</body>
+</document>

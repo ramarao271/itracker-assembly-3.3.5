@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="User" table="userbean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true" unique="true"/>
+            <generator class="native"/>
+        </id>
+
+        <property name="login" index="loginIdx">
+            <column name="login" not-null="true" unique-key="user_ak"/>
+        </property>
+
+        <property name="password">
+            <column name="user_password" not-null="true"/>
+        </property>
+
+        <property name="firstName">
+            <column name="first_name" not-null="true"/>
+        </property>
+
+        <property name="lastName">
+            <column name="last_name" not-null="true"/>
+        </property>
+
+        <property name="email">
+            <column name="email" not-null="true"/>
+        </property>
+
+        <property name="status" index="userbeanStatusIdx">
+            <column name="status" not-null="true"/>
+        </property>
+
+        <property name="superUser" index="userbeanSUIdx"
+                  type="org.itracker.persistence.dao.IntBooleanType">
+            <column name="super_user" not-null="true"/>
+        </property>
+
+        <property name="registrationType" index="userbeanRegTypeIdx">
+            <column name="registration_type" not-null="true"/>
+        </property>
+
+
+        <one-to-one name="preferences" class="UserPreferences" cascade="all" constrained="false" />
+
+        <!--  Should be a set, not a bag -->
+        <set name="permissions" table="permissionbean" inverse="true" cascade="all" lazy="true">
+            <key>
+                <column unique="false" not-null="true" name="user_id"/>
+            </key>
+            <one-to-many class="Permission"/>
+        </set>
+
+        <bag name="projects" table="project_owner_rel" lazy="true">
+            <key>
+                <column name="user_id"/>
+            </key>
+            <many-to-many class="Project" column="project_id" outer-join="auto"/>
+        </bag>
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+    </class>
+
+    <!-- Named queries (loaded, validated and cached at application startup). -->
+
+    <query name="UserByLoginQuery"><![CDATA[
+    select user 
+    from User as user 
+    where user.login = :login ]]>
+    </query>
+
+    <query name="UsersAllQuery"><![CDATA[
+    select user 
+    from User as user ]]>
+    </query>
+
+    <query name="UsersActiveQuery"><![CDATA[
+    select user 
+    from User as user 
+    where user.status = 1 ]]>
+    </query>
+
+    <query name="UsersSuperQuery"><![CDATA[
+    select user 
+    from User as user 
+    where user.superUser = 1 ]]>
+        <!-- "where user.superUser = true" causes error :
+ERROR: operator does not exist: integer = boolean  -->
+    </query>
+
+    <query name="UsersByStatusQuery"><![CDATA[
+    select user 
+    from User as user 
+    where user.status = :userStatus ]]>
+    </query>
+
+    <query name="UsersByRegistrationTypeQuery"><![CDATA[
+    select user 
+    from User as user 
+    where user.registrationType = :registrationType ]]>
+    </query>
+
+
+</hibernate-mapping>

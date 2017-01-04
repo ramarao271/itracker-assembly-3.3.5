@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    ITracker web application context.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:beans="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+    <import resource="classpath:/persistence-context.xml"/>
+    <import resource="classpath:/services-context.xml"/>
+
+    <!-- Initialize ITracker Resources -->
+    <bean id="itrackerservicesservletcontextutilsinit"
+          class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="org.itracker.web.util.ServletContextUtils.setITrackerServices"/>
+        <property name="arguments" ref="itrackerServices"/>
+    </bean>
+
+    <!-- please comment this: -->
+    <bean id="applicationInitialization" init-method="init" class="org.itracker.web.ApplicationInitialization">
+        <constructor-arg ref="userService"/>
+        <constructor-arg ref="configurationService"/>
+        <constructor-arg ref="reportService"/>
+    </bean>
+
+
+
+    <security:http pattern="/themes/**" security="none" />
+    <security:http pattern="/webjars/**" security="none" />
+    <security:http auto-config="true" use-expressions="true">
+        <security:custom-filter ref="executeAlwaysFilter" after="SECURITY_CONTEXT_FILTER" />
+        <security:intercept-url pattern="/login.do" access="isAnonymous()" />
+        <security:intercept-url pattern="/selfregister*.do" access="isAnonymous()" />
+        <security:intercept-url pattern="/forgotpassword*.do" access="isAnonymous()" />
+
+        <security:intercept-url pattern="/module-admin/listprojectsadmin*.do" access="hasAnyRole('PRODUCT_ADMIN','USER_ADMIN')" />
+        <security:intercept-url pattern="/module-admin/editproject*.do" access="hasAnyRole('PRODUCT_ADMIN','USER_ADMIN')" />
+        <security:intercept-url pattern="/module-admin/*version*.do" access="hasAnyRole('PRODUCT_ADMIN','USER_ADMIN')" />
+        <security:intercept-url pattern="/module-admin/*component*.do" access="hasAnyRole('PRODUCT_ADMIN','USER_ADMIN')" />
+
+        <security:intercept-url pattern="/module-admin/**/*.do" access="hasAnyRole('USER_ADMIN')" />
+        <security:intercept-url pattern="/**" access="hasAnyRole('ROLE_USER')" />
+        <security:access-denied-handler  ref="accessDeniedHandler" />
+        <security:http-basic  />
+        <security:form-login login-page="/login.do"
+                login-processing-url="/security_check.do"
+                password-parameter="password" username-parameter="login"
+                authentication-success-handler-ref="loginHandler"
+                authentication-failure-handler-ref="authenticationErrorHandler"/>
+        <security:logout logout-url="/logoff.do" invalidate-session="true" delete-cookies="itracker" />
+        <security:remember-me key="#{configurationService.getProperty('save_login_key','itracker')}"
+                remember-me-parameter="saveLogin"
+                token-validity-seconds="#{configurationService.getIntegerProperty('save_login_timeout', 2592000)}"
+                use-secure-cookie="false" user-service-ref="userService"
+                authentication-success-handler-ref="rememberMeLoginHandler"/>
+    </security:http>
+    <security:authentication-manager >
+        <security:authentication-provider user-service-ref="userService">
+            <security:password-encoder ref="passwordEncoder" />
+        </security:authentication-provider>
+    </security:authentication-manager>
+    <bean id="executeAlwaysFilter" class="org.itracker.web.filters.ExecuteAlwaysFilter" />
+    <bean id="passwordEncoder" class="org.itracker.services.authentication.ITrackerPasswordEncoder" />
+    <bean id="loginHandler" class="org.itracker.web.security.LoginHandler" />
+    <bean id="rememberMeLoginHandler" class="org.itracker.web.security.LoginHandler">
+        <property name="isAutologinSuccessHandler" value="true" />
+    </bean>
+    <bean id="accessDeniedHandler" class="org.itracker.web.security.DefaultAccessDeniedHandler" >
+        <property name="unauthorizedUrl" value="/unauthorized.do" />
+    </bean>
+    <bean id="authenticationErrorHandler" class="org.itracker.web.security.AuthenticationErrorHandler">
+        <property name="defaultFailureUrl" value="/login.do" />
+    </bean>
+    <!-- please comment this: -->
+    <!-- bean id="schedulerController"
+        class="org.itracker.web.servlets.SchedulerController"
+        autowire="autodetect">
+        <constructor-arg ref="schedulerService" />
+    </bean -->
+
+    <!-- Initialize ITracker Resources
+    <bean id="resourcesinit"
+        class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="ITrackerResources.setConfigurationService"/>
+        <property name="arguments" ref="configurationService" />
+    </bean>
+ -->
+    <!-- Override properties specified in this file with properties from a properties file -->
+    <!-- Usefull for customizing beans properties such as JNDI lookup names, etc.. -->
+    <bean id="applicationOverride"
+          class="org.springframework.beans.factory.config.PropertyOverrideConfigurer">
+        <property name="location" value="classpath:application.properties"/>
+    </bean>
+
+</beans>

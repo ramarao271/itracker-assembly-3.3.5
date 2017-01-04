@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+    <properties>
+        <title>itracker 3.2.1 release-notes</title>
+    </properties>
+
+    <body>
+        <section name="Environmental changes since 3.2.0">
+           <p>None</p>
+        </section>
+
+        <section name="itracker 3.2.1 release-notes - Changes from 3.2.0">
+
+
+            <p>
+                This is a dev-release, goals is:
+            </p>
+            <ul>
+                <li>split the single WAR project to a multi-project to separate the web from other layers</li>
+                <li>fixes in workflow scripts and support for Groovy scripts</li>
+            </ul>
+
+
+        </section>
+
+    </body>
+</document>

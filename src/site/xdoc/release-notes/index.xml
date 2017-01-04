@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+	<properties>
+		<title>itracker release-notes</title>
+	</properties>
+
+	<body>
+		<section name="Itracker release-notes">
+			<table>
+				<tr>
+					<th>Name</th>
+					<th>Release date</th>
+				</tr>
+				<tr>
+					<td>
+                        <a href="itracker-3.0-rc1.html" title="Release-notes to itracker 3.0-rc1">itracker-3.0-rc1
+						</a>
+					</td>
+					<td>2008-9-26
+					</td>
+				</tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.0-rc2.html" title="Release notes to itracker 3.0-rc2">itracker-3.0-rc2</a>
+                    </td>
+                    <td>2008-11-1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.0-rc3.html" title="Release notes to itracker 3.0-rc3">itracker-3.0-rc3</a>
+                    </td>
+                    <td>2008-12-18</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.0-stable.html" title="Release notes to itracker 3.0 (stable)">itracker-3.0 (stable)</a>
+                    </td>
+                    <td>2009-1-14</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.0.1.html" title="Release notes to itracker 3.0.1 ">itracker-3.0.1 </a>
+                    </td>
+                    <td>2009-3-21</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.0.2.html" title="Release notes to itracker 3.0.2 ">itracker-3.0.2 </a>
+                    </td>
+                    <td>2012-5-1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.1.0.html" title="Release notes to itracker 3.1.0">itracker-3.1.0</a>
+                    </td>
+                    <td>2012-8-30</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.1.1.html" title="Release notes to itracker 3.1.1 ">itracker-3.1.1 </a>
+                    </td>
+                    <td>2012-11-7</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.1.2.html" title="Release notes to itracker 3.1.2 ">itracker-3.1.2 </a>
+                    </td>
+                    <td>2012-11-9</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.1.3.html" title="Release notes to itracker 3.1.3 ">itracker-3.1.3 </a>
+                    </td>
+                    <td>2012-12-13</td>
+                </tr>      
+                <tr>
+                    <td>
+                        <a href="itracker-3.1.4.html" title="Release notes to itracker 3.1.4 ">itracker-3.1.4 </a>
+                    </td>
+                    <td>2013-5-15</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.1.5.html" title="Release notes to itracker 3.1.5 ">itracker-3.1.5 </a>
+                    </td>
+                    <td>2013-6-24</td>
+                </tr>
+                <tr>
+                   <td>
+                       <a href="itracker-3.2.0.html" title="Release notes to itracker 3.2.0 ">itracker-3.2.0 </a>
+                   </td>
+                   <td>2015-9-26</td>
+                </tr>
+                <tr>
+                   <td>
+                       <a href="itracker-3.2.1.html" title="Release notes to itracker 3.2.1 ">itracker-3.2.1 </a>
+                   </td>
+                   <td>2015-10-6</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.2.2.html" title="Release notes to itracker 3.2.2 ">itracker-3.2.2</a>
+                    </td>
+                    <td>2015-10-9</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.3.0.html" title="Release notes to itracker 3.3.0 ">itracker-3.3.0</a>
+                    </td>
+                    <td>2015-10-14</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.3.1.html" title="Release notes to itracker 3.3.1 ">itracker-3.3.1</a>
+                    </td>
+                    <td>2015-10-28</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.3.2.html" title="Release notes to itracker 3.3.2 ">itracker-3.3.2</a>
+                    </td>
+                    <td>2016-1-13</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.3.3.html" title="Release notes to itracker 3.3.3 ">itracker-3.3.3</a>
+                    </td>
+                    <td>---</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.3.4.html" title="Release notes to itracker 3.3.4 ">itracker-3.3.4</a>
+                    </td>
+                    <td>2016-10-15</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="itracker-3.3.5.html" title="Release notes to itracker 3.3.5 ">itracker-3.3.5</a>
+                    </td>
+                    <td>2016-10-20</td>
+                </tr>
+            </table>
+		</section>
+	</body>
+
+</document>

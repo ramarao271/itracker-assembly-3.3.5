@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+    <properties>
+        <title>itracker 3.3.1 release-notes</title>
+    </properties>
+
+    <body>
+        <section name="Environmental changes since 3.3.0">
+            <ul>
+                <li>
+                    none
+                </li>
+            </ul>
+        </section>
+
+        <section name="itracker 3.3.1 release-notes - Changes from 3.3.0">
+
+            <ul>
+                <li>Adding SpringSecurity for auth</li>
+                <li>Upgrade of Spring libraries</li>
+                <li>Sortable Issue-lists on home-screen</li>
+                <li>Fix of showing unassigned non-viewable issues in list</li>
+                <li>Logging cleanup</li>
+                <li>Language configuration moved to configuration.properties</li>
+                <li>Fixed message resources (i18n) bundles</li>
+                <li>Localization administration improvements</li>
+                <li>German localization fixes</li>
+                <li>RSS feed fixes</li>
+            </ul>
+
+        </section>
+
+    </body>
+</document>

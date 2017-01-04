@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="IssueField" table="issuefieldbean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true"/>
+            <generator class="native"/>
+        </id>
+
+        <many-to-one name="issue" class="Issue">
+            <column name="issue_id" not-null="true" unique-key="issue_field_ak"/>
+        </many-to-one>
+
+        <many-to-one name="customField" class="CustomField">
+            <column name="field_id" not-null="true" unique-key="issue_field_ak"/>
+        </many-to-one>
+
+        <property name="stringValue">
+            <column name="string_value"/>
+        </property>
+
+        <property name="intValue">
+            <column name="int_value"/>
+        </property>
+
+        <property name="dateValue">
+            <column name="date_value"/>
+        </property>
+			<!-- TODO, why is these not defined? would need migration to enable..
+			  <property name="lastModifiedDate">
+					<column name="last_modified" sql-type="timestamp" not-null="true"/>
+			  </property>
+		  
+			  <property name="createDate" update="false">
+					<column name="create_date" sql-type="timestamp" not-null="true"/>
+			  </property>
+			 -->
+    </class>
+
+</hibernate-mapping>

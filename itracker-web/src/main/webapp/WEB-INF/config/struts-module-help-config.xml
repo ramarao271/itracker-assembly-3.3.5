@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+
+<struts-config>
+
+    <!-- ==================================== Data Sources      -->
+    <data-sources>
+    </data-sources>
+
+    <!-- ==================================== Form Beans        -->
+    <form-beans>
+    </form-beans>
+
+    <!-- ==================================== Global Exceptions -->
+    <global-exceptions>
+    </global-exceptions>
+
+    <!-- ==================================== Global Forwards    -->
+    <global-forwards>
+        <forward name="help" module="/module-help" path="/show_help.do"/>
+        <forward name="editpreferences" path="/editpreferencesform.do"
+                 module="/module-preferences"/>
+        <forward name="login" module="/" path="/login.jsp"/>
+        <forward name="error" module="/" path="/error.do"/>
+        <forward name="unauthorized" module="/" path="/unauthorized.do" redirect="true"/>
+        <forward name="searchissues" module="/module-searchissues" path="/searchissuesform.do"/>
+        <forward name="logoff" path="/logoff.do" module="/"/>
+        <forward name="index" path="/portalhome.do" module="/" redirect="true"/>
+    </global-forwards>
+
+    <!-- ==================================== Action Mappings    -->
+    <action-mappings>
+        <action path="/show_help" type="org.itracker.web.actions.ShowHelpAction">
+            <forward module="/module-help" name="show_help" path="t.show_help"/>
+        </action>
+    </action-mappings>
+
+    <!-- ==================================== Controllers    -->
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor">
+        <set-property property="inputForward" value="false"/>
+    </controller>
+
+    <!-- ==================================== Plug-ins    -->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames"
+                      value="/WEB-INF/config/validator-rules.xml,
+                             /WEB-INF/config/validation-module-help.xml"/>
+    </plug-in>
+    <plug-in className="org.apache.struts.tiles.TilesPlugin">
+        <set-property
+                property="definitions-config"
+                value="/WEB-INF/config/tiles-defs.xml, /WEB-INF/config/tiles-defs-help.xml"/>
+        <set-property property="moduleAware" value="true"/>
+    </plug-in>
+</struts-config>
+

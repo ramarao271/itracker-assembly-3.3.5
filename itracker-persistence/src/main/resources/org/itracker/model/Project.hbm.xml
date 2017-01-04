@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="Project" table="projectbean">
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true"/>
+            <generator class="native"/>
+        </id>
+
+        <property name="name" index="projectbeanNameIdx">
+            <column name="name" not-null="true" unique-key="project_ak"/>
+        </property>
+
+        <property name="description">
+            <column name="description" not-null="true"/>
+        </property>
+
+        <property name="status" index="projectbeanStatusIdx">
+            <column name="status" not-null="true"/>
+            <type name="org.itracker.persistence.dao.EnumCodeUserType">
+                <param name="enumClassName">org.itracker.model.Status</param>
+            </type>
+        </property>
+
+        <property name="options">
+            <column name="options" not-null="true"/>
+        </property>
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+        <bag name="customFields" table="project_field_rel" lazy="true">
+            <key>
+                <column name="project_id"/>
+            </key>
+            <many-to-many class="org.itracker.model.CustomField" column="field_id"/>
+        </bag>
+
+        <bag name="components" table="componentbean" cascade="all" lazy="true">
+            <key>
+                <column name="project_id"/>
+            </key>
+            <one-to-many class="org.itracker.model.Component"/>
+        </bag>
+
+        <bag name="versions" table="versionbean" cascade="all" lazy="true">
+            <key>
+                <column name="project_id"/>
+            </key>
+            <one-to-many class="Version"/>
+        </bag>
+
+        <!--bag name="issues" table="Issue" cascade="all" lazy="true">
+            <key>
+                <column name="project_id"/>
+            </key>
+            <one-to-many class="org.itracker.model.Issue"/>
+        </bag-->
+        <!-- should be a set, not list -->
+        <set name="permissions" table="permissionbean" cascade="all" lazy="true">
+            <key>
+                <column name="project_id"/>
+            </key>
+            <one-to-many class="Permission"/>
+        </set>
+
+        <bag name="owners" table="project_owner_rel" lazy="true">
+            <key>
+                <column name="project_id"/>
+            </key>
+            <many-to-many class="User" column="user_id"/>
+        </bag>
+
+        <bag name="scripts" table="projectscriptbean" cascade="all" lazy="true">
+            <key>
+                <column name="project_id"/>
+            </key>
+            <one-to-many class="ProjectScript"/>
+        </bag>
+
+    </class>
+
+    <!-- Named queries (loaded, validated and cached at application startup). -->
+
+    <query name="ProjectsAllQuery"><![CDATA[
+    select project 
+    from Project as project ]]>
+    </query>
+
+    <query name="ProjectsByStatusQuery"><![CDATA[
+    select project 
+    from Project as project
+    where project.status = :projectStatus ]]>
+    </query>
+
+    <query name="ProjectsAvailableQuery"><![CDATA[
+    select project 
+    from Project as project
+    where project.status in (1, 2) ]]>
+    </query>
+
+    <query name="ProjectsLastModifiedIssueDate"><![CDATA[
+    select max(issue.lastModifiedDate)
+    from Issue as issue
+    where issue.project.id = :projectId ]]>
+    </query>
+
+    <query name="ProjectByNameQuery"><![CDATA[
+    select project 
+    from Project as project
+    where project.name = :projectName ]]>
+    </query>
+
+
+</hibernate-mapping>

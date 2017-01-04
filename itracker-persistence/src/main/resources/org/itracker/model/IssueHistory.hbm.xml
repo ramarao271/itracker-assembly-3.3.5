@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="true" package="org.itracker.model">
+
+    <class name="IssueHistory" table="issuehistorybean">
+
+        <id name="id" unsaved-value="null">
+            <column name="id" not-null="true"/>
+            <generator class="native"/>
+        </id>
+
+        <many-to-one name="issue" class="Issue">
+            <column name="issue_id" not-null="true"/>
+        </many-to-one>
+
+        <many-to-one name="user" class="User">
+            <column name="user_id"/>
+        </many-to-one>
+
+        <property name="description" type="text" length="32000">
+            <column name="description" not-null="true"/>
+        </property>
+
+        <property name="status">
+            <column name="status" not-null="true"/>
+        </property>
+
+        <property name="lastModifiedDate">
+            <column name="last_modified" sql-type="timestamp" not-null="true"/>
+        </property>
+        
+        <property name="createDate" update="false">
+            <column name="create_date" sql-type="timestamp" not-null="true"/>
+        </property>
+
+    </class>
+
+    <!-- Named queries (loaded, validated and cached at application startup). -->
+
+    <query name="IssueHistoryByIssueQuery"><![CDATA[
+    select history 
+    from IssueHistory as history
+    where history.issue.id = :issueId ]]>
+    </query>
+
+</hibernate-mapping>

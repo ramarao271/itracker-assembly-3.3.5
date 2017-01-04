@@ -1,0 +1,260 @@
+<dataset>
+
+    <table name="permissionbean">
+
+        <column>id</column>
+        <column>create_date</column>
+        <column>last_modified</column>
+        <column>permission_type</column>
+        <column>user_id</column>
+        <column>project_id</column>
+
+        <!--
+       User 2
+       PERMISSION_PRODUCT_ADMIN
+       PERMISSION_CREATE
+       PERMISSION_EDIT
+        -->
+        <row>
+            <value>1</value>
+            <value>2006-01-01</value>
+            <value>2006-01-01</value>
+            <value>1</value>
+            <value>2</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>2</value>
+            <value>2006-01-01</value>
+            <value>2006-01-01</value>
+            <value>2</value>
+            <value>2</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>3</value>
+            <value>2006-01-01</value>
+            <value>2006-01-01</value>
+            <value>3</value>
+            <value>2</value>
+            <value>2</value>
+        </row>
+
+        <!--
+        User 3
+        PERMISSION_PRODUCT_ADMIN
+        PERMISSION_CREATE
+        PERMISSION_EDIT
+        PERMISSION_ASSIGN_SELF
+        -->
+        <row>
+            <value>4</value>
+            <value>2006-01-01</value>
+            <value>2006-01-01</value>
+            <value>1</value>
+            <value>3</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>5</value>
+            <value>2006-01-01</value>
+            <value>2006-01-01</value>
+            <value>2</value>
+            <value>3</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>6</value>
+            <value>2006-01-01</value>
+            <value>2006-01-01</value>
+            <value>3</value>
+            <value>3</value>
+            <value>2</value>
+        </row>
+        <row>
+            <value>23</value>
+            <value>2013-01-01</value>
+            <value>2013-01-01</value>
+            <value>6</value>
+            <value>3</value>
+            <value>2</value>
+        </row>
+        <!--
+        Permissions for user 4 (Refer to userbean_dataset.xml
+
+        Constants used. Refer to UserUtilities
+        PERMISSION_CREATE = 2;
+        PERMISSION_EDIT = 3;
+        PERMISSION_CLOSE = 4;
+        PERMISSION_ASSIGN_SELF = 5;
+        PERMISSION_ASSIGN_OTHERS = 6;
+        PERMISSION_VIEW_ALL = 7;
+        PERMISSION_VIEW_USERS = 8;
+        PERMISSION_CREATE_OTHERS = 12;
+         -->
+
+        <row>
+            <value>7</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>2</value>
+            <value>4</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>8</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>3</value>
+            <value>4</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>9</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>4</value>
+            <value>4</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>10</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>5</value>
+            <value>4</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>11</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>6</value>
+            <value>4</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>12</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>7</value>
+            <value>4</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>13</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>8</value>
+            <value>4</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>14</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>12</value>
+            <value>4</value>
+            <value>2</value>
+        </row>
+
+        <!--
+        Permissions for user 5 (Refer to userbean_dataset.xml
+
+        Constants used. Refer to UserUtilities
+        PERMISSION_CREATE = 2;
+        PERMISSION_EDIT = 3;
+        PERMISSION_CLOSE = 4;
+        PERMISSION_ASSIGN_SELF = 5;
+        PERMISSION_ASSIGN_OTHERS = 6;
+        PERMISSION_VIEW_ALL = 7;
+        PERMISSION_VIEW_USERS = 8;
+        PERMISSION_CREATE_OTHERS = 12;
+         -->
+
+        <row>
+            <value>15</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>2</value>
+            <value>5</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>16</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>3</value>
+            <value>5</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>17</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>4</value>
+            <value>5</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>18</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>5</value>
+            <value>5</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>19</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>6</value>
+            <value>5</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>20</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>7</value>
+            <value>5</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>21</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>8</value>
+            <value>5</value>
+            <value>2</value>
+        </row>
+
+        <row>
+            <value>22</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+            <value>12</value>
+            <value>5</value>
+            <value>2</value>
+        </row>
+
+    </table>
+
+</dataset>

@@ -1,0 +1,658 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>itracker 3.0 (stable) Release Notes</title>
+	</properties>
+	<body>
+
+		<section name="Intro">
+			<p>This is the first 3.0 stable release. There will be some stuff
+				to
+				fix, so please do testing of
+				essential stuff:</p>
+			<ul>
+				<li>migrate from 2.4</li>
+				<li>use it for internal or less critical projects</li>
+				<li>try to break it (over the web-interface)</li>
+				<li>provide feedback on bugs or failures in JIRA please.</li>
+			</ul>
+		</section>
+		<section name="Environmental changes since 2.4">
+			<ul>
+				<li>
+					Built using Maven 2, tests with Dbunit and in-memory hsqldb
+				</li>
+				<li>
+					Based on Java 5, Servlets 2.4
+				</li>
+				<li>
+					Replaced service EJBs by POJO Spring-2.0 services
+				</li>
+				<li>
+					Freed Struts-actions from mandatory calls in execute-method
+					(replaced by servlet-filter)
+				</li>
+				<li>
+					New generation of web-site including automatic reports
+					(incubating)
+				</li>
+				<li>
+					Java Naming (JNDI) support for configuration added
+				</li>
+			</ul>
+		</section>
+
+
+
+
+		<section name="itracker 3.0.1 fixed bugs">
+
+			<table>
+				<tr>
+					<th>
+						ID
+				</th>
+					<th>
+						Description
+				</th>
+				</tr>
+				<tr>
+					<td>
+						2353392 
+				</td>
+					<td>
+						Lazy Loading problems 
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2308476 
+				</td>
+					<td>
+						Edit Issue - Required Custom Field Validation 
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2353184 
+				</td>
+					<td>
+						ConfigurationServiceImpl 
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2320138 
+				</td>
+					<td>
+						the permissions on projects are not shown, after validation
+					</td>
+				</tr>
+				<tr>
+					<td>
+						2317185 
+				</td>
+					<td>
+						User preferences not set to user account 
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2308607 
+				</td>
+					<td>
+						Create Issue Validation Attachment 
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2308782 
+				</td>
+					<td>
+						Issue Activities not written
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2305822 
+				</td>
+					<td>
+						Database Migration MySQL (componentbean) 
+				</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Testing and some minor improvements / fixes.
+							</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Changed Site-skin for Project-Home
+</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>User administration fixed: Lock/Unlock users from
+						list-users and
+						edit user. </td>
+				</tr>
+			</table>
+		</section>
+
+
+		<section name="itracker 3.0-rc2 release-notes - fixed bugs">
+			<table>
+				<tr>
+					<th>ID</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>2191377</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2191377&amp;group_id=54141&amp;atid=472807">
+							Logout does leave a cookie
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2189460</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2189460&amp;group_id=54141&amp;atid=472807">
+							R3.0: Target Version and Version Of Issue not being saved.
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>2163876</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2163876&amp;group_id=54141&amp;atid=472807">
+							R3.0: Customfields not updated
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2163860</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2163860&amp;group_id=54141&amp;atid=472807">
+							R3.0: missing calendar-icon
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2163523</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2163523&amp;group_id=54141&amp;atid=472807">
+							R3.0: Assign issue, malformed url
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2163366</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2163366&amp;group_id=54141&amp;atid=472807">
+							R3.0: Watch-issue form issuesearch does not work
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2156993</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2156993&amp;group_id=54141&amp;atid=472807">
+							R3.1: Search-Issues form sort-order of criteria-lists
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2151498</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2151498&amp;group_id=54141&amp;atid=472807">
+							R3.0: Unordered Projects-list
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2141933</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2141933&amp;group_id=54141&amp;atid=472807">
+							Userpreference Number of Issues Shown
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2138537</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2138537&amp;group_id=54141&amp;atid=472807">
+							portalhome not displayed
+                        </a>
+					</td>
+				</tr>
+				<tr>
+					<td>2135762</td>
+					<td>
+						<a target="_blank"
+							href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2135762&amp;group_id=54141&amp;atid=472807">
+							Admin update user password
+                        </a>
+					</td>
+				</tr>
+			</table>
+		</section>
+
+
+		<section name="itracker 3.0-rc1 release-notes - fixed bugs">
+			<table>
+				<tr>
+					<th>task</th>
+					<th>description</th>
+				</tr>
+				<tr>
+					<th colspan="2">3.0-rc1</th>
+				</tr>
+				<tr>
+					<td>
+						2100577</td>
+					<td>Unauthentificated: no exceptions should be
+						outputed
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2100559</td>
+					<td>Notification URLs not working  
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1865237</td>
+					<td>Editing an issue with project set to 'Viewable only'
+						error.
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2100554</td>
+					<td>Issue Notifications Base-URL
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2100585</td>
+					<td>Order of Severity Options is wrong	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						2100565</td>
+					<td>New Issues Resolution
+				</td>
+				</tr>
+				<tr>
+					<th colspan="2">
+						3.0-alpha 2
+				</th>
+				</tr>
+				<tr>
+					<td>
+						1943775</td>
+					<td>Activities not persisted on Issue Update
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1872304</td>
+					<td>Description too short on overview page
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1871744</td>
+					<td>Issue Count Performance on Admin Page
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1646377</td>
+					<td>Clicking Admin: Page load damn slow...
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1645565</td>
+					<td>We will move /web/itracker.war to /web again	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1645564</td>
+					<td>maven build fails..	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1639283</td>
+					<td>Admin Page does not load: ServletException:
+						large,existingDB
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1634409</td>
+					<td>Admin Projects: Null Pointer when adding project..
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1634264</td>
+					<td>Exception when accessing admin...
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1630868</td>
+					<td>Null Pointer Excepetion in IssueUtilities.canViewIssue
+						</td>
+				</tr>
+				<tr>
+					<td>
+						1629856</td>
+					<td>List Issues fails when Status = null
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1628706</td>
+					<td>Permission Exceptions in DefaultAuthenticator?
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1620307</td>
+					<td>Tests all fail: in memory hsql db not starting?
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1618770</td>
+					<td>portalhome should not show closed issues...
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1617992</td>
+					<td>Implement addIssueNotification() in IssueServiceImpl
+					</td>
+				</tr>
+				<tr>
+					<td>
+						1616513</td>
+					<td>Can users be locked?
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1616329</td>
+					<td>An existing issue can't be updated without add detailed desc
+					</td>
+				</tr>
+				<tr>
+					<td>
+						1612764</td>
+					<td>Check if Adding and Removing Permissions simultanously
+						works
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1612763</td>
+					<td>Check if Removing Permissions works..
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1612762</td>
+					<td>Check if Adding Permissions works..
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1612179</td>
+					<td>Issues don't seem to be assignable to Owners
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1611562</td>
+					<td>Admin Project cannot Edit (existing) Project
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1607844</td>
+					<td>Admin: edit the Admin/Super User fails...
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1607838</td>
+					<td>Admin: Creating a User fails after the User has been
+						created
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1498876</td>
+					<td>Admin: the EditSuperUserForm of does not show
+						Permissions...
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1902148</td>
+					<td>Notifications sent with previous history
+						description
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1865242</td>
+					<td>Editing a user with mismatch password and confirmation
+						error
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1863997</td>
+					<td>Locked projects that should not be locked.
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1863342</td>
+					<td>Issue details doesn't show attachments
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1634414</td>
+					<td>Does the scripting stuff work as expected?
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1629061</td>
+					<td>My Preferences: hide sections does not work?
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1629054</td>
+					<td>Problems with Status New and Unassigned....
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1618779</td>
+					<td>My Preferences: Hide myITracker Sections can\'t be
+						changed...
+					</td>
+				</tr>
+				<tr>
+					<td>
+						1615520</td>
+					<td>Test-Failure: UserServiceImplTest
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1615518</td>
+					<td>Test-Failure: LanguageDAOImplTest
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1612119</td>
+					<td>Admin Configurations: Administer buttons is missing.
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1610276</td>
+					<td>View Issue Activity does not work..
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1608763</td>
+					<td>Admin Projects Edit (Save the form does not work)
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1607920</td>
+					<td>Admin Languages
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1583101</td>
+					<td>Issue Search does not work...
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1551776</td>
+					<td>JSP-Refactoring: fix the portalhome again
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1440466</td>
+					<td>portalhome:too many Projects and Issues:
+						Hibernate Query bad
+				</td>
+				</tr>
+				<tr>
+					<th colspan="2">
+						3.0-alpha 1
+				</th>
+				</tr>
+				<tr>
+					<td>1573111</td>
+					<td>Check the implementation ofUserDAO: findSuperUsers()	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1563152</td>
+					<td>+++ the users can't be given project permissions...	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1559872</td>
+					<td>Updating an Issue does not work...	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1559863</td>
+					<td>Change Owner of Issue does not work	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1555802</td>
+					<td>List Issues after Create Issue fails...	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1488814</td>
+					<td>Show Issues fails after EditIssue (Form Submit)	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1444325</td>
+					<td>UserPreferences Validation does not run...	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1441983</td>
+					<td>+ Issue Search: some stuff does not show up on the form...
+					</td>
+				</tr>
+				<tr>
+					<td>
+						1441980</td>
+					<td>Project Admin shows too many projects...	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1441369</td>
+					<td>UserPreferences cant be updated...	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1441357</td>
+					<td>+++ Admin seems too make too large queries...	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1441321</td>
+					<td>Project List should only show active Projects	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1577036</td>
+					<td>Hibernate throws an exception on web app startup	
+				</td>
+				</tr>
+				<tr>
+					<td>
+						1573112</td>
+					<td>Setting the Owners of a Project does not work.	
+				</td>
+				</tr>
+			</table>
+		</section>
+
+
+	</body>
+</document>

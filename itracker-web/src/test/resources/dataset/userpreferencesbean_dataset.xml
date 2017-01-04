@@ -1,0 +1,47 @@
+<dataset>
+
+    <table name="userpreferencesbean">
+
+        <column>id</column>
+        <column>user_locale</column>
+        <column>num_items_index</column>
+        <column>num_items_issue_list</column>
+        <column>show_closed</column>
+        <column>sort_column</column>
+        <column>hidden_index_sections</column>
+        <column>remember_last_search</column>
+        <column>use_text_actions</column>
+        <column>create_date</column>
+        <column>last_modified</column>
+
+        <row>
+            <value>2</value>
+            <value>en_US</value>
+            <value>10</value>
+            <value>20</value>
+            <value>1</value>
+            <value>Column Name</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+        <row>
+            <value>3</value>
+            <value>en_US</value>
+            <value>10</value>
+            <value>20</value>
+            <value>1</value>
+            <value>Column Name</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>2008-01-01</value>
+            <value>2008-01-01</value>
+        </row>
+
+    </table>
+
+</dataset>

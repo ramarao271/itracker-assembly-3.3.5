@@ -1,0 +1,10 @@
+<dataset>
+
+    <table name="project_owner_rel">
+
+        <column>project_id</column>
+        <column>user_id</column>
+
+    </table>
+
+</dataset>

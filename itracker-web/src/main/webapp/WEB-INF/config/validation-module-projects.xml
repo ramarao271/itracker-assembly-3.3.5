@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+    <formset>
+
+        <form name="editIssueForm">
+            <field property="id" depends="required,long">
+                <arg0 key="itracker.web.attr.issue"/>
+            </field>
+        </form>
+        <form name="createIssueForm">
+            <field property="severity" depends="required,long">
+                <arg0 key="itracker.web.attr.severity"/>
+            </field>
+            <field property="description" depends="required,maxlength">
+                <arg0 key="itracker.web.attr.description"/>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>255</var-value>
+                </var>
+            </field>
+            <field property="history" depends="required,maxlength">
+                <arg0 key="itracker.web.attr.detaileddescription"/>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>32000</var-value>
+                </var>
+            </field>
+
+            <field property="attachmentDescription"
+                   depends="validwhen,maxlength">
+                <msg key="itracker.web.error.validate.required.attachmentdescription" name="validwhen"/>
+                <arg0 key="itracker.web.attr.attachmentdescription"/>
+                <arg1 key="itracker.web.attr.attachment"/>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>
+                        ((attachment == null) or (*this* != null))
+                    </var-value>
+                </var>
+                <arg2 name="maxlength" key="${var:maxlength}" resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>60</var-value>
+                </var>
+            </field>
+            <field property="attachment" depends="validwhen">
+                <msg key="itracker.web.error.validate.required.attachment" name="validwhen"/>
+                <arg0 key="itracker.web.attr.attachment"/>
+                <arg1 key="itracker.web.attr.attachmentdescription"/>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>
+                        ((attachmentDescription == null) or (*this* !=
+                        null))
+                    </var-value>
+                </var>
+
+            </field>
+        </form>
+        <form name="issueForm">
+            <field property="id" depends="required,long">
+                <arg0 key="itracker.web.attr.issue"/>
+            </field>
+            <field property="status" depends="required,long">
+                <arg0 key="itracker.web.attr.status"/>
+            </field>
+            <field property="severity" depends="required,long">
+                <arg0 key="itracker.web.attr.severity"/>
+            </field>
+            <field property="description" depends="required,maxlength">
+                <arg0 key="itracker.web.attr.description"/>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>255</var-value>
+                </var>
+            </field>
+            <field property="history" depends="validwhen,maxlength">
+                <msg key="itracker.web.error.validate.required.issuedescription" name="validwhen"/>
+                <arg0 key="itracker.web.attr.history"/>
+                <var>
+                    <var-name>test</var-name>
+                    <!-- allow empty history on edit if status not changed, or closed(500) -->
+                    <var-value>
+                        (((prevStatus == status) or (status >= 500)) or (*this* != null))
+                    </var-value>
+                </var>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>32000</var-value>
+                </var>
+            </field>
+
+            <field property="attachmentDescription"
+                   depends="validwhen,maxlength">
+                <msg key="itracker.web.error.validate.required.attachmentdescription" name="validwhen"/>
+                <arg0 key="itracker.web.attr.attachmentdescription"/>
+                <arg1 key="itracker.web.attr.attachment"/>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>
+                        ((attachment == null) or (*this* != null))
+                    </var-value>
+                </var>
+                <arg2 name="maxlength" key="${var:maxlength}" resource="false"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>60</var-value>
+                </var>
+            </field>
+            <field property="attachment" depends="validwhen">
+                <msg key="itracker.web.error.validate.required.attachment" name="validwhen"/>
+                <arg0 key="itracker.web.attr.attachment"/>
+                <arg1 key="itracker.web.attr.attachmentdescription"/>
+                <var>
+                    <var-name>test</var-name>
+                    <var-value>
+                        ((attachmentDescription == null) or (*this* != null))
+                    </var-value>
+                </var>
+
+            </field>
+        </form>
+
+        <form name="issueRelationForm">
+            <field property="issueId" depends="required,long">
+                <arg0 key="itracker.web.attr.issue"/>
+            </field>
+            <field property="relatedIssueId" depends="required,long">
+                <arg0 key="itracker.web.attr.issue"/>
+            </field>
+            <field property="relationType"></field>
+        </form>
+
+        <form name="moveIssueForm">
+            <field property="issueId" depends="required,long">
+                <arg0 key="itracker.web.attr.issue"/>
+            </field>
+            <field property="projectId" depends="required,long">
+                <arg0 key="itracker.web.attr.project"/>
+            </field>
+        </form>
+
+    </formset>
+</form-validation>

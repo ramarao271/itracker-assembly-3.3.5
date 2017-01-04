@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+
+<struts-config>
+
+    <!-- ==================================== Data Sources      -->
+    <data-sources>
+    </data-sources>
+
+    <!-- ==================================== Form Beans        -->
+    <form-beans>
+        <form-bean name="preferencesForm" type="org.itracker.web.forms.UserForm"/>
+    </form-beans>
+
+    <!-- ==================================== Global Exceptions -->
+    <global-exceptions>
+    </global-exceptions>
+
+    <!-- ==================================== Global Forwards    -->
+    <global-forwards>
+        <forward name="editpreferences" path="/editpreferencesform.do"
+                 module="/module-preferences"/>
+        <forward name="login" module="/" path="/login.jsp"/>
+        <forward name="error" module="/" path="/error.do"/>
+        <forward name="help" module="/module-help" path="/show_help.do"/>
+        <forward name="unauthorized" path="/unauthorized.do" module="/"/>
+        <forward name="searchissues" module="/module-searchissues" path="/searchissuesform.do"/>
+        <forward name="logoff" path="/logoff.do" module="/"/>
+        <forward name="index" path="/portalhome.do" module="/" redirect="true"/>
+
+    </global-forwards>
+
+    <!-- ==================================== Action Mappings    -->
+    <action-mappings>
+        <action path="/error" type="org.itracker.web.actions.ErrorAction"/>
+        <action path="/editpreferencesform"
+                type="org.itracker.web.actions.preferences.EditPreferencesFormAction"
+                name="preferencesForm" scope="request" validate="false"
+                input="/edit_preferences.jsp">
+            <forward name="editpreferencesform" path="/edit_preferences.jsp"
+                     module="/module-preferences"/>
+        </action>
+        <action path="/editpreferences"
+                type="org.itracker.web.actions.preferences.EditPreferencesAction"
+                name="preferencesForm" scope="request" input="/editpreferencesform.do"
+                validate="true">
+            <!-- forward name="index" module="/" path="/portalhome_refactored.jsp"/ -->
+        </action>
+    </action-mappings>
+
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor">
+        <set-property property="inputForward" value="false"/>
+    </controller>
+
+    <message-resources factory="org.itracker.web.resources.ITrackerMessageResourcesFactory"
+                       parameter="org.itracker.core.resources.ITracker" null="false"/>
+
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames"
+                      value="/WEB-INF/config/validator-rules.xml, 
+                             /WEB-INF/config/validation-module-preferences.xml"/>
+    </plug-in>
+</struts-config>
+

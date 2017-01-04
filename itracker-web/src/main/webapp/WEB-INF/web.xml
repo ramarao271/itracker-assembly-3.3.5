@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_2_5.xsd">
+   <display-name>itracker</display-name>
+   <description>
+      This application allows for issue tracking.
+   </description>
+
+   <context-param>
+      <param-name>webmaster</param-name>
+      <param-value>itracker@itracker.org</param-value>
+   </context-param>
+   <!--
+        <context-param>
+        <param-name>log4jConfiguration</param-name>
+        <param-value>/WEB-INF/log4j2.xml</param-value>
+        </context-param>
+    -->
+   <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:application-context.xml</param-value>
+   </context-param>
+
+
+
+   <filter>
+      <filter-name>SetRequestCharacterEncoding</filter-name>
+      <filter-class>
+         org.itracker.web.filters.SetRequestCharacterEncoding
+      </filter-class>
+      <init-param>
+         <param-name>encoding</param-name>
+         <param-value>utf8</param-value>
+      </init-param>
+   </filter>
+
+   <filter>
+      <filter-name>OpenSessionInView</filter-name>
+      <filter-class>
+         org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+      </filter-class>
+   </filter>
+   <filter>
+      <filter-name>springSecurityFilterChain</filter-name>
+      <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+   </filter>
+
+   <!--Authentication against windows smb server-->
+   <!--
+        <filter>
+        <filter-name>NTLM HTTP Authentication Filter</filter-name>
+        <filter-class>jcifs.http.NtlmHttpFilter</filter-class>
+        For development, any SMB server is suitable for validating password hashes.
+        <init-param>
+        <param-name>jcifs.http.domainController</param-name>
+        <param-value>testpdc</param-value>
+        </init-param>
+        </filter>
+    -->
+   <!-- NTLM HTTP Authentication -->
+   <!--
+        <filter-mapping>
+        <filter-name>NTLM HTTP Authentication Filter</filter-name>
+        <url-pattern></url-pattern>
+        </filter-mapping
+    -->
+
+   <filter-mapping>
+      <filter-name>OpenSessionInView</filter-name>
+      <url-pattern>/*</url-pattern>
+      <dispatcher>REQUEST</dispatcher>
+      <dispatcher>FORWARD</dispatcher>
+   </filter-mapping>
+
+   <filter-mapping>
+      <filter-name>SetRequestCharacterEncoding</filter-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>
+
+   <filter-mapping>
+      <filter-name>springSecurityFilterChain</filter-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>
+
+   <listener>
+      <listener-class>
+         org.springframework.web.context.ContextLoaderListener
+      </listener-class>
+   </listener>
+
+   <servlet>
+      <servlet-name>action</servlet-name>
+      <servlet-class>
+         org.apache.struts.action.ActionServlet
+      </servlet-class>
+      <init-param>
+         <param-name>config</param-name>
+         <param-value>/WEB-INF/config/struts-config.xml</param-value>
+      </init-param>
+      <init-param>
+         <param-name>config/module-admin</param-name>
+         <param-value>
+            /WEB-INF/config/struts-module-admin-config.xml
+         </param-value>
+      </init-param>
+      <init-param>
+         <param-name>config/module-preferences</param-name>
+         <param-value>
+            /WEB-INF/config/struts-module-preferences-config.xml
+         </param-value>
+      </init-param>
+      <init-param>
+         <param-name>config/module-reports</param-name>
+         <param-value>
+            /WEB-INF/config/struts-module-reports-config.xml
+         </param-value>
+      </init-param>
+      <init-param>
+         <param-name>config/module-projects</param-name>
+         <param-value>
+            /WEB-INF/config/struts-module-projects-config.xml
+         </param-value>
+      </init-param>
+      <init-param>
+         <param-name>config/module-searchissues</param-name>
+         <param-value>
+            /WEB-INF/config/struts-module-searchissues-config.xml
+         </param-value>
+      </init-param>
+      <init-param>
+         <param-name>config/module-help</param-name>
+         <param-value>
+            /WEB-INF/config/struts-module-help-config.xml
+         </param-value>
+      </init-param>
+      <init-param>
+         <param-name>chainConfig</param-name>
+         <param-value>org/apache/struts/tiles/chain-config.xml</param-value>
+      </init-param>
+
+      <load-on-startup>3</load-on-startup>
+   </servlet>
+
+   <servlet>
+      <servlet-name>ReportChartController</servlet-name>
+      <servlet-class>
+         org.itracker.web.servlets.ReportChartController
+      </servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>ReportDownloadController</servlet-name>
+      <servlet-class>
+         org.itracker.web.servlets.ReportDownloadController
+      </servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>RssFeedController</servlet-name>
+      <servlet-class>org.itracker.web.servlets.RssFeedController
+      </servlet-class>
+   </servlet>
+
+   <servlet-mapping>
+      <servlet-name>action</servlet-name>
+      <url-pattern>*.do</url-pattern>
+   </servlet-mapping>
+
+   <servlet>
+      <servlet-name>WebjarsServlet</servlet-name>
+      <servlet-class>org.webjars.servlet.WebjarsServlet</servlet-class>
+      <!--<init-param>-->
+      <!--<param-name>disableCache</param-name>-->
+      <!--<param-value>true</param-value>-->
+      <!--</init-param>-->
+      <load-on-startup>2</load-on-startup>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>WebjarsServlet</servlet-name>
+      <url-pattern>/webjars/*</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+      <servlet-name>ReportChartController</servlet-name>
+      <url-pattern>/servlets/ReportChartController</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>ReportDownloadController</servlet-name>
+      <url-pattern>/servlets/ReportDownloadController</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>RssFeedController</servlet-name>
+      <url-pattern>/servlets/issues/*</url-pattern>
+   </servlet-mapping>
+
+   <session-config>
+      <session-timeout>30</session-timeout>
+   </session-config>
+
+   <welcome-file-list>
+      <welcome-file>index.jsp</welcome-file>
+   </welcome-file-list>
+
+   <jsp-config>
+      <!--jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <url-pattern>*.jspf</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+            </jsp-property-group-->
+
+      <!-- Short logical URIs to indirectly reference Taglib descriptors (tld). -->
+
+      <taglib id="itracker-taglib">
+         <taglib-uri>/tags/itracker</taglib-uri>
+         <taglib-location>/WEB-INF/tld/itracker.tld</taglib-location>
+      </taglib>
+
+   </jsp-config>
+
+   <!-- reference the itracker context from env-context (java:comp/env) if it's defined
+   by the container
+<resource-env-ref id="itracker.web_session_timeout">
+   <description>reference to itracker-context in naming env from container</description>
+   <resource-env-ref-name>itracker/web_session_timeout</resource-env-ref-name>
+   <resource-env-ref-type>java.lang.Integer</resource-env-ref-type>
+   </resource-env-ref>
+
+   <resource-env-ref id="itracker.mailsession">
+       <description>reference to itracker mailsession in naming env from container</description>
+       <resource-env-ref-name>itracker/mail/Session</resource-env-ref-name>
+       <resource-env-ref-type>javax.mail.Session</resource-env-ref-type>
+   </resource-env-ref>
+   <resource-env-ref id="jdbc.itracker_ds">
+       <description>reference to itracker datasource in naming env from container</description>
+       <resource-env-ref-name>jdbc/itracker_ds</resource-env-ref-name>
+       <resource-env-ref-type>javax.sql.DataSource</resource-env-ref-type>
+   </resource-env-ref>
+
+   -->
+   <!--  Default Value for env-entry, can be overridden by server -->
+
+   <!--<env-entry>-->
+   <!--<env-entry-name>itracker/notification_from_text</env-entry-name>-->
+   <!--<env-entry-type>java.lang.String</env-entry-type>-->
+   <!--<env-entry-value>iTracker Service</env-entry-value>-->
+   <!--</env-entry>-->
+   <!--<env-entry>-->
+   <!--<env-entry-name>itracker/notification_replyto_address</env-entry-name>-->
+   <!--<env-entry-type>java.lang.String</env-entry-type>-->
+   <!--<env-entry-value>itracker@example.com</env-entry-value>-->
+   <!--</env-entry>-->
+   <!--<env-entry>-->
+   <!--<env-entry-name>itracker/notification_from_address</env-entry-name>-->
+   <!--<env-entry-type>java.lang.String</env-entry-type>-->
+   <!--<env-entry-value>itracker@example.com</env-entry-value>-->
+   <!--</env-entry>-->
+   <!--<env-entry>-->
+   <!--<env-entry-name>itracker/notification_smtp_charset</env-entry-name>-->
+   <!--<env-entry-type>java.lang.String</env-entry-type>-->
+   <!--<env-entry-value>UTF-8</env-entry-value>-->
+   <!--</env-entry>-->
+
+</web-app>
